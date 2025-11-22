@@ -223,9 +223,11 @@ public class PlayerMovement : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashingForce, 0f);
-        audioManager.PlaySFX(audioManager.dash);
+        // audioManager.PlaySFX(audioManager.dash);
         trail.emitting = true;
+        Debug.Log("Dash start");
         yield return new WaitForSeconds(dashingTime);
+        Debug.Log("Dash ended");
         trail.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
