@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 6098819926379677605}
   m_Layer: 3
   m_Name: Z of 4
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,6 +479,10 @@ PrefabInstance:
     - target: {fileID: 7006646327745751390, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
       propertyPath: m_Name
       value: Killzone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006646327745751390, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8701981628486073571, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
       propertyPath: m_LocalPosition.x

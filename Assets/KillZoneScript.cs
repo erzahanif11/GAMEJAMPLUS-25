@@ -18,10 +18,7 @@ public class KillZoneScript : MonoBehaviour
         {
             GameManager.instance.Death();
         }
-        else
-        {
-            Debug.Log("Player has entered the kill zone!");
-        }
+        
     }
 
 }
