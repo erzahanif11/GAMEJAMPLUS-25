@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     Rigidbody2D rb;
     float moveInput;
-    bool isGrounded;
+    [SerializeField] bool isGrounded;
     bool jumpedDouble;
 
     public Transform wallCheck;
@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+
+        groundLayer = LayerMask.GetMask("Ground");
        // audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
     }
 
