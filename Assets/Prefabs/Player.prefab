@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1613728540203183298}
   - component: {fileID: 249687193538431070}
   - component: {fileID: 2796941539769864158}
+  - component: {fileID: -2429756717255561360}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -157,6 +158,43 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.1
+--- !u!114 &-2429756717255561360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893083790497630746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83858edd73327ff4d85c7b426cbf14dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpForce: 12
+  groundCheck: {fileID: 0}
+  groundCheckLeft: {fileID: 0}
+  groundCheckRight: {fileID: 0}
+  groundCheckRadius: 0.2
+  groundCheckRadiusHorizontal: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallCheck: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallJumpTime: 0.5
+  wallJumpPower: {x: 5, y: 10}
+  isGhostMode: 0
+  trail: {fileID: 0}
+  canDash: 0
+  dashingForce: 5
+  dashingCooldown: 0.5
+  footdistanceonground: 0.5
+  footdistancemidair: 0.5
+  OnGroundJumpEffect: {fileID: 0}
+  MidAirJumpEffect: {fileID: 0}
 --- !u!1 &2211439786246722625
 GameObject:
   m_ObjectHideFlags: 0

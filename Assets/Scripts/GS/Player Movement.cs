@@ -41,19 +41,19 @@ public class PlayerMovement : MonoBehaviour
     float originalSpeed;
     float originalJump;
     Coroutine speedEffectCoroutine;
-    Animator animator;
+  //  Animator animator;
 
     public float footdistanceonground=0.5f;
     public float footdistancemidair=0.5f;
 
-    public GameObject OnGroundJumpEffect; 
-    public GameObject MidAirJumpEffect;
+    // public GameObject OnGroundJumpEffect; 
+    // public GameObject MidAirJumpEffect;
 
     AudioManager audioManager;
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
+       // audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         originalJump = jumpForce;
 
         
-        animator = GetComponent<Animator>();
+      //  animator = GetComponent<Animator>();
 
     }
     bool groundedCenter;
@@ -136,15 +136,15 @@ public class PlayerMovement : MonoBehaviour
     {
         
 
-        animator.SetFloat("Velocity", Mathf.Abs(rb.linearVelocity.x));
-        animator.SetFloat("VelocityY", rb.linearVelocity.y);
-        animator.SetBool("isGrounded", isGrounded);
-        animator.SetBool("isSliding", (isSliding&&!isGrounded));
-        animator.SetBool("hug wall", groundedLeft||groundedRight);
+        // animator.SetFloat("Velocity", Mathf.Abs(rb.linearVelocity.x));
+        // animator.SetFloat("VelocityY", rb.linearVelocity.y);
+        // animator.SetBool("isGrounded", isGrounded);
+        // animator.SetBool("isSliding", (isSliding&&!isGrounded));
+        // animator.SetBool("hug wall", groundedLeft||groundedRight);
 
 
-        animator.SetLayerWeight(0, isGhostMode ? 0f : 1f);
-        animator.SetLayerWeight(1, isGhostMode ? 1f : 0f);
+        // animator.SetLayerWeight(0, isGhostMode ? 0f : 1f);
+        // animator.SetLayerWeight(1, isGhostMode ? 1f : 0f);
 
         if (isDashing)
         {
@@ -162,16 +162,16 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        audioManager.PlaySFX(audioManager.jump);
+//        audioManager.PlaySFX(audioManager.jump);
         if (isGrounded)
         {
             Vector3 spawnPos = transform.position + new Vector3(0, footdistanceonground, 0); // sesuaikan posisi
-            Instantiate(OnGroundJumpEffect, spawnPos, Quaternion.identity);
+       //     Instantiate(OnGroundJumpEffect, spawnPos, Quaternion.identity);
         }
         else if (!isGrounded)
         {
             Vector3 spawnPos = transform.position + new Vector3(0, footdistancemidair, 0); // sesuaikan posisi
-            Instantiate(MidAirJumpEffect, spawnPos, Quaternion.identity);
+    //        Instantiate(MidAirJumpEffect, spawnPos, Quaternion.identity);
         }
         
     }
@@ -231,43 +231,43 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
-    public void ApplySpeedBoost(float boostMultiplier, float boostDuration, float slowMultiplier, float slowDuration)
-    {
-        audioManager.PlaySFX(audioManager.powerUp);
-        if (speedEffectCoroutine != null)
-        {
-            StopCoroutine(speedEffectCoroutine);
-        }
-        speedEffectCoroutine = StartCoroutine(speedEffect(boostMultiplier, boostDuration, slowMultiplier, slowDuration));
-    }
+    // public void ApplySpeedBoost(float boostMultiplier, float boostDuration, float slowMultiplier, float slowDuration)
+    // {
+    //     audioManager.PlaySFX(audioManager.powerUp);
+    //     if (speedEffectCoroutine != null)
+    //     {
+    //         StopCoroutine(speedEffectCoroutine);
+    //     }
+    //     speedEffectCoroutine = StartCoroutine(speedEffect(boostMultiplier, boostDuration, slowMultiplier, slowDuration));
+    // }
 
-    IEnumerator speedEffect(float boostMultiplier, float boostDuration, float slowMultiplier, float slowDuration)
-    {
-        moveSpeed = originalSpeed * boostMultiplier;
-        jumpForce = originalJump * boostMultiplier;
-        yield return new WaitForSeconds(boostDuration);
+    // IEnumerator speedEffect(float boostMultiplier, float boostDuration, float slowMultiplier, float slowDuration)
+    // {
+    //     moveSpeed = originalSpeed * boostMultiplier;
+    //     jumpForce = originalJump * boostMultiplier;
+    //     yield return new WaitForSeconds(boostDuration);
 
-        moveSpeed = originalSpeed * slowMultiplier;
-        jumpForce = originalJump * slowMultiplier;
-        yield return new WaitForSeconds(slowDuration);
+    //     moveSpeed = originalSpeed * slowMultiplier;
+    //     jumpForce = originalJump * slowMultiplier;
+    //     yield return new WaitForSeconds(slowDuration);
 
-        moveSpeed = originalSpeed;
-        jumpForce = originalJump;
-        speedEffectCoroutine = null;
-    }
+    //     moveSpeed = originalSpeed;
+    //     jumpForce = originalJump;
+    //     speedEffectCoroutine = null;
+    // }
 
-    public void ActivateGhostMode(float duration)
-    {
-        audioManager.PlaySFX(audioManager.powerUp);
-        StartCoroutine(GhostModeCoroutine(duration));
-    }
+    // public void ActivateGhostMode(float duration)
+    // {
+    //     audioManager.PlaySFX(audioManager.powerUp);
+    //     StartCoroutine(GhostModeCoroutine(duration));
+    // }
 
-    IEnumerator GhostModeCoroutine(float duration)
-    {
-        isGhostMode = true;
-        Debug.Log("Ghost aktif");
-        yield return new WaitForSeconds(duration);
-        isGhostMode = false;
-        Debug.Log("Ghost non aktif");
-    }
+    // IEnumerator GhostModeCoroutine(float duration)
+    // {
+    //     isGhostMode = true;
+    //     Debug.Log("Ghost aktif");
+    //     yield return new WaitForSeconds(duration);
+    //     isGhostMode = false;
+    //     Debug.Log("Ghost non aktif");
+    // }
 }
