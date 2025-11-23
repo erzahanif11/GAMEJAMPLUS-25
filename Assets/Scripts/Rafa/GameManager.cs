@@ -22,36 +22,16 @@ public class GameManager : MonoBehaviour
     }
     
 
-
     public float fillDuration = 1f; // Duration in seconds to fill the image
 
     public void Death()
     {
+        AudioManager.instance.PlaySFX(AudioManager.instance.dead);
         Debug.Log("Player has died!");
-        StartCoroutine(FillImage());
+        lose.SetActive(true);
+        Time.timeScale=0;
+        AudioManager.instance.PlaySFX(AudioManager.instance.gameOver);
     }
 
-    IEnumerator FillImage()
-    {
-        if (lose == null){
-            yield break;
-        }
-        Image image = lose.GetComponent<Image>();
-        
-        if (image == null)
-        {
-            Debug.LogError("Image component not found on lose GameObject!");
-            yield break;
-        }
-
-        float elapsedTime = 0f;
-        image.fillAmount = 0f;
-
-        while (image.fillAmount<1)
-        {
-            elapsedTime += Time.deltaTime;
-            image.fillAmount = elapsedTime / fillDuration;
-            yield return null;
-        }
-    }
+    
 }

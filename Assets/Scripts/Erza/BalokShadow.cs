@@ -20,6 +20,7 @@ public class BalokShadow : MonoBehaviour
     void Start()
     {
         srMain = GetComponent<SpriteRenderer>();
+        rb = GetComponentInParent<Rigidbody2D>();
 
         // === AUTO BUAT GAMEOBJECT SHADOW ===
         shadowObject = new GameObject("Shadow_" + gameObject.name);
@@ -57,7 +58,7 @@ public class BalokShadow : MonoBehaviour
 
         // Terapkan scale sesuai jarak balok ke tanah
         shadowObject.transform.localScale = new Vector3(
-            transform.localScale.x,
+            transform.localScale.x + 0.05f,
             scaleY,
             transform.localScale.z
         );
@@ -65,7 +66,7 @@ public class BalokShadow : MonoBehaviour
         // Tempatkan bayangan agar memanjang ke bawah
         shadowObject.transform.position = new Vector2(
             transform.position.x,
-            transform.position.y - jarak / 2f
+            hit.point.y + (srShadow.sprite.bounds.size.y * scaleY) / 2f
         );
     }
     else

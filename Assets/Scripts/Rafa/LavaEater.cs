@@ -6,25 +6,26 @@ public class LavaEater : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Block"))
+        //get parent object
+        GameObject parentObject = other.transform.parent != null ? other.transform.parent.gameObject : other.gameObject;    
+        
+        if (parentObject.CompareTag("Block"))
         {
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = parentObject.GetComponent<Rigidbody2D>();
 
-            if (rb != null)
+            if (rb .bodyType !=RigidbodyType2D.Kinematic )
             {
-                // disable physics
+                //+5 poin
                rb.bodyType = RigidbodyType2D.Kinematic;
                rb.linearVelocity = new Vector2(0, 0);
             }
 
-           other.transform.position -= new Vector3(0, sinkSpeed * Time.deltaTime, 0);
+           parentObject.transform.position -= new Vector3(0, sinkSpeed * Time.deltaTime, 0);
         }
         else  if (other.CompareTag("Player") && GameManager.instance != null)
         {
                 GameManager.instance.Death();
         }
-
-
 
 
     }
