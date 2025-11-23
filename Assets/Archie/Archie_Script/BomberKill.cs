@@ -9,8 +9,8 @@ public class BomberKill : MonoBehaviour
     
     [Header("Explosion Settings")]
     public float initialDelay = 1.5f; 
-    public GameObject explosionColliderPrefab; 
-    public float explosionDuration = 0.1f; 
+    public float explosionDuration = 0.1f;
+    public GameObject tetrisObject;
     
     [Header("References")]
     public GameObject[] tetrisBlock;
@@ -103,6 +103,6 @@ public class BomberKill : MonoBehaviour
         {
             Destroy(player);
         }
-        Destroy(gameObject);
+        Destroy(tetrisObject);
     }
 }

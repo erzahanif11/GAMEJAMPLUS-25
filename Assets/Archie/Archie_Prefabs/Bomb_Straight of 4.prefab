@@ -170,6 +170,7 @@ Transform:
   - {fileID: 5851569466201316120}
   - {fileID: 1162423767030159039}
   - {fileID: 565077745958178639}
+  - {fileID: 1343318857618760142}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &6921924126809680229
@@ -654,6 +655,88 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &5417212453743591449
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6202243464815521698}
+    m_Modifications:
+    - target: {fileID: 1820570181647886032, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: tetrisObject
+      value: 
+      objectReference: {fileID: 3101069909813576148}
+    - target: {fileID: 1820570181647886032, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: 'tetrisBlock.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1432732403826998495}
+    - target: {fileID: 1820570181647886032, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: 'tetrisBlock.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4814846181679558304}
+    - target: {fileID: 1820570181647886032, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: 'tetrisBlock.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3544221046097283366}
+    - target: {fileID: 1820570181647886032, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: 'tetrisBlock.Array.data[3]'
+      value: 
+      objectReference: {fileID: 6814556531495190686}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.038710117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717927953644660138, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_Name
+      value: BombZone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+--- !u!4 &1343318857618760142 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6451867591786275287, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+  m_PrefabInstance: {fileID: 5417212453743591449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9156989128925246380
 PrefabInstance:
   m_ObjectHideFlags: 0
