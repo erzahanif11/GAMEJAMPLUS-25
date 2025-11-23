@@ -28,30 +28,9 @@ public class GameManager : MonoBehaviour
     public void Death()
     {
         Debug.Log("Player has died!");
-        StartCoroutine(FillImage());
+        lose.SetActive(true);
+        Time.timeScale=0;
     }
 
-    IEnumerator FillImage()
-    {
-        if (lose == null){
-            yield break;
-        }
-        Image image = lose.GetComponent<Image>();
-        
-        if (image == null)
-        {
-            Debug.LogError("Image component not found on lose GameObject!");
-            yield break;
-        }
-
-        float elapsedTime = 0f;
-        image.fillAmount = 0f;
-
-        while (image.fillAmount<1)
-        {
-            elapsedTime += Time.deltaTime;
-            image.fillAmount = elapsedTime / fillDuration;
-            yield return null;
-        }
-    }
+    
 }
