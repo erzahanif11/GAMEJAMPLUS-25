@@ -107,7 +107,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0.5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 55bd8c39c9c9dc147b018679c879f431, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 2676421835203040564}
   - component: {fileID: 8638668071650329233}
   - component: {fileID: 8692799932193534148}
+  - component: {fileID: 5470790973940879422}
   m_Layer: 3
   m_Name: Square (1)
   m_TagString: Untagged
@@ -386,6 +387,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5470790973940879422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775419019445566144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d0f97bedf4a04bb4658981e2a4891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistance: 20
+  minScaleY: 0.1
+  maxScaleY: 1
+  rb: {fileID: 0}
 --- !u!1 &7954499695164472926
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +551,7 @@ GameObject:
   - component: {fileID: 8496501946445759352}
   - component: {fileID: 5573341449156240321}
   - component: {fileID: 6429058464680942168}
+  - component: {fileID: 4605871754362163680}
   m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
@@ -654,6 +675,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4605871754362163680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315960811047825582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d0f97bedf4a04bb4658981e2a4891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistance: 20
+  minScaleY: 0.1
+  maxScaleY: 1
+  rb: {fileID: 0}
 --- !u!1001 &6795257316895946005
 PrefabInstance:
   m_ObjectHideFlags: 0

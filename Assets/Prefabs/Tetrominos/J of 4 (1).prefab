@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 614543202869158745}
   - component: {fileID: 7723217675399790942}
   - component: {fileID: 5769860797032160351}
+  - component: {fileID: 1639506575877752301}
   m_Layer: 3
   m_Name: Square (3)
   m_TagString: Untagged
@@ -134,6 +135,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1639506575877752301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630574937683773653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d0f97bedf4a04bb4658981e2a4891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistance: 20
+  minScaleY: 0.1
+  maxScaleY: 1
+  rb: {fileID: 0}
 --- !u!1 &3073113424242411620
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +299,7 @@ GameObject:
   - component: {fileID: 8398909251520245422}
   - component: {fileID: 223774946342218401}
   - component: {fileID: 3208168049220043811}
+  - component: {fileID: 825265339755750287}
   m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
@@ -402,6 +423,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &825265339755750287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645261578262582996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d0f97bedf4a04bb4658981e2a4891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistance: 20
+  minScaleY: 0.1
+  maxScaleY: 1
+  rb: {fileID: 0}
 --- !u!1 &5263219013407214623
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +683,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0.5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 55bd8c39c9c9dc147b018679c879f431, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
