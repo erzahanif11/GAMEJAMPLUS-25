@@ -6,8 +6,8 @@ public class BlockSpawn : MonoBehaviour
 
 
     [SerializeField] ListofBlocks normal;
-    [SerializeField] float wallRight = 13.55857f; // right boundary for spawning (float)
-    [SerializeField] float wallLeft = -12.44143f; // left boundary for spawning (float)
+    [SerializeField] float wallRight = 12.55857f; // right boundary for spawning (float)
+    [SerializeField] float wallLeft = -10.44143f; // left boundary for spawning (float)
 
     public static BlockSpawn instance;
     public float spawnInterval = 1.5f;

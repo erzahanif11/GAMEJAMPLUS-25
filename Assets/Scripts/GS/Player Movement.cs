@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     float originalSpeed;
     float originalJump;
     Coroutine speedEffectCoroutine;
-  //  Animator animator;
+   Animator animator;
 
     public float footdistanceonground=0.5f;
     public float footdistancemidair=0.5f;
@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
     // public GameObject OnGroundJumpEffect; 
     // public GameObject MidAirJumpEffect;
 
-    AudioManager audioManager;
 
     private void Awake()
     {
@@ -132,15 +131,17 @@ public class PlayerMovement : MonoBehaviour
         {
             WallJump();
         }
+
+            animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("VelocityY", rb.linearVelocity.y);
+        animator.SetBool("isGrounded", isGrounded);
     }
 
     void FixedUpdate()
     {
         
 
-        // animator.SetFloat("Velocity", Mathf.Abs(rb.linearVelocity.x));
-        // animator.SetFloat("VelocityY", rb.linearVelocity.y);
-        // animator.SetBool("isGrounded", isGrounded);
+    
         // animator.SetBool("isSliding", (isSliding&&!isGrounded));
         // animator.SetBool("hug wall", groundedLeft||groundedRight);
 
@@ -190,7 +191,6 @@ public class PlayerMovement : MonoBehaviour
         isWallJumping = true;
         wallJumpDirection = -transform.localScale.x;
         rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
-        audioManager.PlaySFX(audioManager.jump);
 
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
@@ -205,11 +205,11 @@ public class PlayerMovement : MonoBehaviour
     void Flip()
     {
         float scaleX = Mathf.Abs(transform.localScale.x);
-        if (moveInput > 0)
+        if (moveInput < 0)
         {
             transform.localScale = new Vector3(scaleX, transform.localScale.y, transform.localScale.z);
         }
-        else if (moveInput < 0)
+        else if (moveInput > 0)
         {
             transform.localScale = new Vector3(-scaleX, transform.localScale.y, transform.localScale.z);
         }

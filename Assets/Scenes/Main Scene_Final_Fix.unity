@@ -1014,6 +1014,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1893083790497630746, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
   m_PrefabInstance: {fileID: 1408430181}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &520166369
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520166363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5a94e9f9eb8c5b4f94eff4e0baa556c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &542651190
 GameObject:
   m_ObjectHideFlags: 0
@@ -8932,6 +8954,10 @@ PrefabInstance:
       propertyPath: groundCheckRadiusHorizontal
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1613728540203183298, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -855298285791758126, guid: 6f9e8c575a864c241826e85f6af175f6, type: 3}
     - target: {fileID: 1893083790497630746, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9015,7 +9041,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1893083790497630746, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 520166369}
   m_SourcePrefab: {fileID: 100100000, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
 --- !u!4 &1490117059 stripped
 Transform:
