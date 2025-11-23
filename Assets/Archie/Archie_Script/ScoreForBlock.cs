@@ -14,6 +14,7 @@ public class ScoreForBlock : MonoBehaviour
             ScoreManager.Instance.AddScore(scorePerStack);
 
             Debug.Log("Tumpukan Blok Terdeteksi! Score +5.");
+            AudioManager.instance.PlaySFX(AudioManager.instance.blockJatuh);
         }
     }
 }
