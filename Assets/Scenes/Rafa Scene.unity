@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normal: {fileID: 11400000, guid: ed58cd2f96856a34dba16b141f1d6e9e, type: 2}
+  spawnInterval: 1.5
 --- !u!4 &274607950
 Transform:
   m_ObjectHideFlags: 0
@@ -931,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202243464815521698, guid: 87c616ebe563c034aa4b6f1a5cd3c409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.74
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 6202243464815521698, guid: 87c616ebe563c034aa4b6f1a5cd3c409, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1785,7 +1786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6118b2597d474f142b0c99e41241166c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lose: {fileID: 0}
+  lose: {fileID: 1681997659}
   fillDuration: 1
 --- !u!4 &1110060693
 Transform:
@@ -6062,7 +6063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3067933953692994777, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.88
+      value: 2.98
       objectReference: {fileID: 0}
     - target: {fileID: 3067933953692994777, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6400,7 +6401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1681997660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6476,7 +6477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202243464815521698, guid: 87c616ebe563c034aa4b6f1a5cd3c409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.66999984
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6202243464815521698, guid: 87c616ebe563c034aa4b6f1a5cd3c409, type: 3}
       propertyPath: m_LocalPosition.z
