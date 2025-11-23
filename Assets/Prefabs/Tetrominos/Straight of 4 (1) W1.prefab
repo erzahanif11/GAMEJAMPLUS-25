@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 8899044882657867368}
   - component: {fileID: 3319682179034118205}
   m_Layer: 3
-  m_Name: Straight of 4 (1)
+  m_Name: Straight of 4 (1) W1
   m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
