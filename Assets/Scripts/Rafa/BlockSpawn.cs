@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class BlockSpawn : MonoBehaviour
@@ -10,6 +10,7 @@ public class BlockSpawn : MonoBehaviour
     public static BlockSpawn instance;
     public float spawnInterval = 1.5f;
 
+    public string DebugBlockName;
      private
     void Awake()
     {
@@ -20,40 +21,45 @@ public class BlockSpawn : MonoBehaviour
 float curtime=0;
 
 void Start(){
-    SpawnBlockFol();
+    SpawnBlock();
 }
     void Update()
     {
         curtime+=Time.deltaTime;
         if (curtime >= spawnInterval)
         {
-            SpawnBlockFol();
+            SpawnBlock();
             curtime=0;
         }
     }
-
+GameObject blockToSpawn ;
     void SpawnBlock()
     {
-        GameObject blockToSpawn = normal.GetRandomBlock();
+        if (DebugBlockName != null)
+         blockToSpawn=  normal.blockPrefabs.Find(block => block.name == DebugBlockName);
+        
+        if (blockToSpawn == null)
+         blockToSpawn = normal.GetRandomBlock();
+
+    
         if (blockToSpawn != null)
         {
-            int random = Random.Range(0, 12);
-            Vector2 position = new Vector2(random, transform.position.y);
+
+        int x;
+
+        if (UnityEngine.Random.value < 0.5f) //50% chance to spawn near player
+          x = (int)GameObject.FindGameObjectWithTag("Player").transform.position.x ;    
+
+            else //spawn randomly
+             x = UnityEngine.Random.Range(0, 12);
+            
+            Vector2 position = new Vector2(x, transform.position.y);
             Instantiate(blockToSpawn,position, blockToSpawn.transform.rotation);
         }
+
+
     }
 
-    void SpawnBlockFol()
-    {
-        GameObject Player = GameObject.FindGameObjectWithTag("Player");
-        Vector2 playerPos = Player.transform.position;
-        GameObject blockToSpawn = normal.GetRandomBlock();
-        if (blockToSpawn != null)
-        {
-            int x = (int)playerPos.x;
-            Vector2 position = new Vector2(x, transform.position.y);
-            Instantiate(blockToSpawn,position, Quaternion.identity);
-        }
-    }
+
 }
 
