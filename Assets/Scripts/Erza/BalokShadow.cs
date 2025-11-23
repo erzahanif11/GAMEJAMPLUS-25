@@ -13,9 +13,14 @@ public class BalokShadow : MonoBehaviour
     private GameObject shadowObject;
     private SpriteRenderer srShadow;
 
+    private bool isStopped;
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
+    }
+
+    void OnEnable(){
+        isStopped=false;
     }
     void Start()
     {
@@ -31,7 +36,7 @@ public class BalokShadow : MonoBehaviour
         srShadow.sprite = srMain.sprite;
 
         // Warna bayangan
-        srShadow.color = new Color(0, 0, 0, 0.35f);
+        srShadow.color = new Color32(87, 154, 131, 111);
 
         // Layer & order agar muncul di belakang objek
         srShadow.sortingLayerID = srMain.sortingLayerID;
@@ -48,7 +53,7 @@ public class BalokShadow : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, maxDistance, groundLayer);
     Debug.DrawRay(transform.position, Vector2.down * maxDistance, Color.green);
 
-    if (hit.collider != null && rb.linearVelocity.y < -0.1f)
+    if (hit.collider != null && rb.linearVelocity.y < 0f && !isStopped)
     {
         shadowObject.SetActive(true);
 
@@ -72,6 +77,7 @@ public class BalokShadow : MonoBehaviour
     else
     {
         shadowObject.SetActive(false);
+        isStopped = true;
     }
     }
 }
