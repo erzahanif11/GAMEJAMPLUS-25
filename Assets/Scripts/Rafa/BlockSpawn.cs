@@ -6,8 +6,8 @@ public class BlockSpawn : MonoBehaviour
 
 
     [SerializeField] ListofBlocks normal;
-    [SerializeField] int wallRight = 14; // right boundary for spawning
-    [SerializeField] int wallLeft = -12; // left boundary for spawning
+    [SerializeField] float wallRight = 13.55857f; // right boundary for spawning (float)
+    [SerializeField] float wallLeft = -12.44143f; // left boundary for spawning (float)
 
     public static BlockSpawn instance;
     public float spawnInterval = 1.5f;
@@ -57,28 +57,37 @@ GameObject blockToSpawn ;
                     width = parsedWidth;
             }
 
-            // Decide spawn X: 50% near player, 50% random, but clamp to bounds [0, 15-width]
-            int x;
-            if (UnityEngine.Random.value < 0.5f) // 50% chance to spawn near player
+            // Option B adapted for float walls: spawn points at wallLeft + k for integer k
+            // Compute span in integer steps (number of 1.0 increments between walls)
+            int span = Mathf.FloorToInt(wallRight - wallLeft);
+            if (span < 0) span = 0;
+
+            // maximum k so that (wallLeft + k) + width <= wallRight
+            int maxK = Mathf.Max(0, span - width);
+
+            int k;
+            if (player != null && UnityEngine.Random.value < 0.5f)
             {
-                if (player != null)
-                {
-                    int playerX = (int)player.transform.position.x;
-                    // Clamp player X so block doesn't go out of bounds
-                    x = Mathf.Clamp(playerX, wallLeft, wallRight - width);
-                }
-                else
-                {
-                    // No player found, spawn randomly
-                    x = UnityEngine.Random.Range(wallLeft, wallRight - width);
-                }
+                // spawn near player: pick nearest grid column to player
+                float rel = player.transform.position.x - wallLeft;
+                int playerK = Mathf.RoundToInt(rel);
+                k = Mathf.Clamp(playerK, 0, maxK);
             }
-            else // 50% random spawn
+            else
             {
-                    x = UnityEngine.Random.Range(wallLeft, wallRight - width);
+                // random column
+                k = UnityEngine.Random.Range(0, maxK + 1);
             }
 
-            Vector2 position = new Vector2(x, transform.position.y);
+            float fx = wallLeft + k; // final spawn X (already includes fractional part from wallLeft)
+
+            // clamp final X to ensure block stays within float walls
+            float minFx = wallLeft;
+            float maxFx = wallRight - width;
+            if (maxFx < minFx) maxFx = minFx;
+            fx = Mathf.Clamp(fx, minFx, maxFx);
+
+            Vector2 position = new Vector2(fx, transform.position.y);
             Instantiate(blockToSpawn, position, blockToSpawn.transform.rotation);
         }
     }
