@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
     // public GameObject OnGroundJumpEffect; 
     // public GameObject MidAirJumpEffect;
 
-    AudioManager audioManager;
 
     private void Awake()
     {
@@ -190,7 +189,6 @@ public class PlayerMovement : MonoBehaviour
         isWallJumping = true;
         wallJumpDirection = -transform.localScale.x;
         rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
-        audioManager.PlaySFX(audioManager.jump);
 
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
@@ -222,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashingForce, 0f);
-        // audioManager.PlaySFX(audioManager.dash);
+        AudioManager.instance.PlaySFX(AudioManager.instance.dash);
         trail.emitting = true;
         Debug.Log("Dash start");
         yield return new WaitForSeconds(dashingTime);
