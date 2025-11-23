@@ -13,11 +13,9 @@ public class LavaEater : MonoBehaviour
         {
             Rigidbody2D rb = parentObject.GetComponent<Rigidbody2D>();
 
-            bool flag= false;
-            if (rb != null && !flag)
+            if (rb .bodyType !=RigidbodyType2D.Kinematic )
             {
-                flag= true;
-                // disable physics
+                //+5 poin
                rb.bodyType = RigidbodyType2D.Kinematic;
                rb.linearVelocity = new Vector2(0, 0);
             }

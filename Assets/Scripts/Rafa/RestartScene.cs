@@ -9,5 +9,9 @@ public class RestartScene : MonoBehaviour
     {
         Time.timeScale=1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayGameMusic();
+        }
     }
 }

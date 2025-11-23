@@ -16,11 +16,27 @@ public class AudioManager : MonoBehaviour
     public AudioClip dash;
     public AudioClip dead;
     public AudioClip hit;
-    public AudioClip pickupCoin;
-    public AudioClip powerUp;
-    public AudioClip portal;
-    public AudioClip breakBlock;
+    public AudioClip blockJatuh;
+    public AudioClip blockJatuh2;
+    public AudioClip blockMeledak;
+    public AudioClip gameOver;
 
+
+
+    public static AudioManager instance;
+    
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         string currentScene = SceneManager.GetActiveScene().name;

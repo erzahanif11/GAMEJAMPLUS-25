@@ -22,14 +22,15 @@ public class GameManager : MonoBehaviour
     }
     
 
-
     public float fillDuration = 1f; // Duration in seconds to fill the image
 
     public void Death()
     {
+        AudioManager.instance.PlaySFX(AudioManager.instance.dead);
         Debug.Log("Player has died!");
         lose.SetActive(true);
         Time.timeScale=0;
+        AudioManager.instance.PlaySFX(AudioManager.instance.gameOver);
     }
 
     
