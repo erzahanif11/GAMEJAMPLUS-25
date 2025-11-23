@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 6482530825011312904}
   - component: {fileID: 4140515944020562697}
   - component: {fileID: 3986415814873075845}
+  - component: {fileID: 8685125680614822376}
   m_Layer: 3
   m_Name: Square (1)
   m_TagString: Untagged
@@ -255,6 +256,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8685125680614822376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448592644898950044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d0f97bedf4a04bb4658981e2a4891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistance: 20
+  minScaleY: 0.1
+  maxScaleY: 1
+  rb: {fileID: 0}
 --- !u!1 &1516200295689500517
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +286,7 @@ GameObject:
   - component: {fileID: 7889399625829514410}
   - component: {fileID: 3233965707530142027}
   - component: {fileID: 8636456131188931345}
+  - component: {fileID: 532294279402816556}
   m_Layer: 3
   m_Name: Square (3)
   m_TagString: Untagged
@@ -389,6 +410,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &532294279402816556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516200295689500517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d0f97bedf4a04bb4658981e2a4891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistance: 20
+  minScaleY: 0.1
+  maxScaleY: 1
+  rb: {fileID: 0}
 --- !u!1 &2535426190253342779
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +574,7 @@ GameObject:
   - component: {fileID: 8791773646104450343}
   - component: {fileID: 6938884004389816695}
   - component: {fileID: 4480402985546929832}
+  - component: {fileID: 233416998157575837}
   m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
@@ -657,6 +698,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &233416998157575837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929108935312658562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d0f97bedf4a04bb4658981e2a4891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistance: 20
+  minScaleY: 0.1
+  maxScaleY: 1
+  rb: {fileID: 0}
 --- !u!1001 &4792014801660928855
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -227,7 +227,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df2a835b32c02d42aa8ddeb8e15c43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normal: {fileID: 11400000, guid: c0f1aeb520c9470408cb60b5a5ae6c3f, type: 2}
+  normal: {fileID: 11400000, guid: ee6b345c3f8ff364e9e0b86d1b658e64, type: 2}
+  wallRight: 13.55857
+  wallLeft: -12.44143
+  spawnInterval: 1.5
+  player: {fileID: 0}
+  DebugBlockName: 
 --- !u!4 &274607950
 Transform:
   m_ObjectHideFlags: 0
@@ -6667,7 +6672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1681997660
 RectTransform:
   m_ObjectHideFlags: 0

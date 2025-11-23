@@ -40,11 +40,11 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        if(currentScene == "Main Menu")
+        if(currentScene == "Main Menu_Final")
         {
             PlayMenuMusic();
         }
-        else if (currentScene == "Main Scene")
+        else if (currentScene == "Main Scene_Final")
         {
             PlayGameMusic();
         }
