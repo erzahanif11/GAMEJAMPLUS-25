@@ -18,12 +18,16 @@ public class BlockSpawn : MonoBehaviour
 
 
 float curtime=0;
+
+void Start(){
+    SpawnBlockFol();
+}
     void Update()
     {
         curtime+=Time.deltaTime;
         if (curtime >= spawnInterval)
         {
-            SpawnBlock();
+            SpawnBlockFol();
             curtime=0;
         }
     }
