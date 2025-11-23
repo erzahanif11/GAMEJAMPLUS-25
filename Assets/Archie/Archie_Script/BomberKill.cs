@@ -6,14 +6,14 @@ public class BomberKill : MonoBehaviour
     [Header("Ticking Settings")]
     public int ticMany = 5; 
     public float timePerTic = 0.2f; 
+    public Color flashColor = Color.red;
     
     [Header("Explosion Settings")]
-    public float initialDelay = 1.5f; 
-    public float explosionDuration = 0.1f;
-    public GameObject tetrisObject;
+    public float initialDelay = 2.0f;
+    public GameObject tetrisObject; 
     
     [Header("References")]
-    public GameObject[] tetrisBlock;
+    public GameObject[] tetrisBlock; 
     private Color originalColor = Color.white; 
     
     private bool bombActivated = false;
@@ -30,14 +30,24 @@ public class BomberKill : MonoBehaviour
                 originalColor = renderer.color;
             }
         }
+        
+        if (tetrisObject == null)
+        {
+            tetrisObject = transform.root.gameObject;
+            Debug.LogWarning("tetrisObject tidak diset di Inspector. Menggunakan: " + tetrisObject.name);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !bombActivated)
+        if (!bombActivated)
         {
             bombActivated = true;
             StartCoroutine(InitialDelayAndTicking()); 
+        }
+        
+        if (collision.gameObject.CompareTag("Player"))
+        {
             playerOnBomb = true;
             player = collision.gameObject;
         }
@@ -54,6 +64,7 @@ public class BomberKill : MonoBehaviour
     IEnumerator InitialDelayAndTicking()
     {
         yield return new WaitForSeconds(initialDelay);
+        
         yield return StartCoroutine(BombTickingVisual()); 
             
         Explode();
@@ -66,43 +77,35 @@ public class BomberKill : MonoBehaviour
             foreach (GameObject block in tetrisBlock)
             {
                 SpriteRenderer temp = block.GetComponent<SpriteRenderer>();
-                if (temp != null)
-                {
-                    temp.color = Color.red;
-                }
+                if (temp != null) temp.color = flashColor;
             }
-
             yield return new WaitForSeconds(timePerTic / 2f); 
             
             foreach (GameObject block in tetrisBlock)
             {
                 SpriteRenderer temp = block.GetComponent<SpriteRenderer>();
-                if (temp != null)
-                {
-                    temp.color = originalColor;
-                }
+                if (temp != null) temp.color = originalColor;
             }
-            
             yield return new WaitForSeconds(timePerTic / 2f); 
         }
     
         foreach (GameObject block in tetrisBlock)
         {
             SpriteRenderer temp = block.GetComponent<SpriteRenderer>();
-            if (temp != null)
-            {
-                temp.color = Color.red;
-            }
+            if (temp != null) temp.color = flashColor;
         }
     }
 
     void Explode()
     {
-        // Hancurkan block bom ini sendiri dan jika player diatas maka dia juga
         if (playerOnBomb && player != null)
         {
             Destroy(player);
         }
-        Destroy(tetrisObject);
+        
+        if (tetrisObject != null)
+        {
+            Destroy(tetrisObject);
+        }
     }
 }

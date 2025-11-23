@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2573259460386774137}
   - component: {fileID: 8111311375002425905}
   - component: {fileID: 5487461061792483975}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 6202243464815521698}
   - component: {fileID: 6921924126809680229}
   - component: {fileID: 305229077426206496}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Bomb_Straight of 4
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3101069909813576148}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 5851569466201316120}
   - component: {fileID: 9098364948509825760}
   - component: {fileID: 8143626214014107056}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 7681683657955137190}
   - component: {fileID: 2441900317023790868}
   - component: {fileID: 5494651075347984772}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 1162423767030159039}
   - component: {fileID: 3443094181367375037}
   - component: {fileID: 6824400106981679230}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -668,6 +668,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3101069909813576148}
     - target: {fileID: 1820570181647886032, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: explosionRadius
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820570181647886032, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: explosionLayerMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820570181647886032, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
       propertyPath: 'tetrisBlock.Array.data[0]'
       value: 
       objectReference: {fileID: 1432732403826998495}
@@ -727,6 +735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombZone
       objectReference: {fileID: 0}
+    - target: {fileID: 7717927953644660138, guid: 0fca3f96e5c36c142a2edc27ec797487, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -750,9 +762,21 @@ PrefabInstance:
       value: Killzone
       objectReference: {fileID: 0}
     - target: {fileID: 7006646327745751390, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006646327745751390, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006646327745751390, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 7246446913167274191, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
+      propertyPath: killZoneCollider
+      value: 
+      objectReference: {fileID: 6156357886709414903}
     - target: {fileID: 8701981628486073571, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
