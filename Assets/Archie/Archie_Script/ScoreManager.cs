@@ -63,7 +63,7 @@ public class ScoreManager : MonoBehaviour
             
             // NEW: Cek High Score setiap kali skor bertambah (opsional, tapi bagus untuk feedback instan)
             CheckForNewHighScore(false); 
-            AudioManager.instance.PlaySFX(AudioManager.instance.blockJatuh);
+            // AudioManager.instance.PlaySFX(AudioManager.instance.blockJatuh);
             Debug.Log($"Score bertambah: +{amount}. Total: {currentScore}");
         }
     }
