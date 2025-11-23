@@ -66,7 +66,7 @@ GameObject blockToSpawn ;
             int maxK = Mathf.Max(0, span - width);
 
             int k;
-            if (player != null && UnityEngine.Random.value < 0.5f)
+            if (player != null && UnityEngine.Random.value < 0.35f)
             {
                 // spawn near player: pick nearest grid column to player
                 float rel = player.transform.position.x - wallLeft;
