@@ -73,3 +73,53 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+ProjectSettings/URPProjectSettings.asset
+ProjectSettings/ShaderGraphSettings.asset
+Packages/packages-lock.json
+Assets/UniversalRenderPipelineGlobalSettings.asset
+Assets/Arts/assets/lava.png.meta
+Assets/Arts/assets/Dash/6.png.meta
+Assets/Arts/assets/Dash/5.png.meta
+Assets/Arts/assets/Dash/4.png.meta
+Assets/Arts/assets/Dash/3.png.meta
+Assets/Arts/assets/Dash/2.png.meta
+Assets/Arts/assets/Dash/1.png.meta
+Assets/Arts/assets/Balok-Balok/balok/v1.png.meta
+Assets/Arts/assets/Balok-Balok/balok lurus/v2.png.meta
+Assets/Arts/assets/Balok-Balok/balok lurus/v1.png.meta
+Assets/Arts/assets/Balok-Balok/balok L/v4.png.meta
+Assets/Arts/assets/Balok-Balok/balok L/v3.png.meta
+Assets/Arts/assets/Balok-Balok/balok L/v2.png.meta
+Assets/Arts/assets/Balok-Balok/balok L/v1.png.meta
+Assets/Arts/assets/Balok-Balok/balok L reverse/v4.png.meta
+Assets/Arts/assets/Balok-Balok/balok L reverse/v3.png.meta
+Assets/Arts/assets/Balok-Balok/balok L reverse/v2.png.meta
+Assets/Arts/assets/Balok-Balok/balok L reverse/v1.png.meta
+Assets/Arts/assets/Balok-Balok/balok kayak anu/v4.png.meta
+Assets/Arts/assets/Balok-Balok/balok kayak anu/v3.png.meta
+Assets/Arts/assets/Balok-Balok/balok kayak anu/v2.png.meta
+Assets/Arts/assets/Balok-Balok/balok kayak anu/v1.png.meta
+Assets/Arts/assets/Balok-Balok/balok 2 bawah 2 kiri/v2.png.meta
+Assets/Arts/assets/Balok-Balok/balok 2 bawah 2 kiri/v1.png.meta
+Assets/Arts/assets/Balok-Balok/balok 2 bawah 2 kanan/v2.png.meta
+Assets/Arts/assets/Balok-Balok/balok 2 bawah 2 kanan/v1.png.meta
+Assets/Arts/assets/balok-balok revisi/blok kayak anu/v4.png.meta
+Assets/Arts/assets/balok-balok revisi/blok kayak anu/v3.png.meta
+Assets/Arts/assets/balok-balok revisi/blok kayak anu/v2.png.meta
+Assets/Arts/assets/balok-balok revisi/blok kayak anu/v1.png.meta
+Assets/Arts/assets/balok-balok revisi/balok/v1.png.meta
+Assets/Arts/assets/balok-balok revisi/balok lurus/v2.png.meta
+Assets/Arts/assets/balok-balok revisi/balok lurus/v1.png.meta
+Assets/Arts/assets/balok-balok revisi/balok L/v4.png.meta
+Assets/Arts/assets/balok-balok revisi/balok L/v3.png.meta
+Assets/Arts/assets/balok-balok revisi/balok L/v2.png.meta
+Assets/Arts/assets/balok-balok revisi/balok L/v1.png.meta
+Assets/Arts/assets/balok-balok revisi/balok L reverse/v4.png.meta
+Assets/Arts/assets/balok-balok revisi/balok L reverse/v3.png.meta
+Assets/Arts/assets/balok-balok revisi/balok L reverse/v2.png.meta
+Assets/Arts/assets/balok-balok revisi/balok L reverse/v1.png.meta
+Assets/Arts/assets/balok-balok revisi/balok 2 bawah 2 kiri/v2.png.meta
+Assets/Arts/assets/balok-balok revisi/balok 2 bawah 2 kiri/v1.png.meta
+Assets/Arts/assets/balok-balok revisi/balok 2 bawah 2 kanan/v2.png.meta
+Assets/Arts/assets/balok-balok revisi/balok 2 bawah 2 kanan/v1.png.meta
+.vscode/settings.json
