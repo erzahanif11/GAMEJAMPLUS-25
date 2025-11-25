@@ -6,7 +6,7 @@ public class MainMenuButtons : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void MainScene()
     {
-        SceneManager.LoadScene("Main Scene_Final_Fix");
+        SceneManager.LoadScene("Main Scene");
     }
     public void QuitGame()
     {
@@ -14,7 +14,8 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void NextScene()
     {
-        SceneManager.LoadScene("Main Scene_Final_Fix");
+        // Reload the current scene by its build index
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
         AudioManager.instance.PlayGameMusic();
     }
 }

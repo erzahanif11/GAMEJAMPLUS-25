@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
         {
             PlayMenuMusic();
         }
-        else if (currentScene == "Main Scene_Final")
+        else if (currentScene == "Main Scene")
         {
             PlayGameMusic();
         }

@@ -12,5 +12,6 @@ public class DeleteBlocks : MonoBehaviour
         {
             Destroy(parentObject);
         }
+    
     }   
 }
