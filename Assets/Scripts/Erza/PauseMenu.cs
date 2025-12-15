@@ -4,6 +4,12 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
     
+    void Update(){
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TooglePauseMenu();
+        }
+    }
     public void TooglePauseMenu()
     {
         if (pauseMenuPanel.activeSelf)
