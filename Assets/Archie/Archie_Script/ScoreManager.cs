@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
 
     [Header("UI & Display")]
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreEndText;
     public TextMeshProUGUI highScoreText; // NEW: UI untuk menampilkan High Score
 
     [Header("Survival Settings")]
@@ -63,7 +64,7 @@ public class ScoreManager : MonoBehaviour
             
             // NEW: Cek High Score setiap kali skor bertambah (opsional, tapi bagus untuk feedback instan)
             CheckForNewHighScore(false); 
-            AudioManager.instance.PlaySFX(AudioManager.instance.blockJatuh);
+            
             Debug.Log($"Score bertambah: +{amount}. Total: {currentScore}");
         }
     }
@@ -73,6 +74,7 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "SCORE: " + currentScore.ToString();
+            scoreEndText.text = "SCORE: " + currentScore.ToString();
         }
         else
         {

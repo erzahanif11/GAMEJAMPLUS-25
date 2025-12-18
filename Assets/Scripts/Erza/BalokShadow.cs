@@ -12,6 +12,7 @@ public class BalokShadow : MonoBehaviour
     private SpriteRenderer srMain;
     private GameObject shadowObject;
     private SpriteRenderer srShadow;
+    private BlockSoundFlag blockSoundFlag;
 
     private bool isStopped;
     private void Awake()
@@ -26,6 +27,7 @@ public class BalokShadow : MonoBehaviour
     {
         srMain = GetComponent<SpriteRenderer>();
         rb = GetComponentInParent<Rigidbody2D>();
+        blockSoundFlag = GetComponentInParent<BlockSoundFlag>();
 
         // === AUTO BUAT GAMEOBJECT SHADOW ===
         shadowObject = new GameObject("Shadow_" + gameObject.name);
@@ -73,10 +75,17 @@ public class BalokShadow : MonoBehaviour
             transform.position.x,
             hit.point.y + (srShadow.sprite.bounds.size.y * scaleY) / 2f
         );
+        
+        if (jarak < 2f && !blockSoundFlag.hasPlayedSound)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.blockJatuh);
+            blockSoundFlag.hasPlayedSound = true;
+        }
     }
     else
     {
         shadowObject.SetActive(false);
+        
         isStopped = true;
     }
     }
