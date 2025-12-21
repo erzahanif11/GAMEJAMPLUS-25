@@ -140,8 +140,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -163,7 +161,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -296,8 +293,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -319,7 +314,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -392,6 +386,7 @@ GameObject:
   - component: {fileID: 386415491773871786}
   - component: {fileID: 6098819926379677605}
   - component: {fileID: 6551919050686521869}
+  - component: {fileID: -8649286941857035929}
   m_Layer: 3
   m_Name: Z of 4 W3
   m_TagString: Block
@@ -427,7 +422,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4535098357633348658}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -450,7 +445,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -466,14 +461,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5036211, y: 0.5029974}
-      - {x: -0.51039743, y: 1.4889202}
-      - {x: -2.4907985, y: 1.4948661}
-      - {x: -2.488708, y: 0.5060358}
-      - {x: -1.5013843, y: 0.51047516}
-      - {x: -1.4986534, y: -0.4939803}
-      - {x: 0.4987527, y: -0.49055552}
-      - {x: 0.4887743, y: 0.50077814}
+    - - {x: 1.4971151, y: 0.48496628}
+      - {x: 1.4896026, y: 1.4889202}
+      - {x: -0.49079847, y: 1.4948661}
+      - {x: -0.48870802, y: 0.5060358}
+      - {x: 0.49861574, y: 0.51047516}
+      - {x: 0.5013466, y: -0.4939803}
+      - {x: 2.4987526, y: -0.49055552}
+      - {x: 2.4887743, y: 0.5007782}
+      - {x: 2.4887743, y: 0.50077814}
   m_UseDelaunayMesh: 0
 --- !u!50 &6098819926379677605
 Rigidbody2D:
@@ -515,6 +511,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockSoundFlag
   hasPlayedSound: 0
+--- !u!114 &-8649286941857035929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535098357633348658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78290fba1fee340a877fd83fd6c55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belowBlocks: []
+  weightCount: 0
 --- !u!1 &6960762877141153482
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,8 +579,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -592,7 +600,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -726,8 +733,6 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -749,7 +754,6 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
