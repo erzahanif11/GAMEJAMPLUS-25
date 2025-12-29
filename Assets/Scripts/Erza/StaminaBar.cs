@@ -7,7 +7,7 @@ public class StaminaBar : MonoBehaviour
 
     void Start()
     {
-        stats = FindObjectOfType<PlayerStats>();
+        stats = FindAnyObjectByType<PlayerStats>();
         staminaSlider.maxValue = 12f;
     }
 

@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
-        stats = FindObjectOfType<PlayerStats>();
+        stats = FindAnyObjectByType<PlayerStats>();
        // audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
     }
 

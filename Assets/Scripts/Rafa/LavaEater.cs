@@ -3,6 +3,12 @@ using UnityEngine;
 public class LavaEater : MonoBehaviour
 {
     public float sinkSpeed = 5e-16f;
+    PlayerStats playerStats;
+
+    void Awake()
+    {
+        playerStats = FindAnyObjectByType<PlayerStats>();
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -24,7 +30,12 @@ public class LavaEater : MonoBehaviour
         }
         else  if (other.CompareTag("Player") && GameManager.instance != null)
         {
+            playerStats.TakeDamage();
+            if (playerStats.lives <= 0)
+            {
                 GameManager.instance.Death();
+            }
+            GameManager.instance.RespawnPlayer();
         }
 
 
