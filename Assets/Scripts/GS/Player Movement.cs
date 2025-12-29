@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    PlayerStats stats;
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
     public Transform groundCheck;
@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
+        stats = FindObjectOfType<PlayerStats>();
        // audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
     }
 
@@ -122,7 +123,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && !isGhostMode)
         {
-            StartCoroutine(Dash());
+            if (stats.UseStamina()){
+                StartCoroutine(Dash());
+            }
         }
 
         isSliding = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
@@ -218,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     {
-        canDash = false;
+        // canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
@@ -231,8 +234,7 @@ public class PlayerMovement : MonoBehaviour
         trail.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
+        // canDash = true;
     }
 
     // public void ApplySpeedBoost(float boostMultiplier, float boostDuration, float slowMultiplier, float slowDuration)
