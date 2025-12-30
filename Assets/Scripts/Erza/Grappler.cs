@@ -6,8 +6,8 @@ public class Grappler : MonoBehaviour
     public LineRenderer grappleLine;
     public DistanceJoint2D distanceJoint;
     PlayerStats playerStats;
-    public float staminaDrainPerSecond = 2f;
-    private bool isGrappling;
+    public float staminaDrainPerSecond = 1f;
+    public bool isGrappling;
     void Awake(){
         playerStats = GetComponent<PlayerStats>();
     }
@@ -54,7 +54,7 @@ public class Grappler : MonoBehaviour
 
     private void DrainStamina()
     {
-        playerStats.UseStamina(staminaDrainPerSecond * Time.deltaTime);
+        playerStats.UseStamina(staminaDrainPerSecond * Time.deltaTime * 4f);
         if (playerStats.stamina < staminaDrainPerSecond)
         {
         StopGrapple();

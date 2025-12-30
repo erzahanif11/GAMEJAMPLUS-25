@@ -20,7 +20,7 @@ public class PlayerStats : MonoBehaviour
 
     void RegenerateStamina(){
         if (stamina < 12){
-            stamina += staminaRegenerate * Time.deltaTime;
+            stamina += staminaRegenerate * Time.deltaTime * 0.5f;
             if (stamina > 12){
                 stamina = 12;
             }

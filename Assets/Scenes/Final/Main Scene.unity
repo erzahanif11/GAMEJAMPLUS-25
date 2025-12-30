@@ -2288,6 +2288,7 @@ MonoBehaviour:
   grappleLine: {fileID: 520166365}
   distanceJoint: {fileID: 520166364}
   staminaDrainPerSecond: 2
+  isGrappling: 0
 --- !u!4 &534199900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6202243464815521698, guid: 87c616ebe563c034aa4b6f1a5cd3c409, type: 3}
@@ -12387,6 +12388,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2429756717255561360, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 249687193538431070, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_Constraints
       value: 4
@@ -12433,6 +12438,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3067933953692994777, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960050853194782164, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960050853194782164, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: m_CompositeOperation
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

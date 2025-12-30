@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerStats stats;
+    Grappler grappler;
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
     public Transform groundCheck;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpTime = 0.5f;
     public Vector2 wallJumpPower = new Vector2(5f, 10f);
 
+    public bool isGrappling;
     public bool isGhostMode;
 
     [SerializeField] TrailRenderer trail;
@@ -54,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         groundLayer = LayerMask.GetMask("Ground");
         stats = FindAnyObjectByType<PlayerStats>();
+        grappler = GetComponent<Grappler>();
        // audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
     }
 
@@ -83,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        isGrappling = grappler.isGrappling;
+
         // Ground check di tiga titik
          groundedCenter = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
          groundedLeft = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusHorizontal, groundLayer);
@@ -94,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpedDouble = false;
         }
-
         // Input gerak kiri-kanan
         if (Input.GetKey(KeyCode.A))
         {
@@ -136,7 +140,11 @@ public class PlayerMovement : MonoBehaviour
             WallJump();
         }
 
-           
+        if (isGrappling){
+            rb.gravityScale = 1f;
+        }else {
+            rb.gravityScale = 2f;
+        }
     }
 
     void FixedUpdate()
@@ -158,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (!isWallJumping)
+        if (!isWallJumping && !isGrappling)
         {
             rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
         }
