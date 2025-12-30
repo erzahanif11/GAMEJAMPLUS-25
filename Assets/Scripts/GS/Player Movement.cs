@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && !isGhostMode)
         {
-            if (stats.UseStamina()){
+            if (stats.UseStamina(4f)){
                 StartCoroutine(Dash());
             }
         }

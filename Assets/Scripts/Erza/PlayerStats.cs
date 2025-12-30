@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
     int maxLives = 9;
     public float stamina = 12f;
     readonly float staminaRegenerate = 3f;
+    public bool CanRegenerate = true;
 
     void Awake(){
         stamina = 12f;
@@ -13,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     void Update(){
+        if (CanRegenerate)
         RegenerateStamina();
     }
 
@@ -25,14 +27,18 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public bool UseStamina(){
-        if (stamina >= 4f){
-            stamina -= 4f;
+    public bool UseStamina(float amount){
+        if (stamina >= amount){
+            stamina -= amount;
             return true;
         }
         return false;
     }
 
+    public bool HasStamina(float amount)
+    {
+        return stamina >= amount;
+    }
     public void TakeDamage(){
         lives -= 1;
     }
