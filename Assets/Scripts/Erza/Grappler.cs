@@ -16,10 +16,10 @@ public class Grappler : MonoBehaviour
     }
 
     void Update(){
-        if (Input.GetMouseButtonDown(0)){
+        if (Input.GetMouseButtonDown(1)){
             StartGrapple();
         }
-        else if (Input.GetMouseButtonUp(0)){
+        else if (Input.GetMouseButtonUp(1)){
             StopGrapple();
         }
         if (isGrappling){
@@ -54,7 +54,7 @@ public class Grappler : MonoBehaviour
 
     private void DrainStamina()
     {
-        playerStats.UseStamina(staminaDrainPerSecond * Time.deltaTime * 4f);
+        playerStats.UseStamina(staminaDrainPerSecond * Time.deltaTime * 3f);
         if (playerStats.stamina < staminaDrainPerSecond)
         {
         StopGrapple();
