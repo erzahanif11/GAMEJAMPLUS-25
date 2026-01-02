@@ -1,12 +1,8 @@
-using System;
-using Unity.VisualScripting;
+using System.Xml.Serialization;
 using UnityEngine;
 
-public class MovementTest : MonoBehaviour
+public class Enemy1A : MonoBehaviour
 {
-    [Header("Setting")]
-    [SerializeField] float speed;
-
     public enum AtkDirection
     {
         Down,
@@ -14,14 +10,16 @@ public class MovementTest : MonoBehaviour
         Left
     }
 
-    [Header("Direction Setting")]
+    [Header("Setting")]
+    [SerializeField] float lifeTime;
+    [SerializeField] float speed;
     [SerializeField] AtkDirection atkDirection;
 
-    Rigidbody2D rb;
     Vector2 direction;
+    Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         if(atkDirection == AtkDirection.Down)
@@ -36,14 +34,24 @@ public class MovementTest : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal")*speed, 0f);
+        Destroy(gameObject, lifeTime);
     }
 
+    // Update is called once per frame
     void FixedUpdate()
     {
         rb.MovePosition((Vector2)transform.position + direction * speed * Time.deltaTime);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("You've hit a player!");
+        }
+        Destroy(gameObject);
+    }
+
 }
