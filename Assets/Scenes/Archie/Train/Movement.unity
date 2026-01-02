@@ -683,6 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3397960278969526802, guid: 26702a98f268b7746968fb1119698dbc, type: 3}
   spawnCD: 0.75
+  normalRate: 70
   direction: 0
 --- !u!61 &2097464145
 BoxCollider2D:

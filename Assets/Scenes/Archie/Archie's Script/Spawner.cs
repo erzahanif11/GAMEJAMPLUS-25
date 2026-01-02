@@ -10,9 +10,6 @@ public class Spawner : MonoBehaviour
 
     [Header("Attack Type Settings")]
     [SerializeField] int normalRate;
-    [Tooltip("Please Note! Divide wisely with the locking rate to keep total of em 100")]
-    [SerializeField] int lockingRate;
-    [Tooltip("Please Note! Divide wisely with the locking rate to keep total of em 100")]
     [SerializeField] SpawnDir direction;
 
     GameObject playerObj;
@@ -42,7 +39,7 @@ public class Spawner : MonoBehaviour
 
     void spawn()
     {
-        int typeAtk = Random.Range(0,101);
+        int typeAtk = Random.Range(0,100);
         Debug.Log("Type atk is: " + typeAtk);
         Vector2 spawnPos = Vector2.zero;
         Bounds cBound = bCollider.bounds;
@@ -50,33 +47,33 @@ public class Spawner : MonoBehaviour
         switch(direction)
         {
             case SpawnDir.Down:
-                if(typeAtk >= 0 && typeAtk <= normalRate)
+                if(typeAtk < normalRate)
                 {
                     spawnPos.x = Random.Range(cBound.min.x, cBound.max.x);
                     spawnPos.y = cBound.min.y;
-                } else if(typeAtk >= (normalRate + 1) && typeAtk <= 100) 
+                } else 
                 {
                     spawnPos.x = playerObj.transform.position.x;
                     spawnPos.y = cBound.min.y;
                 }
                 break;
             case SpawnDir.Left:
-                if(typeAtk >= 0 && typeAtk <= normalRate)
+                if(typeAtk < normalRate)
                 {
                     spawnPos.x = cBound.min.x;
                     spawnPos.y = Random.Range(cBound.min.y, cBound.max.y);
-                } else if(typeAtk >= (normalRate + 1) && typeAtk <= 100) 
+                } else 
                 {
                     spawnPos.x = cBound.min.x;
                     spawnPos.y = playerObj.transform.position.y;
                 }
                 break;
             case SpawnDir.Right:
-                if(typeAtk >= 0 && typeAtk <= normalRate)
+                if(typeAtk < normalRate)
                 {
                     spawnPos.x = cBound.max.x;
                     spawnPos.y = Random.Range(cBound.min.y, cBound.max.y);
-                } else if(typeAtk >= (normalRate + 1) && typeAtk <= 100) 
+                } else
                 {
                     spawnPos.x = cBound.max.x;
                     spawnPos.y = playerObj.transform.position.y;
@@ -87,14 +84,7 @@ public class Spawner : MonoBehaviour
         GameObject sEnemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
         sEnemy.transform.rotation = enemyPrefab.transform.rotation;
         n++;
-        if(typeAtk == 0)
-        {
-            Debug.Log("Spawn ke-" + n + "Berhasil. Tipe Normal!");
-        } else if (typeAtk == 1)
-        {
-            Debug.Log("Spawn ke-" + n + "Berhasil. Tipe Locking!");
-        }
-        
+        Debug.Log("Enemy number: " + n);
     }
 
     enum SpawnDir
