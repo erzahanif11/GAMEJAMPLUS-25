@@ -6,44 +6,17 @@ public class MovementTest : MonoBehaviour
 {
     [Header("Setting")]
     [SerializeField] float speed;
-
-    public enum AtkDirection
-    {
-        Down,
-        Right,
-        Left
-    }
-
-    [Header("Direction Setting")]
-    [SerializeField] AtkDirection atkDirection;
-
     Rigidbody2D rb;
-    Vector2 direction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if(atkDirection == AtkDirection.Down)
-        {
-            direction = Vector2.down;
-        } else if(atkDirection == AtkDirection.Left)
-        {
-            direction = Vector2.left;
-        } else if(atkDirection == AtkDirection.Right)
-        {
-            direction = Vector2.right;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal")*speed, 0f);
-    }
-
-    void FixedUpdate()
-    {
-        rb.MovePosition((Vector2)transform.position + direction * speed * Time.deltaTime);
     }
 }
