@@ -8,23 +8,23 @@ public class PlayerClaw : MonoBehaviour
   public LayerMask enemyLayer;
 
   private float lastAttackTime = 0f;
-    void Update(){
-      if (Input.GetKeyDown(KeyCode.Mouse0)){
-        Claw();
-    }
+  //   void Update(){
+  //     if (Input.GetKeyDown(KeyCode.Mouse0)){
+  //       Claw();
+  //   }
 
-    void Claw(){
-      if (Time.time < lastAttackTime*attackCooldown){
-        lastAttackTime = Time.time;
-      }
-      animator.setTrigger(clawAnimation);
-    }
+  //   void Claw(){
+  //     if (Time.time < lastAttackTime*attackCooldown){
+  //       lastAttackTime = Time.time;
+  //     }
+  //     animator.setTrigger(clawAnimation);
+  //   }
 
-    void GiveDamage(){
-      Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-      foreach (Collider2D enemy in hitEnemies){
-        enemy.GetComponent<EnemyHealth>().TakeDamage(1);
-      }
-    }
-  }
+  //   void GiveDamage(){
+  //     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+  //     foreach (Collider2D enemy in hitEnemies){
+  //       enemy.GetComponent<EnemyHealth>().TakeDamage(1);
+  //     }
+  //   }
+  // }
 }
