@@ -13,10 +13,13 @@ public class Enemy1A : MonoBehaviour
     [Header("Setting")]
     [SerializeField] float lifeTime;
     [SerializeField] float speed;
+    [SerializeField] int atkPower;
     [SerializeField] AtkDirection atkDirection;
 
     Vector2 direction;
     Rigidbody2D rb;
+    GameObject player;
+    TestPlayer pScript;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -32,6 +35,9 @@ public class Enemy1A : MonoBehaviour
         {
             direction = Vector2.right;
         }
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        pScript = player.GetComponent<TestPlayer>();
     }
 
     void Start()
@@ -50,6 +56,8 @@ public class Enemy1A : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("You've hit a player!");
+            pScript.minHealth(atkPower);
+            Debug.Log("His health: " + pScript.getHealth());
         }
         Destroy(gameObject);
     }
