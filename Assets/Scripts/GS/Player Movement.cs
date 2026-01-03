@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private string attackAnimationName = "Attack";
+    private string velocityYParameter = "VelocityY";
+    private string velocityXParameter = "VelocityX";
+    private string isGroundedParameter = "IsGrounded";
+    private string dashParameter = "Dash";
+    
     PlayerStats stats;
     Grappler grappler;
     public float moveSpeed = 5f;
@@ -48,6 +54,12 @@ public class PlayerMovement : MonoBehaviour
     public float footdistanceonground=0.5f;
     public float footdistancemidair=0.5f;
 
+    [SerializeField] private float attackDamage = 1f;
+    [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private LayerMask enemyLayer;
+
     // public GameObject OnGroundJumpEffect; 
     // public GameObject MidAirJumpEffect;
 
@@ -80,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
     bool groundedRight;
     void Update()
     {
+        SetAnimatorParameters();
         if (isDashing)
         {
             
@@ -145,15 +158,20 @@ public class PlayerMovement : MonoBehaviour
         }else {
             rb.gravityScale = 2f;
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger(attackAnimationName);
+        }
     }
 
     void FixedUpdate()
     {
         
 
-        animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocity.x));
-        animator.SetFloat("VelocityY", rb.linearVelocity.y);
-        animator.SetBool("isGrounded", isGrounded);
+        // animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocity.x));
+        // animator.SetFloat("VelocityY", rb.linearVelocity.y);
+        // animator.SetBool("isGrounded", isGrounded);
         // animator.SetBool("isSliding", (isSliding&&!isGrounded));
         // animator.SetBool("hug wall", groundedLeft||groundedRight);
 
@@ -172,6 +190,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void SetAnimatorParameters(){
+        animator.SetFloat(velocityXParameter, Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat(velocityYParameter, rb.linearVelocity.y);
+        animator.SetBool(isGroundedParameter, isGrounded);
+    }
 
     void Jump()
     {
@@ -231,6 +254,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // canDash = false;
         isDashing = true;
+        animator.SetTrigger(dashParameter);
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashingForce, 0f);
@@ -243,6 +267,10 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = originalGravity;
         isDashing = false;
         // canDash = true;
+    }
+
+    void Claw(){
+        Debug.Log("Claw");
     }
 
     // public void ApplySpeedBoost(float boostMultiplier, float boostDuration, float slowMultiplier, float slowDuration)
