@@ -20,6 +20,8 @@ public class Enemy1A : MonoBehaviour
     Rigidbody2D rb;
     GameObject player;
     TestPlayer pScript;
+    Animator animator;
+    bool isHit = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -38,6 +40,7 @@ public class Enemy1A : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         pScript = player.GetComponent<TestPlayer>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -48,18 +51,20 @@ public class Enemy1A : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!isHit)
         rb.MovePosition((Vector2)transform.position + direction * speed * Time.deltaTime);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        isHit = true;
+        animator.SetTrigger("isHit");
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("You've hit a player!");
             pScript.minHealth(atkPower);
             Debug.Log("His health: " + pScript.getHealth());
         }
-        Destroy(gameObject);
     }
 
 }
