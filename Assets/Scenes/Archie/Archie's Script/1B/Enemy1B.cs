@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy1B : MonoBehaviour
@@ -12,11 +11,13 @@ public class Enemy1B : MonoBehaviour
     [SerializeField] int atkPower;
 
     Rigidbody2D rb;
+    Animator animator;
     GameObject player;
     TestPlayer pScript;
     Vector2 targetPos;
     bool hasTarget = false;
     bool isActive = true;
+    bool isHit = false;
     bool isFlipped;
     SpriteRenderer eSprite;
     float travel;
@@ -25,6 +26,7 @@ public class Enemy1B : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         eSprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null) pScript = player.GetComponent<TestPlayer>();
     }
@@ -34,22 +36,19 @@ public class Enemy1B : MonoBehaviour
         Destroy(gameObject, lifeTime);
         travel = travelingTime;
         int flipInt = Random.Range(0,2);
-        switch (flipInt)
+        if (flipInt == 1)
         {
-            case 1:
-                isFlipped = true;
-                eSprite.flipX = true;
-                Debug.Log("Flipped Enemy!");
-                break;
-            case 2:
-                isFlipped = false;
-                eSprite.flipX = false;
-                Debug.Log("Non-Flipped Enemy!");
-                break;
+            isFlipped = true;
+            eSprite.flipX = true;
+            Debug.Log("Flipped Enemy!");
+        }
+        else
+        {
+            isFlipped = false;
+            eSprite.flipX = false;
+            Debug.Log("Non-Flipped Enemy!");
         }
         
-        // TIPS: Pastikan Gravity Scale di Rigidbody2D adalah 0 
-        // agar tidak beradu dengan MovePosition
         rb.gravityScale = 0; 
     }
 
@@ -63,17 +62,17 @@ public class Enemy1B : MonoBehaviour
 
     void StartBehaviour()
     {
-        if (travel > 0)
+        if (travel > 0 && !isHit)
         {
             rb.MovePosition(rb.position + Vector2.down * speed * Time.fixedDeltaTime);
             travel -= Time.fixedDeltaTime;
         }
-        else if (waitingTime > 0)
+        else if (waitingTime > 0 && !isHit)
         {
             waitingTime -= Time.fixedDeltaTime;
-            rb.linearVelocity = Vector2.zero; // Rem total agar tidak geser
+            rb.linearVelocity = Vector2.zero; 
         }
-        else if (backTime > 0)
+        else if (backTime > 0 && !isHit)
         {
             if (!isFlipped)
             {
@@ -85,13 +84,15 @@ public class Enemy1B : MonoBehaviour
         }
         else
         {
-            // FASE DASH: Menggunakan Velocity agar Smooth saat benturan
-            if (!hasTarget)
+            if (!hasTarget && !isHit)
             {
+                animator.SetTrigger("isAttack");
                 targetPos = player.transform.position;
                 Vector2 direction = (targetPos - (Vector2)transform.position).normalized;
-                
-                // Set kecepatan sekali saja (seperti peluru)
+
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+
                 rb.linearVelocity = direction * (speed + 5);
                 hasTarget = true;
             }
@@ -100,11 +101,13 @@ public class Enemy1B : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        isHit = true;
+        animator.SetTrigger("isHit");
         if (!isActive) return;
 
         isActive = false;
         rb.linearVelocity = Vector2.zero;
-        rb.simulated = false; // Mematikan fisika agar tidak jitter saat proses Destroy
+        rb.simulated = false; 
 
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -114,7 +117,5 @@ public class Enemy1B : MonoBehaviour
                 Debug.Log("Health Player: " + pScript.getHealth());
             }
         }
-
-        Destroy(gameObject);
     }
 }
