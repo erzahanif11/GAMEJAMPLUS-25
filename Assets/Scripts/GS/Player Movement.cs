@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         isGrappling = grappler.isGrappling;
 
         // Ground check di tiga titik
-         groundedCenter = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius*1.5f, groundLayer);
+         groundedCenter = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius*1.25f, groundLayer);
          groundedLeft = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusHorizontal, groundLayer);
          groundedRight = Physics2D.OverlapCircle(groundCheckRight.position, groundCheckRadiusHorizontal, groundLayer);
 

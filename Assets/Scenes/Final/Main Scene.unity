@@ -12289,8 +12289,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4760335196676103162, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.046
+      objectReference: {fileID: 0}
+    - target: {fileID: 4760335196676103162, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.255
+      value: -0.264
       objectReference: {fileID: 0}
     - target: {fileID: 5237339634869121947, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: mainCamera
