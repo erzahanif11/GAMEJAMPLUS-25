@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Block
   - Ground
+  - hellbullet
   layers:
   - Default
   - TransparentFX

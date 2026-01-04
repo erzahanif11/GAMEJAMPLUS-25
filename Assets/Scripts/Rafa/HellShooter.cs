@@ -18,6 +18,7 @@ public class HellShooter : MonoBehaviour
         if (phaseName == "Tracking") currentPhaseCoroutine = StartCoroutine(PhaseTracking(duration));
         else if (phaseName == "Nova") currentPhaseCoroutine = StartCoroutine(PhaseNova(duration));
         else if (phaseName == "Spiral") currentPhaseCoroutine = StartCoroutine(PhaseSpiral(duration));
+        else if (phaseName == "TripleTracking") currentPhaseCoroutine = StartCoroutine(PhaseTripleTracking(duration));
     }
 
     // Fungsi Utama: Spawn peluru dengan arah tertentu
@@ -56,6 +57,40 @@ public class HellShooter : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+    IEnumerator PhaseTripleTracking(float duration)
+{
+    float endTime = Time.time + duration;
+    float spreadAngle = 5f; // Jarak sudut antar peluru tetangga
+
+    while (Time.time < endTime)
+    {
+        if (player != null)
+        {
+            // 1. Kunci target (Lock position)
+            Vector2 dir = player.position - transform.position;
+            float centerAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
+
+
+            // 3. Tembak 3 peluru (Tengah, Kiri, Kanan)
+            float[] angles = { centerAngle, centerAngle - spreadAngle, centerAngle + spreadAngle };
+
+            foreach (float angle in angles)
+            {
+                // Instantiate dengan rotasi spesifik
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, angle));
+                
+                // Set velocity langsung (Dumb Bullet)
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.linearVelocity = bullet.transform.up * bulletSpeed;
+                }
+            }
+        }
+        // Jeda antar rentetan (fire rate)
+        yield return new WaitForSeconds(0.2f);
+    }
+}
 
     IEnumerator PhaseNova(float duration)
     {
@@ -63,11 +98,13 @@ public class HellShooter : MonoBehaviour
         int count = 12;
         while (Time.time < endTime)
         {
+
+            float dgreoffset =Random.Range(-30f,30f);
             for (int i = 0; i < count; i++)
             {
-                SpawnBullet(i * (360f / count));
+                SpawnBullet((i * (360f / count) )+ dgreoffset);
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
