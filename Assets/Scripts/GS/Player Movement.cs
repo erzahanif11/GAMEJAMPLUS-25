@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private string velocityXParameter = "VelocityX";
     private string isGroundedParameter = "IsGrounded";
     private string dashParameter = "Dash";
+    private string groundedRightParameter = "GroundedRight";
+    private string jumpParameter = "Jump";
     
     PlayerStats stats;
     Grappler grappler;
@@ -102,13 +104,13 @@ public class PlayerMovement : MonoBehaviour
         isGrappling = grappler.isGrappling;
 
         // Ground check di tiga titik
-         groundedCenter = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+         groundedCenter = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius*1.5f, groundLayer);
          groundedLeft = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusHorizontal, groundLayer);
          groundedRight = Physics2D.OverlapCircle(groundCheckRight.position, groundCheckRadiusHorizontal, groundLayer);
 
-        isGrounded = groundedCenter || groundedLeft || groundedRight;
+        isGrounded = groundedCenter || groundedLeft;
 
-        if (isGrounded)
+        if (isGrounded || groundedRight)
         {
             jumpedDouble = false;
         }
@@ -194,10 +196,12 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat(velocityXParameter, Mathf.Abs(rb.linearVelocity.x));
         animator.SetFloat(velocityYParameter, rb.linearVelocity.y);
         animator.SetBool(isGroundedParameter, isGrounded);
+        animator.SetBool(groundedRightParameter, groundedRight);
     }
 
     void Jump()
     {
+        animator.SetTrigger(jumpParameter);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 //        audioManager.PlaySFX(audioManager.jump);
         if (isGrounded)
