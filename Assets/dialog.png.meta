@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4ca9e6ad3819e3549803bb15d236fe44
+guid: fdc1695b499aea74e92c5dd2ed79001e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6289541829859484163
-    second: vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0
+      213: -2576023137440582333
+    second: dialog_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0
+      name: dialog_0
       rect:
         serializedVersion: 2
-        x: 672
-        y: 728
-        width: 4656
-        height: 3519
+        x: 0
+        y: 0
+        width: 168
+        height: 203
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dfdd347770f07b8a0800000000000000
-      internalID: -6289541829859484163
+      spriteID: 345baa7da90204cd0800000000000000
+      internalID: -2576023137440582333
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0: -6289541829859484163
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

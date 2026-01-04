@@ -1,10 +1,28 @@
 fileFormatVersion: 2
-guid: 4ca9e6ad3819e3549803bb15d236fe44
+guid: 0897084c2ef9fdc4aa2b7891f641906c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6289541829859484163
-    second: vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0
+      213: 7110878671101974141
+    second: dash_0
+  - first:
+      213: 7643240275301989466
+    second: dash_1
+  - first:
+      213: -8809873816130030523
+    second: dash_2
+  - first:
+      213: -4770175892979620097
+    second: dash_3
+  - first:
+      213: -1190105860681885623
+    second: dash_4
+  - first:
+      213: 8035217175372748222
+    second: dash_5
+  - first:
+      213: 697318719324224050
+    second: dash_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 350
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,23 +131,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0
+      name: dash_0
       rect:
         serializedVersion: 2
-        x: 672
-        y: 728
-        width: 4656
-        height: 3519
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dfdd347770f07b8a0800000000000000
-      internalID: -6289541829859484163
+      spriteID: 5698ac5daec00324e9364d2aeee64423
+      internalID: 1160156403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a8977179b562e348b28181a0a373aa6
+      internalID: 1301507165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d980aa29e8dcd274bbf392256b70e928
+      internalID: -1662988986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ec7476e206611d44bc06f316a126382
+      internalID: -1065655984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9451fed62cf59f74baddc5438baa91af
+      internalID: -259902568
       vertices: []
       indices: 
       edges: []
@@ -138,7 +244,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 38a46309e12166941865270ba19ab1fe
     internalID: 0
     vertices: []
     indices: 
@@ -146,9 +252,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0: -6289541829859484163
+      dash_0: 1160156403
+      dash_1: 1301507165
+      dash_2: -1662988986
+      dash_3: -1065655984
+      dash_4: -259902568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

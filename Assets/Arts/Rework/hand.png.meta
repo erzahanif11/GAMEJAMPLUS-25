@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4ca9e6ad3819e3549803bb15d236fe44
+guid: 385d8ee996874514cbdc5e9fa0211a27
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6289541829859484163
-    second: vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0
+      213: 8403215288983880825
+    second: hand_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 350
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0
+      name: hand_0
       rect:
         serializedVersion: 2
-        x: 672
-        y: 728
-        width: 4656
-        height: 3519
+        x: 55
+        y: 100
+        width: 43
+        height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dfdd347770f07b8a0800000000000000
-      internalID: -6289541829859484163
+      spriteID: 974040f78c73e9470800000000000000
+      internalID: 8403215288983880825
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      vecteezy_white-heart-sign-isolated-on-transparent-background_25094086_0: -6289541829859484163
+      hand_0: 8403215288983880825
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
