@@ -57,10 +57,11 @@ public class PlayerMovement : MonoBehaviour
     public float footdistancemidair=0.5f;
 
     [SerializeField] private float attackDamage = 1f;
-    [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private LayerMask enemyLayer;
+    private bool canAttack = true;
 
     // public GameObject OnGroundJumpEffect; 
     // public GameObject MidAirJumpEffect;
@@ -161,9 +162,11 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 2f;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canAttack)
         {
+            canAttack = false;
             animator.SetTrigger(attackAnimationName);
+            StartCoroutine(AttackCooldown());
         }
     }
 
@@ -274,7 +277,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Claw(){
-        Debug.Log("Claw");
+        if (canAttack)
+        {
+            Debug.Log("Claw");
+        }else{
+            Debug.Log("Attack on cooldown");
+        }
+    }
+
+    IEnumerator AttackCooldown(){
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     // public void ApplySpeedBoost(float boostMultiplier, float boostDuration, float slowMultiplier, float slowDuration)
