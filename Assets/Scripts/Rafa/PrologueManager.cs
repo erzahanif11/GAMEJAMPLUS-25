@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class DialogueLine
@@ -64,6 +65,7 @@ public class PrologueManager : MonoBehaviour
     private List<DialogueLine> lines = new List<DialogueLine>();
     private int index;
     private bool isTyping;
+    private bool cutsceneFinished = false;
 
     void Start()
     {
@@ -162,7 +164,9 @@ public class PrologueManager : MonoBehaviour
         }
         else
         {
+            cutsceneFinished = true;
             dialogueGroup.SetActive(false);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             Debug.Log("Cutscene Selesai! Pindah ke Gameplay.");
         }
     }
