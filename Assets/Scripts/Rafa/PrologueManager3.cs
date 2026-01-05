@@ -13,6 +13,7 @@ public class DialogueLine3
     public Sprite backgroundSprite; 
     public Sprite characterSprite; 
     public Sprite bubbleSprite; 
+    public AudioClip soundEffect; // BARU: Slot untuk suara khusus per dialog
 }
 
 public class PrologueManager3 : MonoBehaviour
@@ -45,6 +46,16 @@ public class PrologueManager3 : MonoBehaviour
     [Header("Typing Settings")]
     public float typingSpeed = 0.04f;     
 
+    [Header("Audio Settings")] 
+    public AudioSource audioSource; 
+    public AudioClip typingSfx;     
+    
+    // BARU: Tempat naruh file suara kejadian khusus
+    [Header("Story Assets - SFX")] 
+    public AudioClip machineTurnOnSfx; // Drag suara mesin nyala
+    public AudioClip doorOpenSfx;      // Drag suara pintu
+    public AudioClip explosionSfx;     // Drag suara ledakan (contoh)
+
     [Header("Story Assets - Backgrounds")]
     public Sprite warehouseBg;            
     public Sprite digitalWorldBg;
@@ -73,12 +84,23 @@ public class PrologueManager3 : MonoBehaviour
         if (normalBubbleSprite == null && bubbleImage != null)
             normalBubbleSprite = bubbleImage.sprite;
 
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
         // --- DATA DIALOG PROLOGUE 3 ---
-        // GANTI DIALOG DI BAWAH INI SESUAI CERITA LANJUTANNYA
+        
+        // CONTOH PENGGUNAAN:
+        // Parameter terakhir adalah Sound Effect.
         
         AddLine("SYSTEM", "We are close to the Core. Prepare yourself.", digitalWorldBg, systemSprite);
-        AddLine("THE CAT", "I was born ready. And hungry.", digitalWorldBg, catSprite);
-        AddLine("SYSTEM", "Focus! The main virus is guarding the entrance.", digitalWorldBg, systemSprite);
+        
+        // Contoh: Kucing bicara sambil ada suara pintu terbuka (pakai doorOpenSfx)
+        AddLine("THE CAT", "I was born ready. And hungry.", digitalWorldBg, catSprite, null, doorOpenSfx);
+        
+        // Contoh: System bicara sambil ada suara mesin keras (pakai machineTurnOnSfx)
+        // Dan pakai bubble noise
+        AddLine("SYSTEM", "Focus! The main virus is guarding the entrance.", digitalWorldBg, systemSprite, noiseBubbleSprite, machineTurnOnSfx);
+        
         AddLine("THE CAT", "Let's scratch some pixels then.", digitalWorldBg, catSprite);
 
         dialogueGroup.SetActive(true);
@@ -116,6 +138,14 @@ public class PrologueManager3 : MonoBehaviour
         foreach (char c in lines[index].dialogue.ToCharArray())
         {
             dialogueText.text += c;
+            
+            // Suara ketikan (Typing SFX)
+            if (audioSource != null && typingSfx != null)
+            {
+                audioSource.pitch = Random.Range(0.9f, 1.1f); 
+                audioSource.PlayOneShot(typingSfx);
+            }
+            
             yield return new WaitForSeconds(typingSpeed);
         }
         isTyping = false;
@@ -142,6 +172,15 @@ public class PrologueManager3 : MonoBehaviour
         DialogueLine3 currentLine = lines[index];
         RectTransform groupRect = dialogueGroup.GetComponent<RectTransform>();
         RectTransform bubbleRect = bubbleImage.GetComponent<RectTransform>();
+
+        // --- BARU: Mainkan Suara Spesifik (Jika Ada) ---
+        if (currentLine.soundEffect != null && audioSource != null)
+        {
+            // Reset pitch ke normal untuk SFX kejadian
+            audioSource.pitch = 1f; 
+            audioSource.PlayOneShot(currentLine.soundEffect);
+        }
+        // -----------------------------------------------
 
         nameText.text = currentLine.characterName;
         nameText.color = (currentLine.characterName == "THE CAT") ? Color.yellow : Color.cyan;
@@ -188,7 +227,8 @@ public class PrologueManager3 : MonoBehaviour
         }
     }
 
-    void AddLine(string name, string text, Sprite bg, Sprite portrait, Sprite bubble = null)
+    // Update fungsi AddLine: Tambah parameter sfx di paling belakang
+    void AddLine(string name, string text, Sprite bg, Sprite portrait, Sprite bubble = null, AudioClip sfx = null)
     {
         DialogueLine3 newLine = new DialogueLine3();
         newLine.characterName = name;
@@ -196,6 +236,7 @@ public class PrologueManager3 : MonoBehaviour
         newLine.backgroundSprite = bg;
         newLine.characterSprite = portrait; 
         newLine.bubbleSprite = bubble; 
+        newLine.soundEffect = sfx; // Simpan SFX
         lines.Add(newLine);
     }
 }
