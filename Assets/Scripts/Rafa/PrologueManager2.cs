@@ -13,6 +13,7 @@ public class DialogueLine2
     public Sprite backgroundSprite; 
     public Sprite characterSprite; 
     public Sprite bubbleSprite; 
+    public AudioClip soundEffect;
 }
 
 public class PrologueManager2 : MonoBehaviour
@@ -45,6 +46,19 @@ public class PrologueManager2 : MonoBehaviour
     [Header("Typing Settings")]
     public float typingSpeed = 0.04f;     
 
+    [Header("Audio Settings")] 
+    public AudioSource audioSource; 
+    public AudioClip typingSfx;     
+
+    [Header("Story Assets - SFX")] 
+    public AudioClip doorOpenSfx;
+    public AudioClip machineTurnOnSfx;
+    public AudioClip hypnoSfx;
+    public AudioClip rainSfx;
+    public AudioClip ScanSfx;
+    public AudioClip RoboSfx;
+    public AudioClip LavaSfx;
+
     [Header("Story Assets - Backgrounds")]
     public Sprite warehouseBg;            
     public Sprite digitalWorldBg;
@@ -73,14 +87,18 @@ public class PrologueManager2 : MonoBehaviour
         if (normalBubbleSprite == null && bubbleImage != null)
             normalBubbleSprite = bubbleImage.sprite;
 
-        // --- DATA DIALOG PROLOGUE 2 ---
-        // GANTI DIALOG DI BAWAH INI SESUAI CERITA LANJUTANNYA
-        
-        AddLine("THE CAT", "Okay, I made it past the first wave.", digitalWorldBg, catSprite);
-        AddLine("SYSTEM", "Don't celebrate yet. The Firewall is approaching!", digitalWorldBg, systemSprite);
-        AddLine("THE CAT", "Firewall? Sounds hot.", digitalWorldBg, catSprite);
-        AddLine("SYSTEM", "It is literally a wall of fire data. Move!", digitalWorldBg, systemSprite);
-        AddLine("THE CAT", "Alright, alright! Keep your circuits on!", digitalWorldBg, catSprite);
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+        AddLine("", "'After Phase 1'", BlackBG, null, noiseBubbleSprite, LavaSfx);
+        AddLine("THE CAT", "", digitalWorldBg, catSprite);
+        AddLine("THE CAT", "Okay… why are there more of these assholes, and why is the lava faster?", digitalWorldBg, catSprite);
+        AddLine("SYSTEM", "Well… Spawn rate just spiked.", digitalWorldBg, systemSprite);
+        AddLine("THE CAT", "Of course it is.", digitalWorldBg, catSprite);
+        AddLine("SYSTEM", "Uhm…. Be careful of more enemies. They’re close now.", digitalWorldBg, systemSprite);
+        AddLine("THE CAT", "So they’re trying to corner me.", digitalWorldBg, catSprite);
+        AddLine("SYSTEM", "Exactly.", digitalWorldBg, systemSprite);
+        AddLine("THE CAT", "Alright then…. Let’s do this.", digitalWorldBg, catSprite);
+        AddLine("", "'Enter phase 2'", BlackBG, null, noiseBubbleSprite, LavaSfx);
 
         dialogueGroup.SetActive(true);
         StartDialogue();
@@ -117,6 +135,14 @@ public class PrologueManager2 : MonoBehaviour
         foreach (char c in lines[index].dialogue.ToCharArray())
         {
             dialogueText.text += c;
+            
+            // Suara ketikan
+            if (audioSource != null && typingSfx != null)
+            {
+                audioSource.pitch = Random.Range(0.9f, 1.1f); 
+                audioSource.PlayOneShot(typingSfx);
+            }
+
             yield return new WaitForSeconds(typingSpeed);
         }
         isTyping = false;
@@ -144,52 +170,96 @@ public class PrologueManager2 : MonoBehaviour
         RectTransform groupRect = dialogueGroup.GetComponent<RectTransform>();
         RectTransform bubbleRect = bubbleImage.GetComponent<RectTransform>();
 
-        nameText.text = currentLine.characterName;
-        nameText.color = (currentLine.characterName == "THE CAT") ? Color.yellow : Color.cyan;
+        // Mainkan Suara Spesifik (Jika Ada)
+        if (currentLine.soundEffect != null && audioSource != null)
+        {
+            audioSource.pitch = 1f; 
+            audioSource.PlayOneShot(currentLine.soundEffect);
+        }
 
+        nameText.text = currentLine.characterName;
+        // Kalau System atau "?" bicara, warna Cyan. Kalau kucing, warna Kuning.
+        if (currentLine.characterName == "THE CAT")
+            nameText.color = Color.yellow;
+        else
+            nameText.color = Color.cyan;
+
+        // Set Background
         if (currentLine.backgroundSprite != null)
             backgroundImage.sprite = currentLine.backgroundSprite;
 
+        // Set Bentuk Awan (Bubble Sprite)
         if (currentLine.bubbleSprite != null)
             bubbleImage.sprite = currentLine.bubbleSprite;
         else
             bubbleImage.sprite = normalBubbleSprite;
 
+        // --- LOGIKA POSISI & GAMBAR KARAKTER ---
         if (currentLine.characterSprite != null)
         {
+            // === ADA KARAKTER YANG BICARA ===
+
+            // Jika SYSTEM bicara
             if (currentLine.characterName == "SYSTEM")
             {
-                portraitLeft.gameObject.SetActive(false);
-                portraitRight.gameObject.SetActive(true);
-                portraitRight.sprite = currentLine.characterSprite;
-
-                bubbleRect.localScale = new Vector3(-1, 1, 1);
-                groupRect.anchoredPosition = new Vector2(systemPositionX, groupRect.anchoredPosition.y);
-                float newX = -defaultTextX + textFlipOffset;
-                textContainer.anchoredPosition = new Vector2(newX, textContainer.anchoredPosition.y);
+                SetRightSide(currentLine, groupRect, bubbleRect);
             }
+            // Jika karakter misterius "?" bicara
+            else if (currentLine.characterName == "?")
+            {
+                SetRightSide(currentLine, groupRect, bubbleRect);
+            }
+            // Jika THE CAT bicara
             else
             {
-                portraitLeft.gameObject.SetActive(true);
-                portraitRight.gameObject.SetActive(false);
-                portraitLeft.sprite = currentLine.characterSprite;
-
-                bubbleRect.localScale = new Vector3(1, 1, 1);
-                groupRect.anchoredPosition = new Vector2(catPositionX, groupRect.anchoredPosition.y);
-                textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);
+                SetLeftSide(currentLine, groupRect, bubbleRect);
             }
         }
         else
         {
+            // === NARASI / SFX (TIDAK ADA WAJAH) ===
             portraitLeft.gameObject.SetActive(false);
             portraitRight.gameObject.SetActive(false);
+
+            // Reset Awan ke Normal (Tidak Flip)
             bubbleRect.localScale = new Vector3(1, 1, 1);
+            
+            // Posisi Dialog di Tengah (Netral)
             groupRect.anchoredPosition = new Vector2(centerPositionX, groupRect.anchoredPosition.y);
+            
+            // Teks di posisi asli (Positif)
             textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);
         }
     }
 
-    void AddLine(string name, string text, Sprite bg, Sprite portrait, Sprite bubble = null)
+    // Fungsi helper
+    void SetRightSide(DialogueLine2 line, RectTransform group, RectTransform bubble)
+    {
+        portraitLeft.gameObject.SetActive(false);
+        portraitRight.gameObject.SetActive(true);
+        portraitRight.sprite = line.characterSprite;
+
+        // Flip Awan & Posisi Kanan
+        bubble.localScale = new Vector3(-1, 1, 1);
+        group.anchoredPosition = new Vector2(systemPositionX, group.anchoredPosition.y);
+        
+        float newX = -defaultTextX + textFlipOffset;
+        textContainer.anchoredPosition = new Vector2(newX, textContainer.anchoredPosition.y);
+    }
+
+    void SetLeftSide(DialogueLine2 line, RectTransform group, RectTransform bubble)
+    {
+        portraitLeft.gameObject.SetActive(true);
+        portraitRight.gameObject.SetActive(false);
+        portraitLeft.sprite = line.characterSprite;
+
+        // Reset Awan & Posisi Kiri
+        bubble.localScale = new Vector3(1, 1, 1);
+        group.anchoredPosition = new Vector2(catPositionX, group.anchoredPosition.y);
+        textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);
+    }
+
+    void AddLine(string name, string text, Sprite bg, Sprite portrait, Sprite bubble = null, AudioClip sfx = null)
     {
         DialogueLine2 newLine = new DialogueLine2();
         newLine.characterName = name;
@@ -197,6 +267,7 @@ public class PrologueManager2 : MonoBehaviour
         newLine.backgroundSprite = bg;
         newLine.characterSprite = portrait; 
         newLine.bubbleSprite = bubble; 
+        newLine.soundEffect = sfx; // Simpan SFX
         lines.Add(newLine);
     }
 }

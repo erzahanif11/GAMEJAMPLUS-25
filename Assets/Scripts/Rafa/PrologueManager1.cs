@@ -13,7 +13,7 @@ public class DialogueLine1
     public Sprite backgroundSprite; 
     public Sprite characterSprite; 
     public Sprite bubbleSprite; 
-    public AudioClip soundEffect; // Slot audio per baris
+    public AudioClip soundEffect;
 }
 
 public class PrologueManager1 : MonoBehaviour
@@ -87,11 +87,9 @@ public class PrologueManager1 : MonoBehaviour
         if (normalBubbleSprite == null && bubbleImage != null)
             normalBubbleSprite = bubbleImage.sprite;
 
-        // Ambil AudioSource otomatis jika belum di-assign
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
-        // --- DATA DIALOG ---
         AddLine("-", "'The sound of the door being opened'", BlackBG, null, noiseBubbleSprite, doorOpenSfx);
         AddLine("-", "'Heavy rain pouring outside'", BlackBG, null, noiseBubbleSprite, rainSfx); // Added text for rain context
         
@@ -104,7 +102,6 @@ public class PrologueManager1 : MonoBehaviour
         AddLine("THE CAT", "\"Tetris Hell\"? Heh. Edgy name.", warehouseBg, catSprite);
         AddLine("THE CAT", "You know what? I'm bored. Let's see if this bad boy still works.", warehouseBg, catSprite);
 
-        // Mesin nyala
         AddLine("SYSTEM", "*CLICK* [Machine turns on violently]", BlackBG, null, noiseBubbleSprite, machineTurnOnSfx);
         
         AddLine("THE CAT", "Yeah! That’s what I’m talking about!", warehouseBg, catSprite, null, null);
@@ -115,7 +112,6 @@ public class PrologueManager1 : MonoBehaviour
         AddLine("THE CAT", "Oh crap, oh crap, OH CRAAAAAP—!", Hypno, catSprite);
         AddLine("-", "'-'", BlackBG, null, null, null);
 
-        // Scene 2: Digital World
         AddLine("THE CAT", "Ugh...", digitalWorldBg, catSprite, null, null);
         AddLine("THE CAT", "Note to myself never play around in abandoned warehouses AGAIN.", digitalWorldBg, catSprite);
         AddLine("THE CAT", "F*ck… where the hell am I?", digitalWorldBg, catSprite);
@@ -129,7 +125,6 @@ public class PrologueManager1 : MonoBehaviour
         AddLine("THE CAT", "Jeez!", digitalWorldBg, catSprite);
         AddLine("THE CAT", "You always pop in like that or is today special?", digitalWorldBg, catSprite);
         
-        // Karakter "?" muncul di kanan (sama seperti System)
         AddLine("?", "Whoa, whoa. Easy", digitalWorldBg, systemSprite);
         AddLine("?", "Didn’t mean to scare you.", digitalWorldBg, systemSprite);
         
@@ -202,7 +197,6 @@ public class PrologueManager1 : MonoBehaviour
         {
             dialogueText.text += c;
             
-            // Suara ketikan
             if (audioSource != null && typingSfx != null)
             {
                 audioSource.pitch = Random.Range(0.9f, 1.1f); 
@@ -226,7 +220,6 @@ public class PrologueManager1 : MonoBehaviour
         {
             dialogueGroup.SetActive(false);
             Debug.Log("Prologue 1 Selesai! Pindah Scene.");
-            // SceneManager.LoadScene("Level1");
         }
     }
 
@@ -236,7 +229,6 @@ public class PrologueManager1 : MonoBehaviour
         RectTransform groupRect = dialogueGroup.GetComponent<RectTransform>();
         RectTransform bubbleRect = bubbleImage.GetComponent<RectTransform>();
 
-        // Mainkan Suara Spesifik (Jika Ada)
         if (currentLine.soundEffect != null && audioSource != null)
         {
             audioSource.pitch = 1f; 
@@ -249,65 +241,48 @@ public class PrologueManager1 : MonoBehaviour
         else
             nameText.color = Color.cyan;
 
-        // Set Background
         if (currentLine.backgroundSprite != null)
             backgroundImage.sprite = currentLine.backgroundSprite;
 
-        // Set Bentuk Awan (Bubble Sprite)
         if (currentLine.bubbleSprite != null)
             bubbleImage.sprite = currentLine.bubbleSprite;
         else
             bubbleImage.sprite = normalBubbleSprite;
 
-        // --- PERBAIKAN LOGIKA IF ELSE DI SINI ---
         if (currentLine.characterSprite != null)
         {
-            // === ADA KARAKTER YANG BICARA ===
-
-            // Jika SYSTEM bicara
             if (currentLine.characterName == "SYSTEM")
             {
-                // === SYSTEM (KANAN) ===
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }
-            // Jika karakter misterius "?" bicara (Perlakuan sama kayak SYSTEM)
             else if (currentLine.characterName == "?")
             {
-                // === ? (KANAN) ===
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }
-            // Jika THE CAT bicara
             else
             {
-                // === THE CAT (KIRI) ===
                 SetLeftSide(currentLine, groupRect, bubbleRect);
             }
         }
         else
         {
-            // === NARASI / SFX (TIDAK ADA WAJAH) ===
             portraitLeft.gameObject.SetActive(false);
             portraitRight.gameObject.SetActive(false);
 
-            // Reset Awan ke Normal (Tidak Flip)
             bubbleRect.localScale = new Vector3(1, 1, 1);
-            
-            // Posisi Dialog di Tengah (Netral)
+
             groupRect.anchoredPosition = new Vector2(centerPositionX, groupRect.anchoredPosition.y);
-            
-            // Teks di posisi asli (Positif)
+
             textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);
         }
     }
 
-    // Fungsi helper biar kode UpdateUI lebih rapi dan tidak duplikat
     void SetRightSide(DialogueLine1 line, RectTransform group, RectTransform bubble)
     {
         portraitLeft.gameObject.SetActive(false);
         portraitRight.gameObject.SetActive(true);
         portraitRight.sprite = line.characterSprite;
 
-        // Flip Awan & Posisi Kanan
         bubble.localScale = new Vector3(-1, 1, 1);
         group.anchoredPosition = new Vector2(systemPositionX, group.anchoredPosition.y);
         
@@ -321,7 +296,6 @@ public class PrologueManager1 : MonoBehaviour
         portraitRight.gameObject.SetActive(false);
         portraitLeft.sprite = line.characterSprite;
 
-        // Reset Awan & Posisi Kiri
         bubble.localScale = new Vector3(1, 1, 1);
         group.anchoredPosition = new Vector2(catPositionX, group.anchoredPosition.y);
         textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);

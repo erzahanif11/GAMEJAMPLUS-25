@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 [System.Serializable]
-public class DialogueLine3
+public class DialogueLine4
 {
     public string characterName;
     [TextArea(3, 10)] 
@@ -13,10 +13,10 @@ public class DialogueLine3
     public Sprite backgroundSprite; 
     public Sprite characterSprite; 
     public Sprite bubbleSprite; 
-    public AudioClip soundEffect; // Slot audio per baris
+    public AudioClip soundEffect;
 }
 
-public class PrologueManager3 : MonoBehaviour
+public class PrologueManager4 : MonoBehaviour
 {
     [Header("UI Components - Text")]
     public TextMeshProUGUI nameText;      
@@ -38,7 +38,7 @@ public class PrologueManager3 : MonoBehaviour
     public float centerPositionX = 0f; 
     
     [Header("Fine Tuning")]
-    [Tooltip("Geser teks KHUSUS saat System bicara. Isi angka Negatif (-) untuk geser ke Kiri.")]
+    [Tooltip("Geser teks KHUSUS saat System/Boss bicara. Isi angka Negatif (-) untuk geser ke Kiri.")]
     public float textFlipOffset = 0f; 
     
     private float defaultTextX; 
@@ -51,13 +51,11 @@ public class PrologueManager3 : MonoBehaviour
     public AudioClip typingSfx;     
 
     [Header("Story Assets - SFX")] 
+    public AudioClip collapseSfx;
+    public AudioClip winSfx;
+    public AudioClip glitchSfx;
     public AudioClip doorOpenSfx;
-    public AudioClip machineTurnOnSfx; // Bisa dipakai untuk Rumble
-    public AudioClip hypnoSfx;
-    public AudioClip rainSfx;
-    public AudioClip ScanSfx;
-    public AudioClip RoboSfx;
-    public AudioClip LavaSfx;
+    public AudioClip machineTurnOnSfx;
 
     [Header("Story Assets - Backgrounds")]
     public Sprite warehouseBg;            
@@ -68,12 +66,13 @@ public class PrologueManager3 : MonoBehaviour
     [Header("Story Assets - Characters")] 
     public Sprite catSprite;
     public Sprite systemSprite;
+    public Sprite bossSprite;
 
     [Header("Story Assets - Bubbles")] 
     public Sprite normalBubbleSprite; 
     public Sprite noiseBubbleSprite;  
 
-    private List<DialogueLine3> lines = new List<DialogueLine3>();
+    private List<DialogueLine4> lines = new List<DialogueLine4>();
     private int index;
     private bool isTyping;
 
@@ -90,40 +89,65 @@ public class PrologueManager3 : MonoBehaviour
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
-        // --- DATA DIALOG PROLOGUE 3 (BOSS INTRO) ---
-        
-        // (LAVA FADES AWAY) - Narasi/SFX
-        AddLine("", "'LAVA FADES AWAY'", BlackBG, null, noiseBubbleSprite, LavaSfx);
+        AddLine("", "The boss collapses. The arena goes silent.", BlackBG, null, noiseBubbleSprite, collapseSfx);
 
-        AddLine("SYSTEM", "Huh.", digitalWorldBg, systemSprite);
-        AddLine("SYSTEM", "I’ve never seen this area like this.", digitalWorldBg, systemSprite);
+        AddLine("SYSTEM", "Target neutralized.", digitalWorldBg, systemSprite);
+        AddLine("SYSTEM", "Nice work.", digitalWorldBg, systemSprite);
 
-        AddLine("THE CAT", "You’re the system.", digitalWorldBg, catSprite);
-        AddLine("THE CAT", "What do you mean, never?", digitalWorldBg, catSprite);
-
-        AddLine("SYSTEM", "Before the corruption,", digitalWorldBg, systemSprite);
-        AddLine("SYSTEM", "this place didn’t exist.", digitalWorldBg, systemSprite);
-        AddLine("SYSTEM", "You’re the first one here.", digitalWorldBg, systemSprite);
-
-        AddLine("THE CAT", "Lucky me.", digitalWorldBg, catSprite);
-
-        // (A LOUD RUMBLE. YELLOW BULLETS BEGIN TO FORM.)
-        // Menggunakan noiseBubbleSprite untuk efek tegang dan machineTurnOnSfx untuk suara gemuruh
-        AddLine("-", "(A LOUD RUMBLE. YELLOW BULLETS BEGIN TO FORM.)", digitalWorldBg, null, noiseBubbleSprite, machineTurnOnSfx);
-
-        AddLine("THE CAT", "…", digitalWorldBg, catSprite);
-        AddLine("SYSTEM", "…", digitalWorldBg, systemSprite);
-
-        AddLine("THE CAT", "So.", digitalWorldBg, catSprite);
-        AddLine("THE CAT", "That’s the boss.", digitalWorldBg, catSprite);
+        AddLine("THE CAT", "…Finally.", digitalWorldBg, catSprite);
+        AddLine("THE CAT", "So we’re done?", digitalWorldBg, catSprite);
 
         AddLine("SYSTEM", "Yes.", digitalWorldBg, systemSprite);
 
-        AddLine("THE CAT", "It’s not moving.", digitalWorldBg, catSprite);
+        AddLine("SYSTEM", "CONGRATULATION !! You completed the tutorial.", digitalWorldBg, systemSprite, null, winSfx);
 
-        AddLine("SYSTEM", "It doesn’t need to.", digitalWorldBg, systemSprite);
+        AddLine("THE CAT", "Wait. what ?!", digitalWorldBg, catSprite);
 
-        AddLine("THE CAT", "Alright here we go !!", digitalWorldBg, catSprite);
+        AddLine("SYSTEM", "This was only the beginning.", digitalWorldBg, systemSprite);
+        AddLine("SYSTEM", "The real core lies beyond this area.", digitalWorldBg, systemSprite);
+
+        AddLine("THE CAT", "You’re kidding me.", digitalWorldBg, catSprite);
+
+        AddLine("-", "(A faint glitch. The boss stirs.)", digitalWorldBg, null, noiseBubbleSprite, glitchSfx);
+
+        AddLine("BOSS", "…Thank you.", digitalWorldBg, bossSprite);
+
+        AddLine("THE CAT", "What?", digitalWorldBg, catSprite);
+
+        AddLine("BOSS", "The corruption is gone.", digitalWorldBg, bossSprite);
+        AddLine("BOSS", "You freed me.", digitalWorldBg, bossSprite);
+
+        AddLine("SYSTEM", "How this is Impossible.", digitalWorldBg, systemSprite);
+        AddLine("SYSTEM", "You were classified as hostile.", digitalWorldBg, systemSprite);
+
+        AddLine("BOSS", "Because I was trapped by something beyond this place.", digitalWorldBg, bossSprite);
+        AddLine("BOSS", "Not because I was evil.", digitalWorldBg, bossSprite);
+
+        AddLine("THE CAT", "…Great.", digitalWorldBg, catSprite);
+        AddLine("THE CAT", "I punched the wrong guy.", digitalWorldBg, catSprite);
+
+        AddLine("BOSS", "There are others like me.", digitalWorldBg, bossSprite);
+        AddLine("BOSS", "Still corrupted.", digitalWorldBg, bossSprite);
+        AddLine("BOSS", "They’ll need help.", digitalWorldBg, bossSprite);
+
+        AddLine("SYSTEM", "This exceeds expected parameters.", digitalWorldBg, systemSprite);
+
+        AddLine("THE CAT", "You knew this was just a tutorial", digitalWorldBg, catSprite);
+        AddLine("THE CAT", "and didn’t think to mention it?", digitalWorldBg, catSprite);
+
+        AddLine("SYSTEM", "It seemed… unnecessary.", digitalWorldBg, systemSprite);
+        AddLine("SYSTEM", "And honestly, I didn’t expect you to survive.", digitalWorldBg, systemSprite);
+
+        AddLine("THE CAT", "You fucking clanker.", digitalWorldBg, catSprite);
+
+        AddLine("THE CAT", "Alright.", digitalWorldBg, catSprite);
+        AddLine("THE CAT", "One more round.", digitalWorldBg, catSprite);
+
+        AddLine("THE CAT", "Here we go again.", digitalWorldBg, catSprite);
+
+        AddLine("SYSTEM", "Preparing next sequence.", digitalWorldBg, systemSprite, noiseBubbleSprite, machineTurnOnSfx);
+
+        AddLine("", "TO BE CONTINUED", BlackBG, null, noiseBubbleSprite);
 
         dialogueGroup.SetActive(true);
         StartDialogue();
@@ -161,7 +185,6 @@ public class PrologueManager3 : MonoBehaviour
         {
             dialogueText.text += c;
             
-            // Suara ketikan
             if (audioSource != null && typingSfx != null)
             {
                 audioSource.pitch = Random.Range(0.9f, 1.1f); 
@@ -184,18 +207,16 @@ public class PrologueManager3 : MonoBehaviour
         else
         {
             dialogueGroup.SetActive(false);
-            Debug.Log("Prologue 3 Selesai! START BOSS FIGHT!");
-            // SceneManager.LoadScene("BossLevel");
+            Debug.Log("EPILOGUE SELESAI! Terima kasih sudah bermain.");
         }
     }
 
     void UpdateUI()
     {
-        DialogueLine3 currentLine = lines[index];
+        DialogueLine4 currentLine = lines[index];
         RectTransform groupRect = dialogueGroup.GetComponent<RectTransform>();
         RectTransform bubbleRect = bubbleImage.GetComponent<RectTransform>();
 
-        // Mainkan Suara Spesifik
         if (currentLine.soundEffect != null && audioSource != null)
         {
             audioSource.pitch = 1f; 
@@ -203,35 +224,32 @@ public class PrologueManager3 : MonoBehaviour
         }
 
         nameText.text = currentLine.characterName;
-        // Kalau System atau "?" bicara, warna Cyan. Kalau kucing, warna Kuning.
+        
         if (currentLine.characterName == "THE CAT")
             nameText.color = Color.yellow;
         else
             nameText.color = Color.cyan;
 
-        // Set Background
         if (currentLine.backgroundSprite != null)
             backgroundImage.sprite = currentLine.backgroundSprite;
 
-        // Set Bentuk Awan
         if (currentLine.bubbleSprite != null)
             bubbleImage.sprite = currentLine.bubbleSprite;
         else
             bubbleImage.sprite = normalBubbleSprite;
 
-        // --- LOGIKA POSISI & GAMBAR KARAKTER ---
         if (currentLine.characterSprite != null)
         {
-            // === ADA KARAKTER YANG BICARA ===
-
             if (currentLine.characterName == "SYSTEM")
             {
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }
-            else if (currentLine.characterName == "?")
+
+            else if (currentLine.characterName == "BOSS")
             {
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }
+
             else
             {
                 SetLeftSide(currentLine, groupRect, bubbleRect);
@@ -239,7 +257,6 @@ public class PrologueManager3 : MonoBehaviour
         }
         else
         {
-            // === NARASI / SFX (TIDAK ADA WAJAH) ===
             portraitLeft.gameObject.SetActive(false);
             portraitRight.gameObject.SetActive(false);
 
@@ -249,8 +266,7 @@ public class PrologueManager3 : MonoBehaviour
         }
     }
 
-    // Fungsi helper
-    void SetRightSide(DialogueLine3 line, RectTransform group, RectTransform bubble)
+    void SetRightSide(DialogueLine4 line, RectTransform group, RectTransform bubble)
     {
         portraitLeft.gameObject.SetActive(false);
         portraitRight.gameObject.SetActive(true);
@@ -263,7 +279,7 @@ public class PrologueManager3 : MonoBehaviour
         textContainer.anchoredPosition = new Vector2(newX, textContainer.anchoredPosition.y);
     }
 
-    void SetLeftSide(DialogueLine3 line, RectTransform group, RectTransform bubble)
+    void SetLeftSide(DialogueLine4 line, RectTransform group, RectTransform bubble)
     {
         portraitLeft.gameObject.SetActive(true);
         portraitRight.gameObject.SetActive(false);
@@ -276,7 +292,7 @@ public class PrologueManager3 : MonoBehaviour
 
     void AddLine(string name, string text, Sprite bg, Sprite portrait, Sprite bubble = null, AudioClip sfx = null)
     {
-        DialogueLine3 newLine = new DialogueLine3();
+        DialogueLine4 newLine = new DialogueLine4();
         newLine.characterName = name;
         newLine.dialogue = text;
         newLine.backgroundSprite = bg;

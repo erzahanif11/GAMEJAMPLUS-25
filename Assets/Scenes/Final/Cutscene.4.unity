@@ -667,8 +667,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1039905262}
-  - component: {fileID: 1039905263}
   - component: {fileID: 1039905264}
+  - component: {fileID: 1039905265}
   m_Layer: 0
   m_Name: CutsceneManager
   m_TagString: Untagged
@@ -685,54 +685,12 @@ Transform:
   m_GameObject: {fileID: 1039905260}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 961, y: 561, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1039905263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039905260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f23524539dd270744bf8b836761acde0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 2036167754}
-  dialogueText: {fileID: 432652870}
-  backgroundImage: {fileID: 88629381}
-  portraitLeft: {fileID: 1449074947}
-  portraitRight: {fileID: 182858520}
-  dialogueGroup: {fileID: 829529924}
-  bubbleImage: {fileID: 1318505193}
-  textContainer: {fileID: 2123691420}
-  catPositionX: 0
-  systemPositionX: -200
-  centerPositionX: 0
-  textFlipOffset: -80
-  typingSpeed: 0.04
-  audioSource: {fileID: 0}
-  typingSfx: {fileID: 8300000, guid: df8677c7966ce184cae446cfba926c01, type: 3}
-  doorOpenSfx: {fileID: 8300000, guid: 2ff5ea34fac693a4ca98d517e3b71e18, type: 3}
-  machineTurnOnSfx: {fileID: 8300000, guid: d4273f0faf8428f4bae2fcc71dc72209, type: 3}
-  hypnoSfx: {fileID: 8300000, guid: 866680565728188418ef88228a4f80be, type: 3}
-  rainSfx: {fileID: 8300000, guid: 5a2e089da3a675b41a29e09006f30b0d, type: 3}
-  ScanSfx: {fileID: 8300000, guid: 065e7daa44657aa4c87cfae342484aa0, type: 3}
-  RoboSfx: {fileID: 8300000, guid: b75745df1e8fff84eb580ea7b88fd4fc, type: 3}
-  LavaSfx: {fileID: 8300000, guid: 217b2039fef6bdc4e8cab913919edf25, type: 3}
-  warehouseBg: {fileID: -6470460504253458178, guid: 2894d218c5c09654488687aa0a2af4f7, type: 3}
-  digitalWorldBg: {fileID: 4120901811166270815, guid: 51929d3235d727b428fa4a3337bb4cb1, type: 3}
-  BlackBG: {fileID: 4457835537561387818, guid: b2e248ec9919c1f4a886434fb8e62916, type: 3}
-  Hypno: {fileID: 5565824869992191043, guid: b0fd1f29f34776c4e9e5cc96844a9624, type: 3}
-  catSprite: {fileID: 6937817954938267909, guid: 6847a10b38be0a649a1495fe0220d281, type: 3}
-  systemSprite: {fileID: 1837694684869931473, guid: 9a2c85ce969b80c4fb58ae46f952432c, type: 3}
-  normalBubbleSprite: {fileID: 0}
-  noiseBubbleSprite: {fileID: 4158004325514702598, guid: f597aca8d4236164e9169e9f3bf181fa, type: 3}
 --- !u!82 &1039905264
 AudioSource:
   m_ObjectHideFlags: 0
@@ -746,7 +704,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.544
+  m_Volume: 0.518
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -830,6 +788,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1039905265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039905260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f697a0eb3cb4b44898a4a31a592808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 2036167754}
+  dialogueText: {fileID: 432652870}
+  backgroundImage: {fileID: 88629381}
+  portraitLeft: {fileID: 1449074947}
+  portraitRight: {fileID: 182858520}
+  dialogueGroup: {fileID: 829529924}
+  bubbleImage: {fileID: 1318505193}
+  textContainer: {fileID: 2123691420}
+  catPositionX: 0
+  systemPositionX: -200
+  centerPositionX: 0
+  textFlipOffset: -80
+  typingSpeed: 0.04
+  audioSource: {fileID: 0}
+  typingSfx: {fileID: 8300000, guid: df8677c7966ce184cae446cfba926c01, type: 3}
+  collapseSfx: {fileID: 8300000, guid: 866680565728188418ef88228a4f80be, type: 3}
+  winSfx: {fileID: 8300000, guid: c931e8251a810b841a143f2ed60287fc, type: 3}
+  glitchSfx: {fileID: 8300000, guid: 866680565728188418ef88228a4f80be, type: 3}
+  doorOpenSfx: {fileID: 8300000, guid: 2ff5ea34fac693a4ca98d517e3b71e18, type: 3}
+  machineTurnOnSfx: {fileID: 8300000, guid: d4273f0faf8428f4bae2fcc71dc72209, type: 3}
+  warehouseBg: {fileID: -6470460504253458178, guid: 2894d218c5c09654488687aa0a2af4f7, type: 3}
+  digitalWorldBg: {fileID: 4120901811166270815, guid: 51929d3235d727b428fa4a3337bb4cb1, type: 3}
+  BlackBG: {fileID: 4457835537561387818, guid: b2e248ec9919c1f4a886434fb8e62916, type: 3}
+  Hypno: {fileID: 5565824869992191043, guid: b0fd1f29f34776c4e9e5cc96844a9624, type: 3}
+  catSprite: {fileID: 6937817954938267909, guid: 6847a10b38be0a649a1495fe0220d281, type: 3}
+  systemSprite: {fileID: 1837694684869931473, guid: 9a2c85ce969b80c4fb58ae46f952432c, type: 3}
+  bossSprite: {fileID: -6248741079362886434, guid: 9c372d000bfe59546b8f91cefd21bafe, type: 3}
+  normalBubbleSprite: {fileID: 0}
+  noiseBubbleSprite: {fileID: 4158004325514702598, guid: f597aca8d4236164e9169e9f3bf181fa, type: 3}
 --- !u!1 &1206783168
 GameObject:
   m_ObjectHideFlags: 0
