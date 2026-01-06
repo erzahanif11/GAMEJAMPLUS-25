@@ -1316,7 +1316,7 @@ MonoBehaviour:
   normal: {fileID: 11400000, guid: ee6b345c3f8ff364e9e0b86d1b658e64, type: 2}
   wallRight: 13.55857
   wallLeft: -12.44143
-  spawnInterval: 1.5
+  spawnInterval: 0.74
   player: {fileID: 520166363}
   DebugBlockName: 
 --- !u!4 &274607950
@@ -2529,7 +2529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744f20b302e5f3345ace915308759142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sinkSpeed: 0.088
+  sinkSpeed: 0.688
 --- !u!1001 &671381760
 PrefabInstance:
   m_ObjectHideFlags: 0
