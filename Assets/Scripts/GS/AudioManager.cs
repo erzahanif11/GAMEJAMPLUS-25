@@ -37,9 +37,19 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
+    
+    void OnEnable()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string currentScene = scene.name;
         if(currentScene == "Main Menu_Final")
         {
             PlayMenuMusic();
@@ -47,6 +57,8 @@ public class AudioManager : MonoBehaviour
         else if (currentScene == "Main Scene")
         {
             PlayGameMusic();
+        }else {
+            musicSource.Stop();
         }
     }
 
