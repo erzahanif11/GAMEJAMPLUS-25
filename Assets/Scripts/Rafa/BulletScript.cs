@@ -16,11 +16,12 @@ public class BulletScript : MonoBehaviour
     private bool isImmune = false;        // Status apakah sedang kebal
     private PlayerStats playerStats;
     private SpriteRenderer spriteRenderer;
+    PlayerMovement playerMovement;
 
     void Start()
     {
         playerStats = FindAnyObjectByType<PlayerStats>();
-        
+        playerMovement = GetComponent<PlayerMovement>();
         // Mengambil komponen SpriteRenderer di object ini (atau di parent jika script di child)
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null) 
@@ -35,7 +36,8 @@ public class BulletScript : MonoBehaviour
         if (!other.CompareTag(bulletTag)) return;
 
         // 2. Cek apakah sedang Immune? Jika ya, abaikan peluru.
-        if (isImmune) return;
+        if (isImmune || playerMovement.isDashing) return;
+
 
         // 3. Logika kena damage
         if (playerStats != null)
