@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      arcade_alt2_0: -8779042811362997026
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
