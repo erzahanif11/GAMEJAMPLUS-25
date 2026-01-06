@@ -19,7 +19,7 @@ public class Enemy1A : MonoBehaviour
     Vector2 direction;
     Rigidbody2D rb;
     GameObject player;
-    TestPlayer pScript;
+    PlayerStats pScript;
     Animator animator;
     bool isHit = false;
 
@@ -39,7 +39,7 @@ public class Enemy1A : MonoBehaviour
         }
 
         player = GameObject.FindGameObjectWithTag("Player");
-        pScript = player.GetComponent<TestPlayer>();
+        pScript = player.GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
     }
 
@@ -62,8 +62,8 @@ public class Enemy1A : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("You've hit a player!");
-            pScript.minHealth(atkPower);
-            Debug.Log("His health: " + pScript.getHealth());
+            pScript.TakeDamage();
+            Debug.Log("His health: " + pScript.lives);
         }
     }
 
