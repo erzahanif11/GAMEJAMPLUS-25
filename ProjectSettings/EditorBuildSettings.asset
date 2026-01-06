@@ -9,11 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Final/Main Menu_Final.unity
     guid: e48657f305a969e45bb1623abf712e99
   - enabled: 1
-    path: Assets/Scenes/Final/Cutscene.unity
+    path: Assets/Scenes/Final/Cutscene.1(Prolog + before phase 1).unity
     guid: 78a35a9207a5a8a49ab18f1a9ca8d755
   - enabled: 1
     path: Assets/Scenes/Final/Main Scene.unity
     guid: 2f8b94907376b7d4fb1e9e163afe974f
+  - enabled: 1
+    path: Assets/Scenes/Final/Cutscene.2(After phase 1 and before phase 2).unity
+    guid: 939d27d708b452e42bf13311135f4821
+  - enabled: 1
+    path: Assets/Scenes/Final/Cutscene.3(After phase 2 and before boss scene).unity
+    guid: 3f56d77b4eeb03045af1c600de3355a8
+  - enabled: 1
+    path: Assets/Scenes/Final/Cutscene.4(Epilog after boss scene).unity
+    guid: bc803d5cbe488844096ffae47acb59d0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
