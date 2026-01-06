@@ -13,7 +13,7 @@ public class Enemy1B : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
     GameObject player;
-    TestPlayer pScript;
+    PlayerStats pScript;
     Vector2 targetPos;
     bool hasTarget = false;
     bool isActive = true;
@@ -28,7 +28,7 @@ public class Enemy1B : MonoBehaviour
         eSprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null) pScript = player.GetComponent<TestPlayer>();
+        if (player != null) pScript = player.GetComponent<PlayerStats>();
     }
 
     void Start()
@@ -113,8 +113,8 @@ public class Enemy1B : MonoBehaviour
         {
             if (pScript != null)
             {
-                pScript.minHealth(atkPower);
-                Debug.Log("Health Player: " + pScript.getHealth());
+                pScript.TakeDamage();
+                Debug.Log("Health Player: " + pScript.lives);
             }
         }
     }
