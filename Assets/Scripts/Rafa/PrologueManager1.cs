@@ -63,7 +63,15 @@ public class PrologueManager1 : MonoBehaviour
     public Sprite warehouseBg;            
     public Sprite digitalWorldBg;
     public Sprite BlackBG;       
-    public Sprite Hypno;  
+    public Sprite Hypno;
+
+    public Sprite ArcadeBg;
+
+    public Sprite ArcadeBg2;
+
+    public Sprite ArcadeDark;
+
+    public Sprite ArcadeDark2;  
 
     [Header("Story Assets - Characters")] 
     public Sprite catSprite;
@@ -91,24 +99,24 @@ public class PrologueManager1 : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
 
         AddLine("-", "'The sound of the door being opened'", BlackBG, null, noiseBubbleSprite, doorOpenSfx);
-        AddLine("-", "'Heavy rain pouring outside'", BlackBG, null, noiseBubbleSprite, rainSfx); // Added text for rain context
+        AddLine("-", "'Heavy rain pouring outside'", ArcadeDark, null, noiseBubbleSprite, rainSfx); // Added text for rain context
         
-        AddLine("THE CAT", "Damn, sky is crying buckets out there. I ain't dealing with wet fur today.", BlackBG, catSprite, null, null);
-        AddLine("THE CAT", "At least it's dry in here.", BlackBG, catSprite);
-        AddLine("THE CAT", "Smells like dust and... old plastic?", BlackBG, catSprite);
-        AddLine("THE CAT", "Whoa. Check this out. It’s like a graveyard in here.", warehouseBg, catSprite);
-        AddLine("THE CAT", "Tetris... Tetris 2... Super Tetris... Man, someone was really obsessed with stacking blocks.", warehouseBg, catSprite);
-        AddLine("THE CAT", "And what do we have here?", warehouseBg, catSprite);
-        AddLine("THE CAT", "\"Tetris Hell\"? Heh. Edgy name.", warehouseBg, catSprite);
-        AddLine("THE CAT", "You know what? I'm bored. Let's see if this bad boy still works.", warehouseBg, catSprite);
+        AddLine("THE CAT", "Damn, sky is crying buckets out there. I ain't dealing with wet fur today.", ArcadeDark, catSprite, null, null);
+        AddLine("THE CAT", "At least it's dry in here.", ArcadeDark, catSprite);
+        AddLine("THE CAT", "Smells like dust and... old plastic?", ArcadeDark, catSprite);
+        AddLine("THE CAT", "Whoa. Check this out. It’s like a graveyard in here.", ArcadeBg, catSprite);
+        AddLine("THE CAT", "Tetris... Tetris 2... Super Tetris... Man, someone was really obsessed with stacking blocks.", ArcadeBg, catSprite);
+        AddLine("THE CAT", "And what do we have here?", ArcadeBg, catSprite);
+        AddLine("THE CAT", "\"Tetris Hell\"? Heh. Edgy name.", ArcadeBg, catSprite);
+        AddLine("THE CAT", "You know what? I'm bored. Let's see if this bad boy still works.", ArcadeBg, catSprite);
 
-        AddLine("SYSTEM", "*CLICK* [Machine turns on violently]", BlackBG, null, noiseBubbleSprite, machineTurnOnSfx);
+        AddLine("SYSTEM", "*CLICK* [Machine turns on violently]", ArcadeBg2, null, noiseBubbleSprite, machineTurnOnSfx);
         
-        AddLine("THE CAT", "Yeah! That’s what I’m talking about!", warehouseBg, catSprite, null, null);
-        AddLine("THE CAT", "...", warehouseBg, catSprite);
-        AddLine("THE CAT", "Wait...", warehouseBg, catSprite);
+        AddLine("THE CAT", "Yeah! That’s what I’m talking about!", ArcadeBg2, catSprite, null, null);
+        AddLine("THE CAT", "...", ArcadeBg2, catSprite);
+        AddLine("THE CAT", "Wait...", ArcadeBg2, catSprite);
         AddLine("THE CAT", "Why is the screen swirling like that?", Hypno, catSprite, null, hypnoSfx);
-        AddLine("THE CAT", "Whoa! Hey! Back off! Let go of my tail!", Hypno, catSprite, null, hypnoSfx);
+        AddLine("THE CAT", "Whoa! Hey! Back off! Let go of my tail!", Hypno, catSprite, null, null);
         AddLine("THE CAT", "Oh crap, oh crap, OH CRAAAAAP—!", Hypno, catSprite);
         AddLine("-", "'-'", BlackBG, null, null, null);
 
