@@ -104,7 +104,7 @@ public class HellShooter : MonoBehaviour
             {
                 SpawnBullet((i * (360f / count) )+ dgreoffset);
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
