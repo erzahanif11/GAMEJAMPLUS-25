@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
     public float footdistanceonground=0.5f;
     public float footdistancemidair=0.5f;
 
-    [SerializeField] private float attackDamage = 1f;
     [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
@@ -280,6 +279,11 @@ public class PlayerMovement : MonoBehaviour
         if (canAttack)
         {
             Debug.Log("Claw");
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+            foreach(Collider2D enemy in hitEnemies){
+                Debug.Log("Enemy hit");
+                Destroy(enemy.gameObject);
+            }
         }else{
             Debug.Log("Attack on cooldown");
         }
