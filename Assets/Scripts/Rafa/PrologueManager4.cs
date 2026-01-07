@@ -18,6 +18,8 @@ public class DialogueLine4
 
 public class PrologueManager4 : MonoBehaviour
 {
+    public static PrologueManager4 instance;
+
     [Header("UI Components - Text")]
     public TextMeshProUGUI nameText;      
     public TextMeshProUGUI dialogueText;  
@@ -75,6 +77,12 @@ public class PrologueManager4 : MonoBehaviour
     private List<DialogueLine4> lines = new List<DialogueLine4>();
     private int index;
     private bool isTyping;
+    private bool isEnd = false;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -208,6 +216,7 @@ public class PrologueManager4 : MonoBehaviour
         {
             dialogueGroup.SetActive(false);
             Debug.Log("EPILOGUE SELESAI! Terima kasih sudah bermain.");
+            isEnd = true;
         }
     }
 
@@ -300,5 +309,10 @@ public class PrologueManager4 : MonoBehaviour
         newLine.bubbleSprite = bubble; 
         newLine.soundEffect = sfx; 
         lines.Add(newLine);
+    }
+
+    public bool IsFinished()
+    {
+        return isEnd;
     }
 }

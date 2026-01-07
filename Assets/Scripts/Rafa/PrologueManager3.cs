@@ -18,6 +18,8 @@ public class DialogueLine3
 
 public class PrologueManager3 : MonoBehaviour
 {
+    public static PrologueManager3 instance;
+
     [Header("UI Components - Text")]
     public TextMeshProUGUI nameText;      
     public TextMeshProUGUI dialogueText;  
@@ -76,6 +78,12 @@ public class PrologueManager3 : MonoBehaviour
     private List<DialogueLine3> lines = new List<DialogueLine3>();
     private int index;
     private bool isTyping;
+    private bool isEnd = false;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -185,6 +193,7 @@ public class PrologueManager3 : MonoBehaviour
         {
             dialogueGroup.SetActive(false);
             Debug.Log("Prologue 3 Selesai! START BOSS FIGHT!");
+            isEnd = true;
             // SceneManager.LoadScene("BossLevel");
         }
     }
@@ -284,5 +293,10 @@ public class PrologueManager3 : MonoBehaviour
         newLine.bubbleSprite = bubble; 
         newLine.soundEffect = sfx; 
         lines.Add(newLine);
+    }
+
+    public bool IsFinished()
+    {
+        return isEnd;
     }
 }

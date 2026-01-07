@@ -18,6 +18,8 @@ public class DialogueLine2
 
 public class PrologueManager2 : MonoBehaviour
 {
+    public static PrologueManager2 instance;
+
     [Header("UI Components - Text")]
     public TextMeshProUGUI nameText;      
     public TextMeshProUGUI dialogueText;  
@@ -76,6 +78,12 @@ public class PrologueManager2 : MonoBehaviour
     private List<DialogueLine2> lines = new List<DialogueLine2>();
     private int index;
     private bool isTyping;
+    private bool isEnd = false;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -160,6 +168,7 @@ public class PrologueManager2 : MonoBehaviour
         {
             dialogueGroup.SetActive(false);
             Debug.Log("Prologue 2 Selesai! Pindah Scene.");
+            isEnd = true;
             // SceneManager.LoadScene("Prologue3");
         }
     }
@@ -269,5 +278,10 @@ public class PrologueManager2 : MonoBehaviour
         newLine.bubbleSprite = bubble; 
         newLine.soundEffect = sfx; // Simpan SFX
         lines.Add(newLine);
+    }
+
+    public bool IsFinished()
+    {
+        return isEnd;
     }
 }
