@@ -35,6 +35,7 @@ public class VolumeSettings : MonoBehaviour
     public void SetSFXVolume(){
         float volume = sfxVolumeSlider.value;
         audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+        audioMixer.SetFloat("CutsceneSFX", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
