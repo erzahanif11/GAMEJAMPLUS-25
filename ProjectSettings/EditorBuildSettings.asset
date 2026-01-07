@@ -6,23 +6,47 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Archie/Final_Archie-Copy/Cutscene.1(Prolog + before phase
+      1).unity
+    guid: a2a6da708eb29a24f8d59bdb26e01445
+  - enabled: 1
+    path: Assets/Scenes/Archie/Phase/Phase1/Phase1_origin.unity
+    guid: 15c61cbeba779ca41b78c87d1e09601a
+  - enabled: 1
+    path: Assets/Scenes/Archie/Final_Archie-Copy/Cutscene.2(After phase 1 and before
+      phase 2).unity
+    guid: b74fe0573c38e414fbf791355653de0e
+  - enabled: 1
+    path: Assets/Scenes/Archie/Phase/Phase2/Phase2_origin.unity
+    guid: 66529fc62418bd244a51e11c91fe1886
+  - enabled: 1
+    path: Assets/Scenes/Archie/Final_Archie-Copy/Cutscene.3(After phase 2 and before
+      boss scene).unity
+    guid: 8d5f72b5116829c49bd76a3e16ee3987
+  - enabled: 1
+    path: Assets/Scenes/Archie/Final_Archie-Copy/Boss.unity
+    guid: fb1e4384db72ab244a7920949da269f2
+  - enabled: 1
+    path: Assets/Scenes/Archie/Final_Archie-Copy/Cutscene.4(Epilog after boss scene).unity
+    guid: 1ae457cc1652458448661d14606ff1a5
+  - enabled: 0
     path: Assets/Scenes/Final/Main Menu_Final.unity
     guid: e48657f305a969e45bb1623abf712e99
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Final/Cutscene.1(Prolog + before phase 1).unity
     guid: 78a35a9207a5a8a49ab18f1a9ca8d755
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Final/Main Scene.unity
     guid: 2f8b94907376b7d4fb1e9e163afe974f
-  - enabled: 1
-    path: Assets/Scenes/Final/Cutscene.2(After phase 1 and before phase 2).unity
-    guid: 939d27d708b452e42bf13311135f4821
-  - enabled: 1
-    path: Assets/Scenes/Final/Cutscene.3(After phase 2 and before boss scene).unity
-    guid: 3f56d77b4eeb03045af1c600de3355a8
-  - enabled: 1
-    path: Assets/Scenes/Final/Cutscene.4(Epilog after boss scene).unity
-    guid: bc803d5cbe488844096ffae47acb59d0
+  - enabled: 0
+    path: Assets/Scenes/Archie/Train/Phase_System.unity
+    guid: 75012cac28293a2448c7384390e25187
+  - enabled: 0
+    path: Assets/Scenes/Archie/Train/Movement.unity
+    guid: ff91282c540f73941acf90d0d58a9028
+  - enabled: 0
+    path: Assets/Scenes/Archie/Train/1B.unity
+    guid: e00f7c5195f47ab4fac3d3bcaec67de1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

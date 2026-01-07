@@ -5,79 +5,93 @@ public class PhaseManager : MonoBehaviour
 {
     public static PhaseManager instance;
 
-    [Header("Scene-to-Load Names")]
-    [SerializeField] string phase2;
-    [SerializeField] string phaseBoss;
-
-    [Space]
-
     [Header("Time Settings")]
-    [SerializeField] float p1Time;
-    [SerializeField] float p2Time;
+    [SerializeField] float phase1Time = 60f;
+    [SerializeField] float phase2Time = 180f;
 
-    Phase currentPhase;
-    bool p2Called = false;
-    bool pBossCalled = false;
-
-    public enum Phase
-    {
-        phase1,
-        phase2,
-        boss
-    }
+    float timer;
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(instance);
-        } else
+            DontDestroyOnLoad(gameObject);
+        }
+        else
         {
             Destroy(gameObject);
         }
     }
 
-    void Start()
+    void OnEnable()
     {
-        currentPhase = Phase.phase1;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        int index = scene.buildIndex;
+
+        // Reset timer tiap masuk phase
+        if (index == 1) timer = phase1Time;
+        else if (index == 3) timer = phase2Time;
     }
 
     void Update()
     {
-        switch (currentPhase)
+        int index = SceneManager.GetActiveScene().buildIndex;
+
+        switch (index)
         {
-            case Phase.phase1:
-                p1Time -= Time.deltaTime;
-                if (p1Time <= 0 && !p2Called)
-                {
-                    startPhase2();
-                }
+            case 0: // Cutscene 1
+                if (PrologueManager1.instance.IsFinished())
+                    LoadNextScene();
                 break;
-            case Phase.phase2:
-                p2Time -= Time.deltaTime;
-                    if (p2Time <= 0 && !pBossCalled)
-                    {
-                        startPhaseBoss();
-                    }
+
+            case 1: // Phase 1
+                RunTimer();
                 break;
-            case Phase.boss:
-                Debug.Log("Boss");
+
+            case 2: // Cutscene 2
+                if (PrologueManager2.instance.IsFinished())
+                    LoadNextScene();
+                break;
+
+            case 3: // Phase 2
+                RunTimer();
+                break;
+
+            case 4: // Cutscene 3
+                if (PrologueManager3.instance.IsFinished())
+                    LoadNextScene();
+                break;
+
+            case 5: // Boss
+                // Boss logic handled di BossManager
+                if(BossTrigger.instance.bossDeath())
+                    LoadNextScene();
                 break;
         }
     }
 
-    void startPhase2()
+    void RunTimer()
     {
-        p2Called = true;
-        SceneManager.LoadSceneAsync(phase2);
-        currentPhase = Phase.phase2;
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            LoadNextScene();
+        }
     }
 
-    void startPhaseBoss()
+    void LoadNextScene()
     {
-        pBossCalled = true;
-        SceneManager.LoadSceneAsync(phaseBoss);
-        currentPhase = Phase.boss;
+        int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadSceneAsync(nextIndex);
     }
 }
