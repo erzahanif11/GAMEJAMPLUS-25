@@ -74,6 +74,8 @@ public class PhaseManager : MonoBehaviour
 
             case 5: // Boss
                 // Boss logic handled di BossManager
+                if(BossTrigger.instance.bossDeath())
+                    LoadNextScene();
                 break;
         }
     }
