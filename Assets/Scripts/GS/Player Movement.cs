@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    private string attackAnimationName = "Attack";
+    private string velocityYParameter = "VelocityY";
+    private string velocityXParameter = "VelocityX";
+    private string isGroundedParameter = "IsGrounded";
+    private string dashParameter = "Dash";
+    private string groundedRightParameter = "GroundedRight";
+    private string jumpParameter = "Jump";
+    
+    PlayerStats stats;
+    Grappler grappler;
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
     public Transform groundCheck;
@@ -29,11 +38,12 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpTime = 0.5f;
     public Vector2 wallJumpPower = new Vector2(5f, 10f);
 
+    public bool isGrappling;
     public bool isGhostMode;
 
     [SerializeField] TrailRenderer trail;
     public bool canDash;
-    bool isDashing;
+    public bool isDashing;
     public float dashingForce = 5f;
     float dashingTime = 0.25f;
     public float dashingCooldown = 0.5f;
@@ -46,6 +56,12 @@ public class PlayerMovement : MonoBehaviour
     public float footdistanceonground=0.5f;
     public float footdistancemidair=0.5f;
 
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private LayerMask enemyLayer;
+    private bool canAttack = true;
+
     // public GameObject OnGroundJumpEffect; 
     // public GameObject MidAirJumpEffect;
 
@@ -53,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
+        stats = FindAnyObjectByType<PlayerStats>();
+        grappler = GetComponent<Grappler>();
        // audioManager = GameObject.FindGameObjectWithTag("Audio Manager").GetComponent<AudioManager>();
     }
 
@@ -76,24 +94,26 @@ public class PlayerMovement : MonoBehaviour
     bool groundedRight;
     void Update()
     {
+        SetAnimatorParameters();
         if (isDashing)
         {
             
             return;
         }
 
+        isGrappling = grappler.isGrappling;
+
         // Ground check di tiga titik
-         groundedCenter = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+         groundedCenter = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius*1.25f, groundLayer);
          groundedLeft = Physics2D.OverlapCircle(groundCheckLeft.position, groundCheckRadiusHorizontal, groundLayer);
          groundedRight = Physics2D.OverlapCircle(groundCheckRight.position, groundCheckRadiusHorizontal, groundLayer);
 
-        isGrounded = groundedCenter || groundedLeft || groundedRight;
+        isGrounded = groundedCenter || groundedLeft;
 
-        if (isGrounded)
+        if (isGrounded || groundedRight)
         {
             jumpedDouble = false;
         }
-
         // Input gerak kiri-kanan
         if (Input.GetKey(KeyCode.A))
         {
@@ -122,7 +142,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && !isGhostMode)
         {
-            StartCoroutine(Dash());
+            if (stats.UseStamina(4f)){
+                StartCoroutine(Dash());
+            }
         }
 
         isSliding = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
@@ -133,16 +155,27 @@ public class PlayerMovement : MonoBehaviour
             WallJump();
         }
 
-           
+        if (isGrappling){
+            rb.gravityScale = 1f;
+        }else {
+            rb.gravityScale = 2f;
+        }
+
+        if (Input.GetMouseButtonDown(0) && canAttack)
+        {
+            canAttack = false;
+            animator.SetTrigger(attackAnimationName);
+            StartCoroutine(AttackCooldown());
+        }
     }
 
     void FixedUpdate()
     {
         
 
-        animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocity.x));
-        animator.SetFloat("VelocityY", rb.linearVelocity.y);
-        animator.SetBool("isGrounded", isGrounded);
+        // animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocity.x));
+        // animator.SetFloat("VelocityY", rb.linearVelocity.y);
+        // animator.SetBool("isGrounded", isGrounded);
         // animator.SetBool("isSliding", (isSliding&&!isGrounded));
         // animator.SetBool("hug wall", groundedLeft||groundedRight);
 
@@ -155,15 +188,22 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (!isWallJumping)
+        if (!isWallJumping && !isGrappling)
         {
             rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
         }
     }
 
+    void SetAnimatorParameters(){
+        animator.SetFloat(velocityXParameter, Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat(velocityYParameter, rb.linearVelocity.y);
+        animator.SetBool(isGroundedParameter, isGrounded);
+        animator.SetBool(groundedRightParameter, groundedRight);
+    }
 
     void Jump()
     {
+        animator.SetTrigger(jumpParameter);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 //        audioManager.PlaySFX(audioManager.jump);
         if (isGrounded)
@@ -218,8 +258,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     {
-        canDash = false;
+        // canDash = false;
         isDashing = true;
+        animator.SetTrigger(dashParameter);
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashingForce, 0f);
@@ -231,8 +272,26 @@ public class PlayerMovement : MonoBehaviour
         trail.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
+        // canDash = true;
+    }
+
+    void Claw(){
+        if (canAttack)
+        {
+            Debug.Log("Claw");
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+            foreach(Collider2D enemy in hitEnemies){
+                Debug.Log("Enemy hit");
+                Destroy(enemy.gameObject);
+            }
+        }else{
+            Debug.Log("Attack on cooldown");
+        }
+    }
+
+    IEnumerator AttackCooldown(){
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     // public void ApplySpeedBoost(float boostMultiplier, float boostDuration, float slowMultiplier, float slowDuration)
