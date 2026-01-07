@@ -3,9 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private GameObject SettingsMenu;
-
     public void MainScene()
     {
         SceneManager.LoadScene("Main Scene");
@@ -18,11 +15,5 @@ public class MainMenuButtons : MonoBehaviour
     {
         // Reload the current scene by its build index
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
-    }
-
-    public void Settings()
-    {
-        SettingsMenu.SetActive(!SettingsMenu.activeSelf);
-        Debug.Log("Settings Button Pressed");
     }
 }
