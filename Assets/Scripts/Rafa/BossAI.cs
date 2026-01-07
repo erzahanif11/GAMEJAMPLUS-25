@@ -35,9 +35,23 @@ public class BossAI : MonoBehaviour
             Debug.Log("Mulai Phase Nova");
             shooter.StartPhase("Nova", 3f);
             yield return new WaitForSeconds(4f);
+
+          
         }
 
         Debug.Log("Selesai boss pattern setelah " + duration + " detik.");
-        // Opsional: trigger perilaku selanjutnya atau restart di sini
+        // next scene
+
+    nextScene.OnClick();
+        
+    }
+
+
+    void Update()
+    {
+          if (Input.GetKeyDown(KeyCode.Space))
+            {
+    nextScene.OnClick();
+            }
     }
 }
