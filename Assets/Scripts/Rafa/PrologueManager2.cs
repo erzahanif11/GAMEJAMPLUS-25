@@ -29,6 +29,9 @@ public class PrologueManager2 : MonoBehaviour
     public Image portraitLeft;   
     public Image portraitRight;  
 
+    [Header("Character Animators")] // BARU: Slot untuk Animator System
+    public PortraitAnimator systemAnimator; 
+
     [Header("Dialogue Layout & Animation")]
     public GameObject dialogueGroup;     
     public Image bubbleImage;            
@@ -97,6 +100,9 @@ public class PrologueManager2 : MonoBehaviour
 
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
+
+        // --- DATA DIALOG PROLOGUE 2 ---
+        
         AddLine("", "'After Phase 1'", BlackBG, null, noiseBubbleSprite, LavaSfx);
         AddLine("THE CAT", "", digitalWorldBg, catSprite);
         AddLine("THE CAT", "Okay… why are there more of these assholes, and why is the lava faster?", digitalWorldBg, catSprite);
@@ -121,6 +127,9 @@ public class PrologueManager2 : MonoBehaviour
                 StopAllCoroutines();
                 dialogueText.text = lines[index].dialogue;
                 isTyping = false;
+                
+                // BARU: Stop animasi jika di-skip
+                StopCharacterAnimation(); 
             }
             else
             {
@@ -140,11 +149,14 @@ public class PrologueManager2 : MonoBehaviour
     {
         isTyping = true;
         dialogueText.text = ""; 
+        
+        // BARU: Mainkan animasi saat mulai mengetik
+        PlayCharacterAnimation();
+
         foreach (char c in lines[index].dialogue.ToCharArray())
         {
             dialogueText.text += c;
             
-            // Suara ketikan
             if (audioSource != null && typingSfx != null)
             {
                 audioSource.pitch = Random.Range(0.9f, 1.1f); 
@@ -153,8 +165,32 @@ public class PrologueManager2 : MonoBehaviour
 
             yield return new WaitForSeconds(typingSpeed);
         }
+        
         isTyping = false;
+        
+        // BARU: Stop animasi setelah selesai mengetik
+        StopCharacterAnimation();
     }
+
+    // --- FUNGSI ANIMASI ---
+    void PlayCharacterAnimation()
+    {
+        string currentChar = lines[index].characterName;
+        // Animasi hanya untuk SYSTEM (atau karakter "?" jika itu System)
+        if ((currentChar == "SYSTEM" || currentChar == "?") && systemAnimator != null)
+        {
+            systemAnimator.Play();
+        }
+    }
+
+    void StopCharacterAnimation()
+    {
+        if (systemAnimator != null)
+        {
+            systemAnimator.Stop();
+        }
+    }
+    // ---------------------
 
     void NextLine()
     {
@@ -179,7 +215,6 @@ public class PrologueManager2 : MonoBehaviour
         RectTransform groupRect = dialogueGroup.GetComponent<RectTransform>();
         RectTransform bubbleRect = bubbleImage.GetComponent<RectTransform>();
 
-        // Mainkan Suara Spesifik (Jika Ada)
         if (currentLine.soundEffect != null && audioSource != null)
         {
             audioSource.pitch = 1f; 
@@ -187,38 +222,29 @@ public class PrologueManager2 : MonoBehaviour
         }
 
         nameText.text = currentLine.characterName;
-        // Kalau System atau "?" bicara, warna Cyan. Kalau kucing, warna Kuning.
         if (currentLine.characterName == "THE CAT")
             nameText.color = Color.yellow;
         else
             nameText.color = Color.cyan;
 
-        // Set Background
         if (currentLine.backgroundSprite != null)
             backgroundImage.sprite = currentLine.backgroundSprite;
 
-        // Set Bentuk Awan (Bubble Sprite)
         if (currentLine.bubbleSprite != null)
             bubbleImage.sprite = currentLine.bubbleSprite;
         else
             bubbleImage.sprite = normalBubbleSprite;
 
-        // --- LOGIKA POSISI & GAMBAR KARAKTER ---
         if (currentLine.characterSprite != null)
         {
-            // === ADA KARAKTER YANG BICARA ===
-
-            // Jika SYSTEM bicara
             if (currentLine.characterName == "SYSTEM")
             {
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }
-            // Jika karakter misterius "?" bicara
             else if (currentLine.characterName == "?")
             {
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }
-            // Jika THE CAT bicara
             else
             {
                 SetLeftSide(currentLine, groupRect, bubbleRect);
@@ -226,29 +252,21 @@ public class PrologueManager2 : MonoBehaviour
         }
         else
         {
-            // === NARASI / SFX (TIDAK ADA WAJAH) ===
             portraitLeft.gameObject.SetActive(false);
             portraitRight.gameObject.SetActive(false);
 
-            // Reset Awan ke Normal (Tidak Flip)
             bubbleRect.localScale = new Vector3(1, 1, 1);
-            
-            // Posisi Dialog di Tengah (Netral)
             groupRect.anchoredPosition = new Vector2(centerPositionX, groupRect.anchoredPosition.y);
-            
-            // Teks di posisi asli (Positif)
             textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);
         }
     }
 
-    // Fungsi helper
     void SetRightSide(DialogueLine2 line, RectTransform group, RectTransform bubble)
     {
         portraitLeft.gameObject.SetActive(false);
         portraitRight.gameObject.SetActive(true);
         portraitRight.sprite = line.characterSprite;
 
-        // Flip Awan & Posisi Kanan
         bubble.localScale = new Vector3(-1, 1, 1);
         group.anchoredPosition = new Vector2(systemPositionX, group.anchoredPosition.y);
         
@@ -262,7 +280,6 @@ public class PrologueManager2 : MonoBehaviour
         portraitRight.gameObject.SetActive(false);
         portraitLeft.sprite = line.characterSprite;
 
-        // Reset Awan & Posisi Kiri
         bubble.localScale = new Vector3(1, 1, 1);
         group.anchoredPosition = new Vector2(catPositionX, group.anchoredPosition.y);
         textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);
@@ -276,7 +293,7 @@ public class PrologueManager2 : MonoBehaviour
         newLine.backgroundSprite = bg;
         newLine.characterSprite = portrait; 
         newLine.bubbleSprite = bubble; 
-        newLine.soundEffect = sfx; // Simpan SFX
+        newLine.soundEffect = sfx; 
         lines.Add(newLine);
     }
 
