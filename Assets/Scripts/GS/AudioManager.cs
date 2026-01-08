@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
         {
             PlayMenuMusic();
         }
-        else if (scene.buildIndex == 1 || scene.buildIndex == 3 || scene.buildIndex == 5)
+        else if (currentScene == "Phase1_origin" || currentScene == "Phase2_origin" || currentScene == "bossFight")
         {
             PlayGameMusic();
         }else {
