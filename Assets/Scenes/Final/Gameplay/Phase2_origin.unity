@@ -12682,6 +12682,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2429756717255561360, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: attackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2429756717255561360, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 1893083790497630746, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -12730,6 +12738,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1011656206}
+    - target: {fileID: 6187286167325376013, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15164,6 +15176,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 985521253}
     m_Modifications:
+    - target: {fileID: 627686070028274010, guid: dd88be229ed20894a8610d292555601b, type: 3}
+      propertyPath: bossMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 335020e9bd2b2f44391cfa349411953b, type: 3}
+    - target: {fileID: 627686070028274010, guid: dd88be229ed20894a8610d292555601b, type: 3}
+      propertyPath: loseMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 159a7ca71d31b4143afb5a2b981f200c, type: 3}
+    - target: {fileID: 627686070028274010, guid: dd88be229ed20894a8610d292555601b, type: 3}
+      propertyPath: bossKilled
+      value: 
+      objectReference: {fileID: 8300000, guid: d2e3e04f4256f874383f971d922cc4d0, type: 3}
     - target: {fileID: 6004967248678007851, guid: dd88be229ed20894a8610d292555601b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.59512

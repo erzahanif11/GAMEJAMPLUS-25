@@ -70,6 +70,7 @@ public class BossAI : MonoBehaviour
 
 
         bossAnimator.SetTrigger("Death");
+        AudioManager.PlaySFX(AudioManager.instance.bossKilled);
             yield return new WaitForSeconds(5f);
 
         // next scene

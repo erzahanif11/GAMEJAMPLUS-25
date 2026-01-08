@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip menuMusic;
     public AudioClip gameMusic;
+    public AudioClip bossMusic;
+    public AudioClip loseMusic;
 
     public AudioClip menuSelect;
     public AudioClip settingSelectSound;
@@ -20,7 +22,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip blockJatuh2;
     public AudioClip blockMeledak;
     public AudioClip gameOver;
-
+    public AudioClip bossKilled;
 
 
     public static AudioManager instance;
@@ -54,10 +56,13 @@ public class AudioManager : MonoBehaviour
         {
             PlayMenuMusic();
         }
-        else if (currentScene == "Phase1_origin" || currentScene == "Phase2_origin" || currentScene == "bossFight")
+        else if (currentScene == "Phase1_origin" || currentScene == "Phase2_origin")
         {
             PlayGameMusic();
-        }else {
+        }else if(currentScene == "bossFight"){
+            PlayBossMusic();
+        }
+        else{
             musicSource.Stop();
         }
     }
@@ -71,6 +76,16 @@ public class AudioManager : MonoBehaviour
     public void PlayGameMusic()
     {
         musicSource.clip = gameMusic;
+        musicSource.Play();
+    }
+
+    public void PlayBossMusic(){
+        musicSource.clip = bossMusic;
+        musicSource.Play();
+    }
+
+    public void PlayLoseMusic(){
+        musicSource.clip = loseMusic;
         musicSource.Play();
     }
 

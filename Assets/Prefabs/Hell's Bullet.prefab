@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8514457993481927845}
   - component: {fileID: 7954459916017652602}
   - component: {fileID: 7345365821295055617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hell's Bullet
   m_TagString: hellbullet
   m_Icon: {fileID: 0}

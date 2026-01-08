@@ -1540,6 +1540,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 627686070028274010, guid: dd88be229ed20894a8610d292555601b, type: 3}
+      propertyPath: bossMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 335020e9bd2b2f44391cfa349411953b, type: 3}
+    - target: {fileID: 627686070028274010, guid: dd88be229ed20894a8610d292555601b, type: 3}
+      propertyPath: loseMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 159a7ca71d31b4143afb5a2b981f200c, type: 3}
+    - target: {fileID: 627686070028274010, guid: dd88be229ed20894a8610d292555601b, type: 3}
+      propertyPath: bossKilled
+      value: 
+      objectReference: {fileID: 8300000, guid: d2e3e04f4256f874383f971d922cc4d0, type: 3}
     - target: {fileID: 1002702606678808928, guid: dd88be229ed20894a8610d292555601b, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 

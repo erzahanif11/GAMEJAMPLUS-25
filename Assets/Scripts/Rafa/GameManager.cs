@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         lose.SetActive(true);
         Time.timeScale=0;
         AudioManager.instance.PlaySFX(AudioManager.instance.gameOver);
+        AudioManager.instance.PlayLoseMusic();
     }
 
     public void RespawnPlayer()

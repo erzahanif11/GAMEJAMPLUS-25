@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private float attackRange = 2f;
     [SerializeField] private LayerMask enemyLayer;
     private bool canAttack = true;
 
@@ -164,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && canAttack)
         {
             canAttack = false;
+            FaceMouse();
             animator.SetTrigger(attackAnimationName);
             StartCoroutine(AttackCooldown());
         }
@@ -276,17 +277,24 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Claw(){
-        if (canAttack)
-        {
             Debug.Log("Claw");
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
             foreach(Collider2D enemy in hitEnemies){
                 Debug.Log("Enemy hit");
                 Destroy(enemy.gameObject);
             }
-        }else{
-            Debug.Log("Attack on cooldown");
+    }
+
+    void FaceMouse(){
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float direction = mouseWorldPos.x - transform.position.x;
+        if (direction > 0){
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
+        else{
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+
     }
 
     IEnumerator AttackCooldown(){
