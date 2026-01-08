@@ -13,7 +13,7 @@ public class DialogueLine3
     public Sprite backgroundSprite; 
     public Sprite characterSprite; 
     public Sprite bubbleSprite; 
-    public AudioClip soundEffect; // Slot audio per baris
+    public AudioClip soundEffect; 
 }
 
 public class PrologueManager3 : MonoBehaviour
@@ -27,7 +27,12 @@ public class PrologueManager3 : MonoBehaviour
     [Header("UI Components - Images")]
     public Image backgroundImage;         
     public Image portraitLeft;   
-    public Image portraitRight;  
+    public Image portraitRight;
+    public Image portraitMiddle; // BARU: Gambar Tengah Atas
+
+    [Header("Character Animators")] 
+    public PortraitAnimator systemAnimator; 
+    public PortraitAnimator bossAnimator; 
 
     [Header("Dialogue Layout & Animation")]
     public GameObject dialogueGroup;     
@@ -51,10 +56,11 @@ public class PrologueManager3 : MonoBehaviour
     [Header("Audio Settings")] 
     public AudioSource audioSource; 
     public AudioClip typingSfx;     
-
+    
     [Header("Story Assets - SFX")] 
-    public AudioClip doorOpenSfx;
-    public AudioClip machineTurnOnSfx; // Bisa dipakai untuk Rumble
+    public AudioClip machineTurnOnSfx; 
+    public AudioClip doorOpenSfx;      
+    public AudioClip explosionSfx;     
     public AudioClip hypnoSfx;
     public AudioClip rainSfx;
     public AudioClip ScanSfx;
@@ -70,6 +76,7 @@ public class PrologueManager3 : MonoBehaviour
     [Header("Story Assets - Characters")] 
     public Sprite catSprite;
     public Sprite systemSprite;
+    public Sprite bossSprite; // BARU: Sprite Boss untuk ditampilkan
 
     [Header("Story Assets - Bubbles")] 
     public Sprite normalBubbleSprite; 
@@ -83,6 +90,8 @@ public class PrologueManager3 : MonoBehaviour
     void Awake()
     {
         instance = this;
+        if (dialogueGroup != null) 
+            dialogueGroup.SetActive(false);
     }
 
     void Start()
@@ -98,9 +107,7 @@ public class PrologueManager3 : MonoBehaviour
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
-        // --- DATA DIALOG PROLOGUE 3 (BOSS INTRO) ---
-        
-        // (LAVA FADES AWAY) - Narasi/SFX
+        // --- DATA DIALOG ---
         AddLine("", "'LAVA FADES AWAY'", BlackBG, null, noiseBubbleSprite, LavaSfx);
 
         AddLine("SYSTEM", "Huh.", digitalWorldBg, systemSprite);
@@ -115,9 +122,8 @@ public class PrologueManager3 : MonoBehaviour
 
         AddLine("THE CAT", "Lucky me.", digitalWorldBg, catSprite);
 
-        // (A LOUD RUMBLE. YELLOW BULLETS BEGIN TO FORM.)
-        // Menggunakan noiseBubbleSprite untuk efek tegang dan machineTurnOnSfx untuk suara gemuruh
-        AddLine("-", "(A LOUD RUMBLE. YELLOW BULLETS BEGIN TO FORM.)", digitalWorldBg, null, noiseBubbleSprite, machineTurnOnSfx);
+        // (A LOUD RUMBLE...) -> Boss muncul di tengah (menggunakan bossSprite)
+        AddLine("-", "(A LOUD RUMBLE. YELLOW BULLETS BEGIN TO FORM.)", digitalWorldBg, bossSprite, noiseBubbleSprite, machineTurnOnSfx);
 
         AddLine("THE CAT", "…", digitalWorldBg, catSprite);
         AddLine("SYSTEM", "…", digitalWorldBg, systemSprite);
@@ -146,6 +152,7 @@ public class PrologueManager3 : MonoBehaviour
                 StopAllCoroutines();
                 dialogueText.text = lines[index].dialogue;
                 isTyping = false;
+                StopCharacterAnimation(); 
             }
             else
             {
@@ -165,20 +172,41 @@ public class PrologueManager3 : MonoBehaviour
     {
         isTyping = true;
         dialogueText.text = ""; 
+        PlayCharacterAnimation();
+
         foreach (char c in lines[index].dialogue.ToCharArray())
         {
             dialogueText.text += c;
-            
-            // Suara ketikan
             if (audioSource != null && typingSfx != null)
             {
                 audioSource.pitch = Random.Range(0.9f, 1.1f); 
                 audioSource.PlayOneShot(typingSfx);
             }
-
             yield return new WaitForSeconds(typingSpeed);
         }
+        
         isTyping = false;
+        StopCharacterAnimation();
+    }
+
+    void PlayCharacterAnimation()
+    {
+        string currentChar = lines[index].characterName;
+        
+        if ((currentChar == "SYSTEM" || currentChar == "?") && systemAnimator != null)
+        {
+            systemAnimator.Play();
+        }
+        else if (currentChar == "BOSS" && bossAnimator != null)
+        {
+            bossAnimator.Play();
+        }
+    }
+
+    void StopCharacterAnimation()
+    {
+        if (systemAnimator != null) systemAnimator.Stop();
+        if (bossAnimator != null) bossAnimator.Stop(); 
     }
 
     void NextLine()
@@ -194,7 +222,6 @@ public class PrologueManager3 : MonoBehaviour
             dialogueGroup.SetActive(false);
             Debug.Log("Prologue 3 Selesai! START BOSS FIGHT!");
             isEnd = true;
-            // SceneManager.LoadScene("BossLevel");
         }
     }
 
@@ -204,7 +231,13 @@ public class PrologueManager3 : MonoBehaviour
         RectTransform groupRect = dialogueGroup.GetComponent<RectTransform>();
         RectTransform bubbleRect = bubbleImage.GetComponent<RectTransform>();
 
-        // Mainkan Suara Spesifik
+        // Safety Reset
+        if (systemAnimator != null && systemAnimator.gameObject != portraitRight.gameObject) 
+            systemAnimator.gameObject.SetActive(false);
+        
+        if (bossAnimator != null && bossAnimator.gameObject != portraitRight.gameObject) 
+            bossAnimator.gameObject.SetActive(false);
+
         if (currentLine.soundEffect != null && audioSource != null)
         {
             audioSource.pitch = 1f; 
@@ -212,34 +245,51 @@ public class PrologueManager3 : MonoBehaviour
         }
 
         nameText.text = currentLine.characterName;
-        // Kalau System atau "?" bicara, warna Cyan. Kalau kucing, warna Kuning.
         if (currentLine.characterName == "THE CAT")
             nameText.color = Color.yellow;
         else
             nameText.color = Color.cyan;
 
-        // Set Background
         if (currentLine.backgroundSprite != null)
             backgroundImage.sprite = currentLine.backgroundSprite;
 
-        // Set Bentuk Awan
         if (currentLine.bubbleSprite != null)
             bubbleImage.sprite = currentLine.bubbleSprite;
         else
             bubbleImage.sprite = normalBubbleSprite;
 
-        // --- LOGIKA POSISI & GAMBAR KARAKTER ---
         if (currentLine.characterSprite != null)
         {
-            // === ADA KARAKTER YANG BICARA ===
-
-            if (currentLine.characterName == "SYSTEM")
+            // === LOGIKA POSISI ===
+            if (currentLine.characterName == "SYSTEM" || currentLine.characterName == "?")
             {
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }
-            else if (currentLine.characterName == "?")
+            else if (currentLine.characterName == "BOSS")
             {
-                SetRightSide(currentLine, groupRect, bubbleRect);
+                // Kalau Boss bicara, pakai logika Kanan (atau custom bossAnimator)
+                if (bossAnimator != null && bossAnimator.gameObject != portraitRight.gameObject)
+                {
+                    portraitLeft.gameObject.SetActive(false);
+                    portraitRight.gameObject.SetActive(false);
+                    if (portraitMiddle != null) portraitMiddle.gameObject.SetActive(false); // Hide middle
+                    
+                    bossAnimator.gameObject.SetActive(true);
+
+                    bubbleRect.localScale = new Vector3(-1, 1, 1);
+                    groupRect.anchoredPosition = new Vector2(systemPositionX, groupRect.anchoredPosition.y);
+                    float newX = -defaultTextX + textFlipOffset;
+                    textContainer.anchoredPosition = new Vector2(newX, textContainer.anchoredPosition.y);
+                }
+                else
+                {
+                    SetRightSide(currentLine, groupRect, bubbleRect);
+                }
+            }
+            else if (currentLine.characterName == "-")
+            {
+                // LOGIKA KHUSUS: Narasi tapi ada gambarnya -> Tengah Atas
+                SetMiddleSide(currentLine, groupRect, bubbleRect);
             }
             else
             {
@@ -248,9 +298,10 @@ public class PrologueManager3 : MonoBehaviour
         }
         else
         {
-            // === NARASI / SFX (TIDAK ADA WAJAH) ===
+            // Narasi Polos
             portraitLeft.gameObject.SetActive(false);
             portraitRight.gameObject.SetActive(false);
+            if (portraitMiddle != null) portraitMiddle.gameObject.SetActive(false);
 
             bubbleRect.localScale = new Vector3(1, 1, 1);
             groupRect.anchoredPosition = new Vector2(centerPositionX, groupRect.anchoredPosition.y);
@@ -258,10 +309,27 @@ public class PrologueManager3 : MonoBehaviour
         }
     }
 
-    // Fungsi helper
+    // Fungsi helper baru untuk posisi Tengah
+    void SetMiddleSide(DialogueLine3 line, RectTransform group, RectTransform bubble)
+    {
+        portraitLeft.gameObject.SetActive(false);
+        portraitRight.gameObject.SetActive(false);
+        
+        if (portraitMiddle != null)
+        {
+            portraitMiddle.gameObject.SetActive(true);
+            portraitMiddle.sprite = line.characterSprite;
+        }
+
+        bubble.localScale = new Vector3(1, 1, 1);
+        group.anchoredPosition = new Vector2(centerPositionX, group.anchoredPosition.y);
+        textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);
+    }
+
     void SetRightSide(DialogueLine3 line, RectTransform group, RectTransform bubble)
     {
         portraitLeft.gameObject.SetActive(false);
+        if (portraitMiddle != null) portraitMiddle.gameObject.SetActive(false);
         portraitRight.gameObject.SetActive(true);
         portraitRight.sprite = line.characterSprite;
 
@@ -275,6 +343,7 @@ public class PrologueManager3 : MonoBehaviour
     void SetLeftSide(DialogueLine3 line, RectTransform group, RectTransform bubble)
     {
         portraitLeft.gameObject.SetActive(true);
+        if (portraitMiddle != null) portraitMiddle.gameObject.SetActive(false);
         portraitRight.gameObject.SetActive(false);
         portraitLeft.sprite = line.characterSprite;
 
