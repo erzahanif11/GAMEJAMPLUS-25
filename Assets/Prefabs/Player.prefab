@@ -161,14 +161,14 @@ MonoBehaviour:
   isGhostMode: 0
   trail: {fileID: 6424340680307980765}
   canDash: 0
+  isDashing: 0
   dashingForce: 5
   dashingCooldown: 0.5
   animator: {fileID: 7691887896828649644}
   footdistanceonground: 0.5
   footdistancemidair: 0.5
-  attackDamage: 1
   attackCooldown: 0.5
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 6187286167325376013}
   attackRange: 0.5
   enemyLayer:
     serializedVersion: 2
@@ -256,10 +256,10 @@ PolygonCollider2D:
       - {x: -0.033540778, y: -0.08914381}
       - {x: -0.034201283, y: -0.10070868}
       - {x: -0.033777017, y: -0.11523895}
-      - {x: -0.053375192, y: -0.2502354}
+      - {x: -0.025575677, y: -0.27326933}
       - {x: -0.03026314, y: -0.2726036}
       - {x: 0.13153443, y: -0.2736609}
-      - {x: 0.15045534, y: -0.25506407}
+      - {x: 0.13139279, y: -0.27492085}
       - {x: 0.13112733, y: -0.103023775}
       - {x: 0.13750367, y: -0.023494821}
       - {x: 0.14880785, y: 0.039790154}
@@ -450,7 +450,7 @@ Transform:
   m_GameObject: {fileID: 2211439786246722625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.062, y: -0.263, z: 0}
+  m_LocalPosition: {x: 0.046, y: -0.264, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
