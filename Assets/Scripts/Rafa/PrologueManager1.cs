@@ -29,6 +29,9 @@ public class PrologueManager1 : MonoBehaviour
     public Image portraitLeft;   
     public Image portraitRight;  
 
+    [Header("Character Animators")] // BARU: Slot untuk Animator
+    public PortraitAnimator systemAnimator; // Drag GameObject yang ada script PortraitAnimator (si System)
+
     [Header("Dialogue Layout & Animation")]
     public GameObject dialogueGroup;     
     public Image bubbleImage;            
@@ -66,13 +69,9 @@ public class PrologueManager1 : MonoBehaviour
     public Sprite digitalWorldBg;
     public Sprite BlackBG;       
     public Sprite Hypno;
-
     public Sprite ArcadeBg;
-
     public Sprite ArcadeBg2;
-
     public Sprite ArcadeDark;
-
     public Sprite ArcadeDark2;  
 
     [Header("Story Assets - Characters")] 
@@ -106,8 +105,9 @@ public class PrologueManager1 : MonoBehaviour
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
+        // --- DATA DIALOG ---
         AddLine("-", "'The sound of the door being opened'", BlackBG, null, noiseBubbleSprite, doorOpenSfx);
-        AddLine("-", "'Heavy rain pouring outside'", ArcadeDark, null, noiseBubbleSprite, rainSfx); // Added text for rain context
+        AddLine("-", "'Heavy rain pouring outside'", ArcadeDark, null, noiseBubbleSprite, rainSfx); 
         
         AddLine("THE CAT", "Damn, sky is crying buckets out there. I ain't dealing with wet fur today.", ArcadeDark, catSprite, null, null);
         AddLine("THE CAT", "At least it's dry in here.", ArcadeDark, catSprite);
@@ -190,6 +190,9 @@ public class PrologueManager1 : MonoBehaviour
                 StopAllCoroutines();
                 dialogueText.text = lines[index].dialogue;
                 isTyping = false;
+                
+                // BARU: Stop animasi jika di-skip
+                StopCharacterAnimation(); 
             }
             else
             {
@@ -209,6 +212,10 @@ public class PrologueManager1 : MonoBehaviour
     {
         isTyping = true;
         dialogueText.text = ""; 
+        
+        // BARU: Cek siapa yang ngomong, kalau SYSTEM, mainkan animasi
+        PlayCharacterAnimation();
+
         foreach (char c in lines[index].dialogue.ToCharArray())
         {
             dialogueText.text += c;
@@ -221,8 +228,34 @@ public class PrologueManager1 : MonoBehaviour
 
             yield return new WaitForSeconds(typingSpeed);
         }
+        
         isTyping = false;
+        
+        // BARU: Stop animasi setelah selesai ngetik
+        StopCharacterAnimation();
     }
+
+    // --- FUNGSI BARU UNTUK KONTROL ANIMASI ---
+    void PlayCharacterAnimation()
+    {
+        string currentChar = lines[index].characterName;
+        
+        // Kalau System atau "?" (orang yang sama) bicara, mainkan animasinya
+        if ((currentChar == "SYSTEM" || currentChar == "?") && systemAnimator != null)
+        {
+            systemAnimator.Play();
+        }
+    }
+
+    void StopCharacterAnimation()
+    {
+        // Matikan animasi System
+        if (systemAnimator != null)
+        {
+            systemAnimator.Stop();
+        }
+    }
+    // ----------------------------------------
 
     void NextLine()
     {
@@ -268,11 +301,8 @@ public class PrologueManager1 : MonoBehaviour
 
         if (currentLine.characterSprite != null)
         {
-            if (currentLine.characterName == "SYSTEM")
-            {
-                SetRightSide(currentLine, groupRect, bubbleRect);
-            }
-            else if (currentLine.characterName == "?")
+            // === LOGIKA BARU UNTUK SYSTEM ===
+            if (currentLine.characterName == "SYSTEM" || currentLine.characterName == "?")
             {
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }
@@ -287,9 +317,7 @@ public class PrologueManager1 : MonoBehaviour
             portraitRight.gameObject.SetActive(false);
 
             bubbleRect.localScale = new Vector3(1, 1, 1);
-
             groupRect.anchoredPosition = new Vector2(centerPositionX, groupRect.anchoredPosition.y);
-
             textContainer.anchoredPosition = new Vector2(defaultTextX, textContainer.anchoredPosition.y);
         }
     }
