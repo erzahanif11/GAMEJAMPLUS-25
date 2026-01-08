@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PhaseManager : MonoBehaviour
@@ -10,9 +11,13 @@ public class PhaseManager : MonoBehaviour
     [SerializeField] float phase1Time = 60f;
     [SerializeField] float phase2Time = 180f;
     [SerializeField] float bossTime = 180f;
+    [SerializeField] float fadeDuration;
 
     float timer;
+    float fadeTime;
     TextMeshProUGUI timerTMP;
+    bool isFading = false;
+    public Image faderImage;
 
     void Awake()
     {
@@ -45,6 +50,8 @@ public class PhaseManager : MonoBehaviour
         if (index == 1) timer = phase1Time;
         else if (index == 3) timer = phase2Time;
         else if (index  == 5) timer = bossTime;
+
+        fadeTime = fadeDuration;
     }
 
     void Update()
@@ -60,6 +67,7 @@ public class PhaseManager : MonoBehaviour
 
             case 2: // Phase 1
                 timerTMP = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
+                faderImage = GameObject.FindGameObjectWithTag("Fader").GetComponent<Image>();
                 RunTimer();
                 break;
 
@@ -69,6 +77,7 @@ public class PhaseManager : MonoBehaviour
                 break;
 
             case 4: // Phase 2
+                faderImage = GameObject.FindGameObjectWithTag("Fader").GetComponent<Image>();
                 timerTMP = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
                 RunTimer();
                 break;
@@ -79,8 +88,6 @@ public class PhaseManager : MonoBehaviour
                 break;
 
             case 6: // Boss
-                // Boss logic handled di BossManager
-                RunTimer();
                 break;
         }
     }
@@ -97,7 +104,20 @@ public class PhaseManager : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            LoadNextScene();
+            if(faderImage != null && fadeTime > 0)
+            {
+                 fadeTime -= Time.deltaTime;
+
+                 float fadeProgress = 1f - (fadeTime/fadeDuration);
+                 
+                 Color c = faderImage.color;
+                 c.a = fadeProgress;
+                 faderImage.color = c;
+            }
+            else
+            {
+                LoadNextScene();
+            }
         }
     }
 

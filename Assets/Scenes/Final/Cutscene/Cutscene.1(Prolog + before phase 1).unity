@@ -1172,11 +1172,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8794261359695607620, guid: f820caaf4b0765f43ab69913f05c0c7e, type: 3}
       propertyPath: phase1Time
-      value: 15
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8794261359695607620, guid: f820caaf4b0765f43ab69913f05c0c7e, type: 3}
       propertyPath: phase2Time
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794261359695607620, guid: f820caaf4b0765f43ab69913f05c0c7e, type: 3}
+      propertyPath: fadeDuration
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
