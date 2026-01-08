@@ -8,6 +8,7 @@ public class PhaseManager : MonoBehaviour
     [Header("Time Settings")]
     [SerializeField] float phase1Time = 60f;
     [SerializeField] float phase2Time = 180f;
+    [SerializeField] float bossTime = 180f;
 
     float timer;
 
@@ -41,6 +42,7 @@ public class PhaseManager : MonoBehaviour
         // Reset timer tiap masuk phase
         if (index == 1) timer = phase1Time;
         else if (index == 3) timer = phase2Time;
+        else if (index  == 5) timer = bossTime;
     }
 
     void Update()
@@ -49,33 +51,32 @@ public class PhaseManager : MonoBehaviour
 
         switch (index)
         {
-            case 0: // Cutscene 1
+            case 1: // Cutscene 1
                 if (PrologueManager1.instance.IsFinished())
                     LoadNextScene();
                 break;
 
-            case 1: // Phase 1
+            case 2: // Phase 1
                 RunTimer();
                 break;
 
-            case 2: // Cutscene 2
+            case 3: // Cutscene 2
                 if (PrologueManager2.instance.IsFinished())
                     LoadNextScene();
                 break;
 
-            case 3: // Phase 2
+            case 4: // Phase 2
                 RunTimer();
                 break;
 
-            case 4: // Cutscene 3
+            case 5: // Cutscene 3
                 if (PrologueManager3.instance.IsFinished())
                     LoadNextScene();
                 break;
 
-            case 5: // Boss
+            case 6: // Boss
                 // Boss logic handled di BossManager
-                if(BossTrigger.instance.bossDeath())
-                    LoadNextScene();
+                RunTimer();
                 break;
         }
     }
