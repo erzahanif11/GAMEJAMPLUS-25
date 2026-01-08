@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 182858518}
   - component: {fileID: 182858519}
   - component: {fileID: 182858520}
+  - component: {fileID: 182858521}
   m_Layer: 5
   m_Name: PortraitRight
   m_TagString: Untagged
@@ -348,6 +349,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &182858521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182858517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92582bd2adcedb4292ea03db3d9eec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 182858520}
+  animationFrames:
+  - {fileID: 6937817954938267909, guid: 59c9f4b56bedaeb4fb0f4fbaffa0fc0b, type: 3}
+  - {fileID: -6470460504253458178, guid: 21483302ea7417d4194b3218387f0406, type: 3}
+  - {fileID: -4178046375966092550, guid: 9c23a870b50ac53489c64661fb17bb10, type: 3}
+  - {fileID: 4130640169021434097, guid: cdda5641003479b4c9412a0f738b305e, type: 3}
+  - {fileID: 3465286685962602723, guid: 77b28dca6fbd0464eb7dddde5318f31b, type: 3}
+  - {fileID: -8578418458684398838, guid: c60fd3efa7a05c94a8e37a413bfa6669, type: 3}
+  frameSpeed: 0.14
 --- !u!1 &432652867
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +730,7 @@ MonoBehaviour:
   backgroundImage: {fileID: 88629381}
   portraitLeft: {fileID: 1449074947}
   portraitRight: {fileID: 182858520}
+  systemAnimator: {fileID: 0}
   dialogueGroup: {fileID: 829529924}
   bubbleImage: {fileID: 1318505193}
   textContainer: {fileID: 2123691420}
