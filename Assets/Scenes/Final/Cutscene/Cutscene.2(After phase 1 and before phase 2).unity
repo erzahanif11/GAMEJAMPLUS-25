@@ -263,7 +263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6470460504253458178, guid: 2894d218c5c09654488687aa0a2af4f7, type: 3}
+  m_Sprite: {fileID: 2194808265048323953, guid: b061e301961d4284d89275f47ed6aa40, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 182858518}
   - component: {fileID: 182858519}
   - component: {fileID: 182858520}
+  - component: {fileID: 182858521}
   m_Layer: 5
   m_Name: PortraitRight
   m_TagString: Untagged
@@ -300,14 +301,14 @@ RectTransform:
   m_GameObject: {fileID: 182858517}
   m_LocalRotation: {x: -0, y: 0.99998885, z: -0, w: 0.004725561}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.1841264, y: 7.391694, z: 5.579058}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 6.9, y: 12.189568, z: 9.200368}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1206783169}
   m_LocalEulerAnglesHint: {x: 0, y: 179.458, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 669, y: -215}
+  m_AnchoredPosition: {x: 664.2, y: -395.56}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &182858519
@@ -348,6 +349,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &182858521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182858517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92582bd2adcedb4292ea03db3d9eec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 182858520}
+  animationFrames:
+  - {fileID: 6937817954938267909, guid: 59c9f4b56bedaeb4fb0f4fbaffa0fc0b, type: 3}
+  - {fileID: -6470460504253458178, guid: 21483302ea7417d4194b3218387f0406, type: 3}
+  - {fileID: -4178046375966092550, guid: 9c23a870b50ac53489c64661fb17bb10, type: 3}
+  - {fileID: 4130640169021434097, guid: cdda5641003479b4c9412a0f738b305e, type: 3}
+  - {fileID: 3465286685962602723, guid: 77b28dca6fbd0464eb7dddde5318f31b, type: 3}
+  - {fileID: -8578418458684398838, guid: c60fd3efa7a05c94a8e37a413bfa6669, type: 3}
+  frameSpeed: 0.14
 --- !u!1 &432652867
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +730,7 @@ MonoBehaviour:
   backgroundImage: {fileID: 88629381}
   portraitLeft: {fileID: 1449074947}
   portraitRight: {fileID: 182858520}
+  systemAnimator: {fileID: 182858521}
   dialogueGroup: {fileID: 829529924}
   bubbleImage: {fileID: 1318505193}
   textContainer: {fileID: 2123691420}
@@ -726,7 +749,7 @@ MonoBehaviour:
   RoboSfx: {fileID: 8300000, guid: b75745df1e8fff84eb580ea7b88fd4fc, type: 3}
   LavaSfx: {fileID: 8300000, guid: 217b2039fef6bdc4e8cab913919edf25, type: 3}
   warehouseBg: {fileID: -6470460504253458178, guid: 2894d218c5c09654488687aa0a2af4f7, type: 3}
-  digitalWorldBg: {fileID: 4120901811166270815, guid: 51929d3235d727b428fa4a3337bb4cb1, type: 3}
+  digitalWorldBg: {fileID: -7341079406545214573, guid: 30b0ea16648433e40af06b96accb9e38, type: 3}
   BlackBG: {fileID: 4457835537561387818, guid: b2e248ec9919c1f4a886434fb8e62916, type: 3}
   Hypno: {fileID: 5565824869992191043, guid: b0fd1f29f34776c4e9e5cc96844a9624, type: 3}
   catSprite: {fileID: 6937817954938267909, guid: 6847a10b38be0a649a1495fe0220d281, type: 3}
