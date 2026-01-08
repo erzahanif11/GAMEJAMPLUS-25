@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class PhaseManager : MonoBehaviour
     [SerializeField] float bossTime = 180f;
 
     float timer;
+    TextMeshProUGUI timerTMP;
 
     void Awake()
     {
@@ -57,6 +59,7 @@ public class PhaseManager : MonoBehaviour
                 break;
 
             case 2: // Phase 1
+                timerTMP = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
                 RunTimer();
                 break;
 
@@ -66,6 +69,7 @@ public class PhaseManager : MonoBehaviour
                 break;
 
             case 4: // Phase 2
+                timerTMP = GameObject.FindGameObjectWithTag("Timer").GetComponent<TextMeshProUGUI>();
                 RunTimer();
                 break;
 
@@ -83,6 +87,13 @@ public class PhaseManager : MonoBehaviour
 
     void RunTimer()
     {
+        if(timer > 0)
+        {
+            int menit = Mathf.FloorToInt(timer/60f);
+            int detik = Mathf.FloorToInt(timer%60f);
+            timerTMP.text = $"{menit:00}:{detik:00}";
+        }
+
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
