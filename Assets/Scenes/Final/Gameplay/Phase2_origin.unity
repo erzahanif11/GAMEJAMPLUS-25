@@ -996,6 +996,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87c616ebe563c034aa4b6f1a5cd3c409, type: 3}
+--- !u!4 &169404058 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6187286167325376013, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+  m_PrefabInstance: {fileID: 1408430181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &213338376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12424,6 +12429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2429756717255561360, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 169404058}
     - target: {fileID: 1893083790497630746, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_Name
       value: Player
