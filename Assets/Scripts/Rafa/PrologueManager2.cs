@@ -29,7 +29,7 @@ public class PrologueManager2 : MonoBehaviour
     public Image portraitLeft;   
     public Image portraitRight;  
 
-    [Header("Character Animators")] // BARU: Slot untuk Animator System
+    [Header("Character Animators")] 
     public PortraitAnimator systemAnimator; 
 
     [Header("Dialogue Layout & Animation")]
@@ -68,7 +68,8 @@ public class PrologueManager2 : MonoBehaviour
     public Sprite warehouseBg;            
     public Sprite digitalWorldBg;
     public Sprite BlackBG;       
-    public Sprite Hypno;  
+    public Sprite Hypno;
+    public Sprite ParallaxBg; // BARU: Slot untuk Background Parallax
 
     [Header("Story Assets - Characters")] 
     public Sprite catSprite;
@@ -101,17 +102,31 @@ public class PrologueManager2 : MonoBehaviour
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
-        // --- DATA DIALOG PROLOGUE 2 ---
-        
+        // --- PHASE 1 RECAP ---
         AddLine("", "'After Phase 1'", BlackBG, null, noiseBubbleSprite, LavaSfx);
-        AddLine("THE CAT", "", digitalWorldBg, catSprite);
+        
         AddLine("THE CAT", "Okay… why are there more of these assholes, and why is the lava faster?", digitalWorldBg, catSprite);
         AddLine("SYSTEM", "Well… Spawn rate just spiked.", digitalWorldBg, systemSprite);
         AddLine("THE CAT", "Of course it is.", digitalWorldBg, catSprite);
         AddLine("SYSTEM", "Uhm…. Be careful of more enemies. They’re close now.", digitalWorldBg, systemSprite);
         AddLine("THE CAT", "So they’re trying to corner me.", digitalWorldBg, catSprite);
         AddLine("SYSTEM", "Exactly.", digitalWorldBg, systemSprite);
-        AddLine("THE CAT", "Alright then…. Let’s do this.", digitalWorldBg, catSprite);
+        
+        // --- TRANSISI KE PARALLAX WORLD ---
+        // Layar berkedip/glitch sebentar
+        AddLine("-", "(REALITY SHIFTS)", Hypno, null, noiseBubbleSprite, hypnoSfx); 
+
+        // Masuk ke Background Parallax
+        AddLine("THE CAT", "Whoa! My eyes!", ParallaxBg, catSprite);
+        AddLine("THE CAT", "Is the background... moving?", ParallaxBg, catSprite);
+        
+        AddLine("SYSTEM", "Warning! We've dropped into a Parallax Zone.", ParallaxBg, systemSprite, noiseBubbleSprite, ScanSfx);
+        AddLine("SYSTEM", "Depth perception is corrupted here. Watch your step.", ParallaxBg, systemSprite);
+        
+        AddLine("THE CAT", "Great. Just what I needed. Trippy visuals.", ParallaxBg, catSprite);
+        AddLine("THE CAT", "Alright then…. Let’s do this.", ParallaxBg, catSprite);
+        
+        // Masuk Phase 2 Gameplay
         AddLine("", "'Enter phase 2'", BlackBG, null, noiseBubbleSprite, LavaSfx);
 
         dialogueGroup.SetActive(true);
@@ -127,8 +142,6 @@ public class PrologueManager2 : MonoBehaviour
                 StopAllCoroutines();
                 dialogueText.text = lines[index].dialogue;
                 isTyping = false;
-                
-                // BARU: Stop animasi jika di-skip
                 StopCharacterAnimation(); 
             }
             else
@@ -149,8 +162,6 @@ public class PrologueManager2 : MonoBehaviour
     {
         isTyping = true;
         dialogueText.text = ""; 
-        
-        // BARU: Mainkan animasi saat mulai mengetik
         PlayCharacterAnimation();
 
         foreach (char c in lines[index].dialogue.ToCharArray())
@@ -165,18 +176,13 @@ public class PrologueManager2 : MonoBehaviour
 
             yield return new WaitForSeconds(typingSpeed);
         }
-        
         isTyping = false;
-        
-        // BARU: Stop animasi setelah selesai mengetik
         StopCharacterAnimation();
     }
 
-    // --- FUNGSI ANIMASI ---
     void PlayCharacterAnimation()
     {
         string currentChar = lines[index].characterName;
-        // Animasi hanya untuk SYSTEM (atau karakter "?" jika itu System)
         if ((currentChar == "SYSTEM" || currentChar == "?") && systemAnimator != null)
         {
             systemAnimator.Play();
@@ -185,12 +191,8 @@ public class PrologueManager2 : MonoBehaviour
 
     void StopCharacterAnimation()
     {
-        if (systemAnimator != null)
-        {
-            systemAnimator.Stop();
-        }
+        if (systemAnimator != null) systemAnimator.Stop();
     }
-    // ---------------------
 
     void NextLine()
     {
@@ -205,7 +207,6 @@ public class PrologueManager2 : MonoBehaviour
             dialogueGroup.SetActive(false);
             Debug.Log("Prologue 2 Selesai! Pindah Scene.");
             isEnd = true;
-            // SceneManager.LoadScene("Prologue3");
         }
     }
 
@@ -237,11 +238,7 @@ public class PrologueManager2 : MonoBehaviour
 
         if (currentLine.characterSprite != null)
         {
-            if (currentLine.characterName == "SYSTEM")
-            {
-                SetRightSide(currentLine, groupRect, bubbleRect);
-            }
-            else if (currentLine.characterName == "?")
+            if (currentLine.characterName == "SYSTEM" || currentLine.characterName == "?")
             {
                 SetRightSide(currentLine, groupRect, bubbleRect);
             }

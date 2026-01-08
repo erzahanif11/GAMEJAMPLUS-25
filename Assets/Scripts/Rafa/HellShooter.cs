@@ -19,7 +19,12 @@ public class HellShooter : MonoBehaviour
         else if (phaseName == "Nova") currentPhaseCoroutine = StartCoroutine(PhaseNova(duration));
         else if (phaseName == "Spiral") currentPhaseCoroutine = StartCoroutine(PhaseSpiral(duration));
         else if (phaseName == "TripleTracking") currentPhaseCoroutine = StartCoroutine(PhaseTripleTracking(duration));
+
     }
+
+
+
+
 
     // Fungsi Utama: Spawn peluru dengan arah tertentu
     void SpawnBullet(float angle)
