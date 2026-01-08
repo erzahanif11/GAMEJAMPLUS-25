@@ -7,7 +7,7 @@ public class BackToMainMenu : MonoBehaviour
     public void BackMainMenu()
     {
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu_Final");
         AudioManager.instance.PlayMenuMusic();
     }
 }
