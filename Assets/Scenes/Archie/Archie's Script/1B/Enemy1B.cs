@@ -114,6 +114,7 @@ public class Enemy1B : MonoBehaviour
             if (pScript != null)
             {
                 pScript.TakeDamage();
+                AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
                 Debug.Log("Health Player: " + pScript.lives);
             }
         }

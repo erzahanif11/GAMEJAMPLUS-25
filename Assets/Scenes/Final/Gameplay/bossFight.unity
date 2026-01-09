@@ -12897,6 +12897,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 985521253}
     m_Modifications:
     - target: {fileID: 627686070028274010, guid: dd88be229ed20894a8610d292555601b, type: 3}
+      propertyPath: attacked
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b5aa49a3c85fed46bc00df65613dd5c, type: 3}
+    - target: {fileID: 627686070028274010, guid: dd88be229ed20894a8610d292555601b, type: 3}
       propertyPath: bossMusic
       value: 
       objectReference: {fileID: 8300000, guid: 335020e9bd2b2f44391cfa349411953b, type: 3}

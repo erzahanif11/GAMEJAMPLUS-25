@@ -43,6 +43,7 @@ public class BulletScript : MonoBehaviour
         if (playerStats != null)
         {
             playerStats.TakeDamage();
+            AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
             if (playerStats.lives <= 0)
             {
                 GameManager.instance.Death();

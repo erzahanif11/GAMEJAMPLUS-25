@@ -18,33 +18,14 @@ public class BalokShadow : MonoBehaviour
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
+        srMain = GetComponent<SpriteRenderer>();
+        rb = GetComponentInParent<Rigidbody2D>();
+        blockSoundFlag = GetComponentInParent<BlockSoundFlag>();
+        CreateShadow();
     }
 
     void OnEnable(){
         isStopped=false;
-    }
-    void Start()
-    {
-        srMain = GetComponent<SpriteRenderer>();
-        rb = GetComponentInParent<Rigidbody2D>();
-        blockSoundFlag = GetComponentInParent<BlockSoundFlag>();
-
-        // === AUTO BUAT GAMEOBJECT SHADOW ===
-        shadowObject = new GameObject("Shadow_" + gameObject.name);
-        srShadow = shadowObject.AddComponent<SpriteRenderer>();
-        shadowObject.transform.parent = transform.parent; // agar di hierarchy tidak berantakan
-        
-        // Ambil sprite balok
-        srShadow.sprite = srMain.sprite;
-
-        // Warna bayangan
-        srShadow.color = new Color32(87, 154, 131, 111);
-
-        // Layer & order agar muncul di belakang objek
-        srShadow.sortingLayerID = srMain.sortingLayerID;
-        srShadow.sortingOrder = srMain.sortingOrder - 1; // di belakang balok
-
-        shadowObject.SetActive(false);
     }
 
     void Update()
@@ -88,5 +69,24 @@ public class BalokShadow : MonoBehaviour
         
         isStopped = true;
     }
+    }
+
+    void CreateShadow()
+    {
+        shadowObject = new GameObject("Shadow_" + gameObject.name);
+        srShadow = shadowObject.AddComponent<SpriteRenderer>();
+        shadowObject.transform.parent = transform.parent; // agar di hierarchy tidak berantakan
+        
+        // Ambil sprite balok
+        srShadow.sprite = srMain.sprite;
+
+        // Warna bayangan
+        srShadow.color = new Color32(87, 154, 131, 111);
+
+        // Layer & order agar muncul di belakang objek
+        srShadow.sortingLayerID = srMain.sortingLayerID;
+        srShadow.sortingOrder = srMain.sortingOrder - 1; // di belakang balok
+
+        shadowObject.SetActive(false);
     }
 }
