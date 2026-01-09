@@ -79,13 +79,12 @@ public class BalokShadow : MonoBehaviour
         
         // Ambil sprite balok
         srShadow.sprite = srMain.sprite;
-
         // Warna bayangan
         srShadow.color = new Color32(87, 154, 131, 111);
 
         // Layer & order agar muncul di belakang objek
         srShadow.sortingLayerID = srMain.sortingLayerID;
-        srShadow.sortingOrder = srMain.sortingOrder - 1; // di belakang balok
+        // srShadow.sortingOrder = srMain.sortingOrder - 1; // di belakang balok
 
         shadowObject.SetActive(false);
     }
