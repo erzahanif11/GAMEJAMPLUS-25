@@ -2748,7 +2748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744f20b302e5f3345ace915308759142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sinkSpeed: 0.088
+  sinkSpeed: 0.1
 --- !u!1 &683943760
 GameObject:
   m_ObjectHideFlags: 0
@@ -13013,7 +13013,7 @@ GameObject:
   - component: {fileID: 1581968754}
   m_Layer: 5
   m_Name: Fade
-  m_TagString: Untagged
+  m_TagString: FadeObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
