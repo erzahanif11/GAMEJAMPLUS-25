@@ -317,7 +317,7 @@ MonoBehaviour:
   dash: {fileID: 8300000, guid: f9d2e3f0a1acd3e4f9c388dfa5da7f79, type: 3}
   dead: {fileID: 0}
   hit: {fileID: 0}
-  blockJatuh: {fileID: 8300000, guid: 068825e8c4affb94284734808a744092, type: 3}
+  blockJatuh: {fileID: 8300000, guid: 0910a84c4d4a9b04ea6e4c5bc12ac339, type: 3}
   blockJatuh2: {fileID: 8300000, guid: f5d5fc1ccfdbac64d94862489178466f, type: 3}
   blockMeledak: {fileID: 8300000, guid: 5a0c6b921eaece341aba5c9f24e05961, type: 3}
   gameOver: {fileID: 8300000, guid: 7321546c8221ef54693a31e33cabaad5, type: 3}
