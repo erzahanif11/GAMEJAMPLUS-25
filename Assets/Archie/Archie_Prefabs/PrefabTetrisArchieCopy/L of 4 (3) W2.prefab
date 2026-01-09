@@ -48,7 +48,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151621722910262908}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -71,7 +71,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8930788496352763367}
   - component: {fileID: 8466502439614144624}
   - component: {fileID: 6642609789508852088}
-  - component: {fileID: 707164320550258638}
+  - component: {fileID: 7212001911261812464}
   m_Layer: 3
   m_Name: Square (3)
   m_TagString: Untagged
@@ -269,7 +269,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &707164320550258638
+--- !u!114 &7212001911261812464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 8896669654635144703}
   - component: {fileID: 4303933931289288872}
   - component: {fileID: 7464025415016773274}
-  - component: {fileID: 7646105805044285939}
+  - component: {fileID: 1880119911277496863}
   m_Layer: 3
   m_Name: Square (2)
   m_TagString: Untagged
@@ -777,7 +777,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7646105805044285939
+--- !u!114 &1880119911277496863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -947,11 +947,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8701981628486073571, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 8701981628486073571, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8701981628486073571, guid: 2423dc2f9b1588447a35ca6e2dcc95b2, type: 3}
       propertyPath: m_LocalPosition.z
