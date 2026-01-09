@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip blockMeledak;
     public AudioClip gameOver;
     public AudioClip bossKilled;
+    public AudioClip attacked;
 
 
     public static AudioManager instance;

@@ -63,6 +63,7 @@ public class Enemy1A : MonoBehaviour
         {
             Debug.Log("You've hit a player!");
             pScript.TakeDamage();
+            AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
             Debug.Log("His health: " + pScript.lives);
         }
     }
