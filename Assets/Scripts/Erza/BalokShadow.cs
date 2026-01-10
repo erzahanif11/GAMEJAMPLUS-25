@@ -65,9 +65,9 @@ public class BalokShadow : MonoBehaviour
     }
     else
     {
-        shadowObject.SetActive(false);
+        // shadowObject.SetActive(false);
         
-        isStopped = true;
+        // isStopped = true;
     }
     }
 
@@ -88,5 +88,12 @@ public class BalokShadow : MonoBehaviour
         srShadow.sortingOrder = srMain.sortingOrder - 1; // di belakang balok
 
         shadowObject.SetActive(false);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        isStopped = true;
+        shadowObject.SetActive(false);
+        Debug.Log("Woi gw collide coy! BACA BACA");
     }
 }

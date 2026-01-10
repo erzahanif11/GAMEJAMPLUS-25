@@ -68,14 +68,14 @@ public class Enemy1A : MonoBehaviour
             CameraShakeManager.instance.CameraShake(impulseSource);
             AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
             Debug.Log("You've hit a player!");
-            pScript.TakeDamage();
+            //pScript.TakeDamage();
             Debug.Log("His health: " + pScript.lives);
         }
         if (collision.gameObject.CompareTag("Lava"))
         {
             AudioManager.instance.PlaySFX(AudioManager.instance.lavaHiss);
         }
-        if (collision.gameObject.CompareTag("Block"))
+        if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Enemy"))
         {
             CameraShakeManager.instance.CameraShake(impulseSource);
             AudioManager.instance.PlaySFX(AudioManager.instance.attacked);

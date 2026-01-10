@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 586636962703314638}
   m_Layer: 8
   m_Name: Enemy1A_Down
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 5
   speed: 10
-  atkPower: 1
+  atkPower: 0
   atkDirection: 0
 --- !u!95 &1964392688664978650
 Animator:

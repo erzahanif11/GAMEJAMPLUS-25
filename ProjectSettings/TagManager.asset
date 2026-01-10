@@ -11,6 +11,7 @@ TagManager:
   - Fader
   - FadeObj
   - Lava
+  - Enemy
   layers:
   - Default
   - TransparentFX
