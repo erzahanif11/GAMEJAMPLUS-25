@@ -60,36 +60,6 @@ public class BulletScript : MonoBehaviour
         StartCoroutine(ActivateImmunity());
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        // 1. Cek Tag
-        if (!other.gameObject.CompareTag(bulletTag)) return;
-
-        // 2. Cek apakah sedang Immune? Jika ya, abaikan peluru.
-        if (isImmune || playerMovement.isDashing) return;
-
-
-        // 3. Logika kena damage
-        if (playerStats != null)
-        {
-            playerStats.TakeDamage();
-            AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
-            if (playerStats.lives <= 0)
-            {
-                GameManager.instance.Death();
-            }
-        }
-        
-
-        if (destroyBulletOnHit)
-        {
-            Destroy(other.gameObject);
-        }
-
-        // 4. Mulai proses Imunitas & Blinking
-        StartCoroutine(ActivateImmunity());
-    }
-
     // Coroutine untuk menangani durasi dan animasi kedip
     IEnumerator ActivateImmunity()
     {

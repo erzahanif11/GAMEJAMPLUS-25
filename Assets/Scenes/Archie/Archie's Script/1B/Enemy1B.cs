@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.Cinemachine;
 
 public class Enemy1B : MonoBehaviour
 {
@@ -21,7 +20,6 @@ public class Enemy1B : MonoBehaviour
     bool isHit = false;
     bool isFlipped;
     SpriteRenderer eSprite;
-    CinemachineImpulseSource impulseSource;
     float travel;
 
     void Awake()
@@ -31,7 +29,6 @@ public class Enemy1B : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null) pScript = player.GetComponent<PlayerStats>();
-        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     void Start()
@@ -116,22 +113,10 @@ public class Enemy1B : MonoBehaviour
         {
             if (pScript != null)
             {
-                CameraShakeManager.instance.CameraShake(impulseSource);
-                //pScript.TakeDamage();
+                pScript.TakeDamage();
                 AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
                 Debug.Log("Health Player: " + pScript.lives);
             }
         }
-        if (collision.gameObject.CompareTag("Lava"))
-        {
-            AudioManager.instance.PlaySFX(AudioManager.instance.lavaHiss);
-        }
-        if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Enemy"))
-        {
-            CameraShakeManager.instance.CameraShake(impulseSource);
-            AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
-        }
     }
-
-    
 }

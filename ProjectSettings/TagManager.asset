@@ -9,9 +9,6 @@ TagManager:
   - hellbullet
   - Timer
   - Fader
-  - FadeObj
-  - Lava
-  - Enemy
   layers:
   - Default
   - TransparentFX
