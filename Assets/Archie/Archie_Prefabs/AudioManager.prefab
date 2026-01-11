@@ -309,16 +309,21 @@ MonoBehaviour:
   sfxSource: {fileID: 1002702606678808928}
   menuMusic: {fileID: 8300000, guid: bdec890f32c664c4d9510fcf418f0a53, type: 3}
   gameMusic: {fileID: 8300000, guid: fe96c2262916d4e44af75b9d38cab5cf, type: 3}
+  bossMusic: {fileID: 0}
+  loseMusic: {fileID: 0}
   menuSelect: {fileID: 0}
   settingSelectSound: {fileID: 0}
   jump: {fileID: 0}
   dash: {fileID: 8300000, guid: f9d2e3f0a1acd3e4f9c388dfa5da7f79, type: 3}
   dead: {fileID: 0}
   hit: {fileID: 0}
-  blockJatuh: {fileID: 8300000, guid: 068825e8c4affb94284734808a744092, type: 3}
+  blockJatuh: {fileID: 8300000, guid: 0910a84c4d4a9b04ea6e4c5bc12ac339, type: 3}
   blockJatuh2: {fileID: 8300000, guid: f5d5fc1ccfdbac64d94862489178466f, type: 3}
   blockMeledak: {fileID: 8300000, guid: 5a0c6b921eaece341aba5c9f24e05961, type: 3}
   gameOver: {fileID: 8300000, guid: 7321546c8221ef54693a31e33cabaad5, type: 3}
+  bossKilled: {fileID: 0}
+  attacked: {fileID: 0}
+  lavaHiss: {fileID: 8300000, guid: 996badad466356f43ad6c291d2b3c7a3, type: 3}
 --- !u!82 &5636782927305177653
 AudioSource:
   m_ObjectHideFlags: 0

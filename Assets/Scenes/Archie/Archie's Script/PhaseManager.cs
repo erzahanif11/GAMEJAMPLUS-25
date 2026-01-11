@@ -17,6 +17,7 @@ public class PhaseManager : MonoBehaviour
     float fadeTime;
     TextMeshProUGUI timerTMP;
     bool isFading = false;
+    GameObject fadeCanvas;
     public Image faderImage;
 
     void Awake()
@@ -52,6 +53,9 @@ public class PhaseManager : MonoBehaviour
         else if (index  == 5) timer = bossTime;
 
         fadeTime = fadeDuration;
+        
+        // fadeCanvas = GameObject.FindGameObjectWithTag("FadeObj");
+        // fadeCanvas.SetActive(false);
     }
 
     void Update()
@@ -106,6 +110,7 @@ public class PhaseManager : MonoBehaviour
         {
             if(faderImage != null && fadeTime > 0)
             {
+                // fadeCanvas.SetActive(true);
                  fadeTime -= Time.deltaTime;
 
                  float fadeProgress = 1f - (fadeTime/fadeDuration);
