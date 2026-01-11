@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement; // WAJIB ADA: Library untuk pindah scene
 
 [System.Serializable]
 public class DialogueLine4
@@ -14,7 +15,7 @@ public class DialogueLine4
     public Sprite characterSprite; 
     public Sprite bubbleSprite; 
     public AudioClip soundEffect;
-    public Color textColor = Color.black; // UBAH: Default jadi Hitam
+    public Color textColor = Color.black; 
 }
 
 public class PrologueManager4 : MonoBehaviour
@@ -125,7 +126,7 @@ public class PrologueManager4 : MonoBehaviour
 
         AddLine("-", "(A faint glitch. The boss stirs.)", digitalWorldBg, null, noiseBubbleSprite, glitchSfx);
 
-        AddLine("BOSS", "…Thank you.", digitalWorldBg, bossSprite,noiseBubbleSprite);
+        AddLine("BOSS", "…Thank you.", digitalWorldBg, bossSprite, noiseBubbleSprite);
 
         AddLine("THE CAT", "What?", digitalWorldBg, catSprite);
 
@@ -153,16 +154,17 @@ public class PrologueManager4 : MonoBehaviour
         AddLine("SYSTEM", "It seemed… unnecessary.", digitalWorldBg, systemSprite);
         AddLine("SYSTEM", "And honestly, I didn’t expect you to survive.", digitalWorldBg, systemSprite);
 
-        AddLine("THE CAT", "You f*cking Tv Head.", digitalWorldBg, catSprite);
+        AddLine("THE CAT", "You fucking clanker.", digitalWorldBg, catSprite);
 
         AddLine("THE CAT", "Alright.", digitalWorldBg, catSprite);
         AddLine("THE CAT", "One more round.", digitalWorldBg, catSprite);
 
         AddLine("THE CAT", "Here we go again.", digitalWorldBg, catSprite);
 
-        AddLine("SYSTEM", "Preparing next sequence.", digitalWorldBg, systemSprite, noiseBubbleSprite);
+        AddLine("SYSTEM", "Preparing next sequence.", digitalWorldBg, systemSprite, noiseBubbleSprite, machineTurnOnSfx);
 
-        AddLine("", "TO BE CONTINUED", BlackBG, null, noiseBubbleSprite, machineTurnOnSfx, Color.red);
+        // Teks Merah "TO BE CONTINUED"
+        AddLine("", "TO BE CONTINUED", BlackBG, null, noiseBubbleSprite, null, Color.red);
 
         dialogueGroup.SetActive(true);
         StartDialogue();
@@ -248,6 +250,9 @@ public class PrologueManager4 : MonoBehaviour
             dialogueGroup.SetActive(false);
             Debug.Log("EPILOGUE SELESAI! Terima kasih sudah bermain.");
             isEnd = true;
+            
+            // --- PINDAH SCENE KE MAIN MENU ---
+            SceneManager.LoadScene("Main Menu_Final");
         }
     }
 
@@ -277,7 +282,7 @@ public class PrologueManager4 : MonoBehaviour
         else
             nameText.color = Color.cyan;
 
-        // 4. Set Warna Teks Dialog (Hitam default, atau Merah kalau diset)
+        // 4. Set Warna Teks Dialog
         dialogueText.color = currentLine.textColor;
 
         // 5. Set Background & Bubble
@@ -377,8 +382,6 @@ public class PrologueManager4 : MonoBehaviour
         newLine.characterSprite = portrait; 
         newLine.bubbleSprite = bubble; 
         newLine.soundEffect = sfx; 
-        
-        // UBAH: Jika warna tidak diisi (null), pakai Hitam.
         newLine.textColor = txtColor ?? Color.black; 
 
         lines.Add(newLine);
