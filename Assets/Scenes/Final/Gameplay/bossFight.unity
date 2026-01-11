@@ -1842,7 +1842,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -855298285791758126, guid: a9dab3ab9fe3fd24fbd48e875d376291, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3880,7 +3880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4412,14 +4412,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -855298285791758126, guid: d868e4db44b12084f92db9007b9b5ddc, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11640,8 +11640,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: db3ad0b6d82eced4391127a896e1c26c, type: 2}
-  m_sharedMaterial: {fileID: -3893021131537203798, guid: db3ad0b6d82eced4391127a896e1c26c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d5cbc103a1c2cd9498567ecf6cbcfb9a, type: 2}
+  m_sharedMaterial: {fileID: -4895773902269612807, guid: d5cbc103a1c2cd9498567ecf6cbcfb9a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11838,7 +11838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12767,16 +12767,28 @@ PrefabInstance:
       value: ParalaxStaticBG
       objectReference: {fileID: 0}
     - target: {fileID: 7071158832665707836, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7295601
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071158832665707836, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7295601
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071158832665707836, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7295601
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071158832665707836, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.39983
+      value: 5.1497
       objectReference: {fileID: 0}
     - target: {fileID: 7071158832665707836, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.59
+      value: 11.076
       objectReference: {fileID: 0}
     - target: {fileID: 7071158832665707836, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.32
+      value: 7.4943
       objectReference: {fileID: 0}
     - target: {fileID: 7071158832665707836, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12806,13 +12818,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7071158832665707836, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083954478086108224, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.32
+      objectReference: {fileID: 0}
     - target: {fileID: 9061352168870957146, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.72
       objectReference: {fileID: 0}
     - target: {fileID: 9061352168870957146, guid: e97c8adfbc5ad6741a8a78da6ac745be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.47
+      value: -4.96
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

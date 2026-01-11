@@ -1171,8 +1171,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8794261359695607620, guid: f820caaf4b0765f43ab69913f05c0c7e, type: 3}
+      propertyPath: bossTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794261359695607620, guid: f820caaf4b0765f43ab69913f05c0c7e, type: 3}
       propertyPath: phase1Time
-      value: 60
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8794261359695607620, guid: f820caaf4b0765f43ab69913f05c0c7e, type: 3}
       propertyPath: phase2Time
