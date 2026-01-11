@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7954459916017652602}
   - component: {fileID: 7345365821295055617}
   - component: {fileID: 4181040811884859392}
-  - component: {fileID: 2471199912129048868}
   m_Layer: 8
   m_Name: Hell's Bullet
   m_TagString: hellbullet
@@ -192,7 +191,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7219929436549432840}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
   m_Name: 
@@ -238,15 +237,3 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 4, y: 2, z: 0}
---- !u!114 &2471199912129048868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7219929436549432840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bfc4421719d0a243af875e7ecc4e231, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

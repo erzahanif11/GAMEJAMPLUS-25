@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections; // Wajib ada untuk IEnumerator
+using Unity.Cinemachine;
 
 public class BulletScript : MonoBehaviour
 {
@@ -17,7 +18,15 @@ public class BulletScript : MonoBehaviour
     private PlayerStats playerStats;
     private SpriteRenderer spriteRenderer;
     PlayerMovement playerMovement;
+    CinemachineImpulseSource impulseSource;
 
+
+
+    void Awake()
+    {
+                impulseSource = GetComponent<CinemachineImpulseSource>();
+
+    }
     void Start()
     {
         playerStats = FindAnyObjectByType<PlayerStats>();
@@ -43,6 +52,8 @@ public class BulletScript : MonoBehaviour
         if (playerStats != null)
         {
             playerStats.TakeDamage();
+            CameraShakeManager.instance.CameraShake(impulseSource);
+
             AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
             if (playerStats.lives <= 0)
             {
