@@ -16,4 +16,8 @@ public class MainMenuButtons : MonoBehaviour
         // Reload the current scene by its build index
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
+
+    public void LoadSurvival(){
+        SceneManager.LoadScene("Phase2_origin");
+    }
 }
