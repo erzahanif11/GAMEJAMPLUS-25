@@ -19,7 +19,7 @@ public class HeartsUI : MonoBehaviour
         for (int i = 0; i < hearts.Length; i++){
             if (i < stats.lives){
                 hearts[i].enabled = true;
-            } else {
+            } else {    
                 hearts[i].enabled = false;
             }
         }
