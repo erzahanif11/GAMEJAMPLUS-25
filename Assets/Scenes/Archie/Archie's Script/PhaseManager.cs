@@ -48,9 +48,9 @@ public class PhaseManager : MonoBehaviour
         int index = scene.buildIndex;
 
         // Reset timer tiap masuk phase
-        if (index == 1) timer = phase1Time;
-        else if (index == 3) timer = phase2Time;
-        else if (index  == 5) timer = bossTime;
+        if (index == 2) timer = phase1Time;
+        else if (index == 4) timer = phase2Time;
+        else if (index  == 6) timer = bossTime;
 
         fadeTime = fadeDuration;
         
