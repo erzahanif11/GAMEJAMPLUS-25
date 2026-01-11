@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip gameOver;
     public AudioClip bossKilled;
     public AudioClip attacked;
+    public AudioClip lavaHiss;
 
 
     public static AudioManager instance;

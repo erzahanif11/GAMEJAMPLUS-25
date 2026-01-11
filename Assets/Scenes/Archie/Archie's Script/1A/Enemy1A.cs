@@ -1,4 +1,5 @@
 using System.Xml.Serialization;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Enemy1A : MonoBehaviour
@@ -21,6 +22,7 @@ public class Enemy1A : MonoBehaviour
     GameObject player;
     PlayerStats pScript;
     Animator animator;
+    CinemachineImpulseSource impulseSource;
     bool isHit = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,6 +43,7 @@ public class Enemy1A : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         pScript = player.GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     void Start()
@@ -59,12 +62,23 @@ public class Enemy1A : MonoBehaviour
     {
         isHit = true;
         animator.SetTrigger("isHit");
+        
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("You've hit a player!");
-            pScript.TakeDamage();
+            CameraShakeManager.instance.CameraShake(impulseSource);
             AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
+            Debug.Log("You've hit a player!");
+            //pScript.TakeDamage();
             Debug.Log("His health: " + pScript.lives);
+        }
+        if (collision.gameObject.CompareTag("Lava"))
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.lavaHiss);
+        }
+        if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Enemy"))
+        {
+            CameraShakeManager.instance.CameraShake(impulseSource);
+            AudioManager.instance.PlaySFX(AudioManager.instance.attacked);
         }
     }
 
