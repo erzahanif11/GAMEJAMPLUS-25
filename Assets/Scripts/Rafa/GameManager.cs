@@ -38,8 +38,9 @@ public class GameManager : MonoBehaviour
         TimerManager.instance.SaveBestTime();
         lose.SetActive(true);
         Time.timeScale=0;
-        AudioManager.instance.PlaySFX(AudioManager.instance.gameOver);
-        AudioManager.instance.PlayLoseMusic();
+        // AudioManager.instance.PlaySFX(AudioManager.instance.gameOver);
+        AudioManager.instance.StopMusic();
+        AudioManager.instance.PlaySFX(AudioManager.instance.loseMusic);
     }
 
     public void RespawnPlayer()
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
         rb.simulated = false;
         col.enabled = false;
         sr.enabled = false;
-        yield return new WaitForSeconds(0.1f); // Wait for 1 second before respawning
+        yield return new WaitForSeconds(0.1f); 
         player.transform.position = checkpoint.position;
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;

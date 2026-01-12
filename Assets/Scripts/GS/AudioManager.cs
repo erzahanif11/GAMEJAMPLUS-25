@@ -10,7 +10,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuMusic;
     public AudioClip gameMusic;
     public AudioClip bossMusic;
-    public AudioClip loseMusic;
+
+    public AudioClip loseMusic;//ternyata sfx :V
 
     public AudioClip menuSelect;
     public AudioClip settingSelectSound;
@@ -86,10 +87,15 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
-    public void PlayLoseMusic(){
-        musicSource.clip = loseMusic;
-        musicSource.Play();
+    public void StopMusic(){
+        musicSource.Stop();
     }
+
+    // ternyata sfx :V
+    // public void PlayLoseMusic(){
+    //     musicSource.clip = loseMusic;
+    //     musicSource.Play();
+    // }
 
     public void PlaySFX(AudioClip clip)
     {
