@@ -1697,7 +1697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7219929436549432840, guid: da7d43ae961f35c42a0ab3fe8827204d, type: 3}
   player: {fileID: 520166373}
-  bulletSpeed: 10
+  bulletSpeed: 17
 --- !u!114 &673870675
 MonoBehaviour:
   m_ObjectHideFlags: 0
