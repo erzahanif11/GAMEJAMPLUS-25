@@ -13,7 +13,7 @@ public class LavaEater : MonoBehaviour
     void Awake()
     {
         playerStats = FindAnyObjectByType<PlayerStats>();
-        spriteRenderer = GameObject.FindGameObjectByTag("Player").GetComponent<SpriteRenderer>();
+        spriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerStay2D(Collider2D other)
