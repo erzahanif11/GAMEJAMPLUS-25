@@ -30,6 +30,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final/Cutscene/Cutscene.4(Epilog after boss scene).unity
     guid: bc803d5cbe488844096ffae47acb59d0
+  - enabled: 1
+    path: Assets/Scenes/Final/Gameplay/Survival.unity
+    guid: 4fc4b4c340e3d5a4cb028a7f234b81c3
   - enabled: 0
     path: Assets/Scenes/Archie/Final_Archie-Copy/Cutscene.1(Prolog + before phase
       1).unity
