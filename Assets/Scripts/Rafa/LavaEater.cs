@@ -1,13 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 public class LavaEater : MonoBehaviour
 {
     public float sinkSpeed = 5e-16f;
     PlayerStats playerStats;
+    bool isImmune;
+    float immunityDuration = 1.0f; 
+    float blinkInterval = 0.1f;
+    SpriteRenderer spriteRenderer;
 
     void Awake()
     {
         playerStats = FindAnyObjectByType<PlayerStats>();
+        spriteRenderer = GameObject.FindGameObjectByTag("Player").GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -34,10 +40,39 @@ public class LavaEater : MonoBehaviour
             if (playerStats.lives <= 0)
             {
                 GameManager.instance.Death();
+
             }
             GameManager.instance.RespawnPlayer();
+            StartCoroutine(ActivateImmunity());
         }
 
+    }
 
+    IEnumerator ActivateImmunity()
+    {
+        isImmune = true; // Aktifkan status kebal
+        float timer = 0f;
+
+        while (timer < immunityDuration)
+        {
+            // Toggle visibility sprite (Hidup/Mati) untuk efek kedip
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = !spriteRenderer.enabled;
+            }
+
+            // Tunggu sesuai interval kedip
+            yield return new WaitForSeconds(blinkInterval);
+            timer += blinkInterval;
+        }
+
+        // Selesai Imunitas
+        isImmune = false;
+        
+        // Pastikan sprite terlihat kembali di akhir
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = true;
+        }
     }
 }
