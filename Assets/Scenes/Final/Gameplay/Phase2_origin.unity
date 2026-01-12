@@ -3353,7 +3353,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 0.808}
+    oldSize: {x: 2.56, y: 0.76}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5982,7 +5982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f1c17bee7aa4f4cb0462336a3b7371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  pauseMenuPanel: {fileID: 0}
+  pauseMenuPanel: {fileID: 1397965593}
 --- !u!114 &1307780553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12899,6 +12899,10 @@ PrefabInstance:
     - target: {fileID: -2429756717255561360, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: enemyLayer.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 655116045930263616, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
+      propertyPath: m_Distance
+      value: 10.250702
       objectReference: {fileID: 0}
     - target: {fileID: 1893083790497630746, guid: d82c33434c86da14e81e5d0004ad6abb, type: 3}
       propertyPath: m_Name
