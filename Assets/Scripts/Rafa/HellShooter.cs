@@ -65,7 +65,7 @@ public class HellShooter : MonoBehaviour
     IEnumerator PhaseTripleTracking(float duration)
 {
     float endTime = Time.time + duration;
-    float spreadAngle = 5f; // Jarak sudut antar peluru tetangga
+    float spreadAngle = 6f; // Jarak sudut antar peluru tetangga
 
     while (Time.time < endTime)
     {
