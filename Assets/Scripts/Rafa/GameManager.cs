@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         return;
         AudioManager.instance.PlaySFX(AudioManager.instance.dead);
         Debug.Log("Player has died!");
+        TimerManager.instance.SaveBestTime();
         lose.SetActive(true);
         Time.timeScale=0;
         AudioManager.instance.PlaySFX(AudioManager.instance.gameOver);

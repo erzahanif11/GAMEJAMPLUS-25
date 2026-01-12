@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
         {
             PlayMenuMusic();
         }
-        else if (currentScene == "Phase1_origin" || currentScene == "Phase2_origin")
+        else if (currentScene == "Phase1_origin" || currentScene == "Phase2_origin" || currentScene == "Survival")
         {
             PlayGameMusic();
         }else if(currentScene == "bossFight"){

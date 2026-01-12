@@ -13294,6 +13294,10 @@ PrefabInstance:
       propertyPath: bossKilled
       value: 
       objectReference: {fileID: 8300000, guid: d2e3e04f4256f874383f971d922cc4d0, type: 3}
+    - target: {fileID: 2243077144997403211, guid: dd88be229ed20894a8610d292555601b, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6004967248678007851, guid: dd88be229ed20894a8610d292555601b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.59512

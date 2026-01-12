@@ -18,6 +18,6 @@ public class MainMenuButtons : MonoBehaviour
     }
 
     public void LoadSurvival(){
-        SceneManager.LoadScene("Phase2_origin");
+        SceneManager.LoadScene("Survival");
     }
 }
