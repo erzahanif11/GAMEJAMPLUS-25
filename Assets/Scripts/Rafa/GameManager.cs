@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         rb.simulated = false;
         col.enabled = false;
         sr.enabled = false;
-        yield return new WaitForSeconds(1f); // Wait for 1 second before respawning
+        yield return new WaitForSeconds(0.1f); // Wait for 1 second before respawning
         player.transform.position = checkpoint.position;
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
